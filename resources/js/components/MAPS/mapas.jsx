@@ -13,6 +13,9 @@ export default function Map() {
 
     const [idSala, setIdsala] = useState(null);
     const [disponibilidad, setIDisponibilidad] = useState("");
+    const [piso1, setPiso1] = useState(true);
+    const [piso2, setPiso2] = useState(false);
+    const [piso3, setPiso3] = useState(false);
 
 
     const setId = (e) => {
@@ -49,6 +52,26 @@ export default function Map() {
         document.querySelector(".piso3MapaGrandeSVG").classList.remove("noneMapa");
     }
 
+    const verPiso = (e) => {
+        switch (e.target.id) {
+            case "1":
+                setPiso2(false);
+                setPiso3(false);
+                console.log(e.target.id)
+                break;
+            case "2":
+                setPiso2(true);
+                setPiso3(false);
+                console.log(e.target.id)
+                break;
+            case "3":
+                setPiso3(true)
+                setPiso2(true);
+                console.log(e.target.id)
+                break;
+        }
+    }
+
     // const volver = ()=>{
     //     document.querySelector(".volver2").classList.toggle("volver2V");
     //     document.querySelector(".modal").classList.toggle("modalVisible");
@@ -60,7 +83,7 @@ export default function Map() {
 
             <div className='headerMovil'>
                 <div className='botonesHeaderMovil'>
-                    <button onClick={VerPiso1} className="boton">Piso 1</button>
+                    <button onClick={VerPiso1} className="boton" >Piso 1</button>
                     <button onClick={VerPiso2} className="boton">Piso 2</button>
                     <button onClick={VerPiso3} className="boton">Piso 3</button>
                 </div>
@@ -86,32 +109,32 @@ export default function Map() {
             <div className='container2'>
 
                 <div className='containerMapaGrande'>
-                    <div className='piso1MapaGrandeSVG'>
+                    <div className={ piso1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG none'}>
                         <PisoUno_Rojo_SVG funcion={setId} />
                     </div>
-                    <div className='piso2MapaGrandeSVG noneMapa'>
+                    <div className={ piso2 ? 'piso2MapaGrandeSVG ' : 'piso2MapaGrandeSVG none'}>
                         <PisoDos_Verde_SVG funcion={setId} />
                     </div>
-                    <div className='piso3MapaGrandeSVG noneMapa'>
+                    <div className={ piso3 ? 'piso3MapaGrandeSVG' : 'piso3MapaGrandeSVG none'}>
                         <PisoTres_Azul_SVG funcion={setId} />
                     </div>
                 </div>
                 <div className='containerMapaPequeno'>
                     <div className='mapasPequenos'>
-                        <div className='piso1'>
+                        <div className={ piso1 ? 'piso1' : 'piso1 none'}>
                             <MapaPequeno_piso1_SVG />
                         </div>
-                        <div className='piso2 none'>
+                        <div className={ piso2 ? 'piso2 ' : 'piso2 none'}>
                             <MapaPequeno_piso2_SVG />
                         </div>
-                        <div className='piso3 none'>
+                        <div className={ piso3 ? 'piso3 ' : 'piso3 none'}>
                             <MapaPequeno_piso3_SVG />
                         </div>
                     </div>
                     <div className='botonesPisos'>
-                        <button onClick={VerPiso3} className="boton">Piso 3</button>
-                        <button onClick={VerPiso2} className="boton">Piso 2</button>
-                        <button onClick={VerPiso1} className="boton">Piso 1</button>
+                        <button onClick={(e) => verPiso(e)} className="boton" id="3">Piso 3</button>
+                        <button onClick={(e) => verPiso(e)} className="boton" id="2">Piso 2</button>
+                        <button onClick={(e) => verPiso(e)} className="boton" id="1">Piso 1</button>
                     </div>
                     <img src={logo} alt="logo virtual museum" className='logo' />
                 </div>
