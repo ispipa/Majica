@@ -49,13 +49,9 @@ export default function Map() {
         document.querySelector(".piso3MapaGrandeSVG").classList.remove("noneMapa");
     }
 
-    // const volver = ()=>{
-    //     document.querySelector(".volver2").classList.toggle("volver2V");
-    //     document.querySelector(".modal").classList.toggle("modalVisible");
-    // }
-
 
     return (
+        
         <section className='seccionMapas'>
 
             <div className='headerMovil'>
