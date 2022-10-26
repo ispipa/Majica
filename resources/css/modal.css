@@ -1,0 +1,188 @@
+.modal{
+    position: fixed;
+    transition: .5s;
+    z-index: 3001;
+    backdrop-filter: blur(4px);
+    width: 100%;
+    height: 250px;
+    bottom: -100%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px 20px 20px 20px;
+}
+
+.modalVisible{
+    transition: .5s;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.containerModal{
+    transition: .5s;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.volver{
+    position: absolute;
+    top: -35px;
+    left: 0;
+    background-color: #d70fad;
+    width: 35px;
+    padding: 7px 7px 0 7px;
+    border-radius: 0 0 0px 0;
+}
+
+.volver2{
+    display: none;
+}
+.volver img{
+    width: 100%;
+}
+
+
+
+/* DATOS DEL MODAL */
+
+
+
+.descripcionModal{
+    width: 70%;
+}
+
+.disponibilidad{
+    font-size: 18px;
+    font-weight: 500;
+}
+.numPiso{
+    color:#35293a ;
+    font-size: 35px;
+}
+
+.descripcionModal .descripcion{
+    color: #5e5e5e;
+    margin-top: 10px;
+}
+
+.preciosModal{
+    width: 25%;
+    background-color: #e1d8e6;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.preciosModal h2{
+    color: #35293a;
+    margin-bottom: 25px;
+}
+
+.precio1, .precio2{
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 5px;
+    color: #5e5e5e;
+}
+
+.precio1 span, .precio2 span{
+    color: rgb(48, 48, 48);
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+
+.comprar:hover{
+    background-color: #880a6d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:900px){
+
+   .modal{
+    width: 100%;
+    transition: .5s;
+    position: fixed;
+    bottom: -100%;
+    height: 40vh;
+    z-index: 3002;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+   }
+
+   .descripcionModal{
+    width: 100%;
+    overflow :scroll;
+   }
+
+   .preciosModal{
+      width: 100%;
+      margin-top: 30px;
+   }
+
+   .modalVisible{
+    bottom: 0;
+    transition: .5s;
+   }
+
+   .containerModal{
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    transition: .5s;
+    overflow: auto;
+   }
+   .volver{
+    right: 0 !important;
+    top: 0;
+    display: none;
+   }
+   
+   .volver2{
+    display: block;
+    position: fixed;
+    width: 40px;
+    bottom:40vh;
+    right: -40px;
+    background-color: #d70fad;
+    padding: 7px 7px 0 7px;
+    border-radius: 0 0 0px 0;
+    z-index: 3003;
+    transition: .5s;
+}
+
+.volver2V{
+    /* display: block; */
+    right: 0px;
+    
+}
+
+.volver2 img{
+    width: 100%;
+    height: 100%;
+}
+   
+
+
+}
