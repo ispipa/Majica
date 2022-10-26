@@ -18,7 +18,7 @@ export default function Map() {
     const setId = (e) => {
         document.querySelector(".modal").classList.add("modalVisible");
         document.querySelector(".volver2").classList.add("volver2V");
-        document.querySelector(".containerMapaGrande").style.paddingBottom="250px";
+        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
         setIdsala(e.target.id)
         setIDisponibilidad("true")
 
@@ -51,7 +51,7 @@ export default function Map() {
 
 
     return (
-        
+
         <section className='seccionMapas'>
 
             <div className='headerMovil'>
@@ -65,7 +65,7 @@ export default function Map() {
 
 
 
-             <Modal
+            <Modal
                 id={idSala}
                 disponibilidad={disponibilidad}
                 descripcion="Lorem ipsum dolor sit amet, consectetur adipiscing
