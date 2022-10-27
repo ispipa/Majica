@@ -45,23 +45,44 @@ export const Main = () => {
 
                 <div className="foto"><img className="preliminar" src={Usuario} id="file" alt='' /></div>
                 <input id="file-arch" type="file" encType='multipart/form-data' name="src-file1" aria-label="Archivo" />
+                <div className='container-inputs'>
+                    <div className="input-field">
+                        <i className="fas fa-user"></i>
+                        <input name="nombre" className="nombre" type="text" placeholder="Nombre" required />
+                    </div>
 
-                <div className="input-field">
-                  <i className="fas fa-user"></i>
-                  <input name="nombre" className="nombre" type="text" placeholder="Nombre completo" required />
+                    <div className="input-field">
+                        <i className="fas fa-user"></i>
+                        <input name="apellidos"  type="text" placeholder="Apellidos" required />
+                    </div>
+                    <div className="input-field">
+                        <i className="fas fa-user"></i>
+                        <input name="telefono"  type="text" placeholder="Teléfono" required />
+                    </div>
+                    <div className="input-field">
+                        <i className="fas fa-lock"></i>
+                        <input name="clave" type="password" placeholder="Contraseña" />
+                    </div>
+                    <div className="input-field">
+                        <i className="fas fa-user"></i>
+                        <input name="codigo-postal"  type="text" placeholder="Codigo Postal" required />
+                    </div>
+
+
+                    <div className="input-field">
+                        <i className="fas fa-envelope"></i>
+                        <input name="correo" type="email" placeholder="Email" />
+                    </div>
+
+
+
                 </div>
-                <div className="input-field">
-                  <i className="fas fa-envelope"></i>
-                  <input name="correo" type="email" placeholder="Email" />
-                </div>
-                <div className="input-field">
-                  <i className="fas fa-user"></i>
-                  <input name="usuario" type="text" placeholder="Nombre de usuario" />
-                </div>
-                <div className="input-field">
-                  <i className="fas fa-lock"></i>
-                  <input name="clave" type="password" placeholder="Nueva Contraseña" />
-                </div>
+                  <div className="input-field">
+                      <i className="fas fa-user"></i>
+                      <input name="dirección"  type="text" placeholder="Dirección" required />
+                  </div>
+
+
                 <input type="submit" className="btn" value="Registrarse" />
 
                 <div className="social-media">
