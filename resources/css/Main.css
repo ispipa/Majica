@@ -28,7 +28,7 @@ input {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  
+
 }
 .container {
   position: relative;
@@ -77,7 +77,7 @@ form.sign-up-form {
 
 form.sign-in-form {
   z-index: 2;
-  
+
 }
 
 .title {
@@ -85,15 +85,24 @@ form.sign-in-form {
   color: #444;
   margin-bottom: 10px;
 }
-
+.container-inputs {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+        "area1 area2"
+        "area3 area4"
+        "area5 area6"
+        "area7 area7";
+}
 .input-field {
-  max-width: 380px;
+  max-width: 100%;
   width: 100%;
   background-color: #f0f0f0;
   margin: 10px 0;
   height: 55px;
   border-radius: 55px;
- 
   padding: 0 0.4rem;
   position: relative;
 }
@@ -117,7 +126,7 @@ form.sign-in-form {
   height: 100%;
     width: 100%;
     border-radius: 20px;
-    padding: 0px 16px;
+    padding: 0px 12px;
 }
 
 .input-field input::placeholder {
@@ -402,7 +411,7 @@ display: none;
   }
 
   .container.sign-up-mode .signin-signup {
-    top: 5%;
+    top: 3%;
     transform: translate(-50%, 0);
   }
 }
