@@ -65,9 +65,18 @@ export default function Map() {
         <section className='seccionMapas'>
             <div className='headerMovil'>
                 <div className='botonesHeaderMovil'>
-                    <button onClick={() => mostrarPiso1()} className="boton">Piso 1</button>
-                    <button onClick={() => mostrarPiso2()} className="boton">Piso 2</button>
-                    <button onClick={() => mostrarPiso3()} className="boton">Piso 3</button>
+                    <button 
+                        onClick={() => mostrarPiso1()} 
+                        className="boton">Piso 1
+                    </button>
+                    <button 
+                        onClick={() => mostrarPiso2()} 
+                        className="boton">Piso 2
+                    </button>
+                    <button 
+                        onClick={() => mostrarPiso3()} 
+                        className="boton">Piso 3
+                    </button>
                 </div>
             </div>
             <Modal
@@ -88,17 +97,17 @@ export default function Map() {
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
-                    <div className={verMapaGrande1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG noneMapa'}>
-                        <PisoUno_Rojo_SVG
-                            funcion={setId} />
+                    <div 
+                        className={verMapaGrande1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG noneMapa'}>
+                        <PisoUno_Rojo_SVG funcion={setId} />
                     </div>
-                    <div className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
-                        <PisoDos_Verde_SVG
-                            funcion={setId} />
+                    <div 
+                        className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
+                            <PisoDos_Verde_SVG funcion={setId} />
                     </div>
-                    <div className={verMapaGrande3 ? 'piso3MapaGrandeSVG' : 'piso3MapaGrandeSVG noneMapa'}>
-                        <PisoTres_Azul_SVG
-                            funcion={setId} />
+                    <div 
+                        className={verMapaGrande3 ? 'piso3MapaGrandeSVG' : 'piso3MapaGrandeSVG noneMapa'}>
+                        <PisoTres_Azul_SVG funcion={setId} />
                     </div>
                 </div>
                 <div className='containerMapaPequeno'>
@@ -114,11 +123,23 @@ export default function Map() {
                         </div>
                     </div>
                     <div className='botonesPisos'>
-                        <button onClick={() => mostrarPiso1()} className="boton">Piso 1</button>
-                        <button onClick={() => mostrarPiso2()} className="boton">Piso 2</button>
-                        <button onClick={() => mostrarPiso3()} className="boton">Piso 3</button>
+                        <button 
+                            onClick={() => mostrarPiso1()} 
+                            className="boton">Piso 1
+                        </button>
+                        <button 
+                            onClick={() => mostrarPiso2()} 
+                            className="boton">Piso 2
+                        </button>
+                        <button 
+                            onClick={() => mostrarPiso3()} 
+                            className="boton">Piso 3
+                        </button>
                     </div>
-                    <img src={logo} alt="logo virtual museum" className='logo' />
+                    <img 
+                        src={logo} 
+                        alt="logo virtual museum" 
+                        className='logo' />
                 </div>
             </div>
         </section>

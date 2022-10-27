@@ -17,13 +17,28 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
 
    return (
       <div>
-         <div className={volver ? 'volver2 volver2V' : 'volver2'} onClick={() => volverBtn1()}><img src={Volver} /></div>
+         <div 
+            className={volver ? 'volver2 volver2V' : 'volver2'} 
+            onClick={() => volverBtn1()}>
+            <img 
+               src={Volver} />
+         </div>
          <div className={verModal ? 'modal modalVisible' : 'modal'}>
-            <div className='volver' onClick={() => volverBtn1()}><img src={Volver} /></div>
+            <div 
+               className='volver' 
+               onClick={() => volverBtn1()}>
+               <img src={Volver} />
+            </div>
             <div className='containerModal'>
                <div className='descripcionModal'>
-                  <h1 className='numPiso'>{id ? id : null}</h1>
-                  <h1 className='disponibilidad' style={{ color: disponibilidad == true ? "#01cf35" : "red" }}>{disponibilidad == true ? "Disponible" : "Ocupado"}</h1>
+                  <h1 
+                     className='numPiso'>{id ? id : null}
+                  </h1>
+                  <h1 
+                     className='disponibilidad'   
+                     style={{ color: disponibilidad == true ? "#01cf35" : "red" }}>
+                        {disponibilidad == true ? "Disponible" : "Ocupado"}
+                  </h1>
                   <p className='descripcion'>{descripcion}</p>
                </div>
                <div className='preciosModal'>
@@ -35,7 +50,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
             </div>
          </div>
       </div>
-
    )
 }
 
