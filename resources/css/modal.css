@@ -6,7 +6,8 @@
     width: 100%;
     height: 250px;
     bottom: -100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
     padding: 20px 20px 20px 20px;
 }
 
@@ -32,7 +33,8 @@
     position: absolute;
     top: -35px;
     left: 0;
-    background-color: #d70fad;
+    background-color: #360055;
+    backdrop-filter: blur(50px);
     width: 35px;
     padding: 7px 7px 0 7px;
     border-radius: 0 0 0px 0;
@@ -71,7 +73,7 @@
 
 .preciosModal{
     width: 25%;
-    background-color: #e1d8e6;
+    background-color: #d2cad6;
     padding: 10px 20px;
     border-radius: 20px;
 }
@@ -124,7 +126,7 @@
     transition: .5s;
     position: fixed;
     bottom: -100%;
-    height: 40vh;
+    height: 300px;
     z-index: 3002;
     justify-content: flex-start;
     align-items: flex-start;
@@ -162,19 +164,23 @@
    .volver2{
     display: block;
     position: fixed;
-    width: 40px;
-    bottom:40vh;
+    width: 34px;
+    bottom:266px;
+
     right: -40px;
-    background-color: #d70fad;
+    background-color: hsl(347, 100%, 61%);
+    backdrop-filter: blur(4px);
     padding: 7px 7px 0 7px;
     border-radius: 0 0 0px 0;
     z-index: 3003;
     transition: .5s;
+    
 }
 
 .volver2V{
     /* display: block; */
     right: 0px;
+
     
 }
 

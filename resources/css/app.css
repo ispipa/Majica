@@ -3,3 +3,16 @@
 @import url(Main.css);
 @import url(mapas.css);
 @import url(modal.css);
+
+.sala1:hover{
+    fill: #ffcbee;
+   
+}
+
+.sala2:hover{
+   fill: #a8ffb0;
+}
+
+.sala3:hover{
+   fill: #a8cbff;
+}

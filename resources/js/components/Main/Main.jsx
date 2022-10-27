@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+
+
 import Usuario from '../assets/usu2.jpg';
+import LogoUno from '../assets/LogoUno.png'
+import LogoDos from '../assets/icono.png'
+
 
 export const Main = () => {
 
@@ -18,7 +23,7 @@ export const Main = () => {
           <div className="forms-container">
             <div className="signin-signup">
               <form action="" className="sign-in-form formulario__login" method="" >
-                {/* <img src={Logo} className="image" alt="" */}
+                <img src={LogoDos} className="image" alt="Majica"/>
                 <h2 className="title">Iniciar sesion</h2>
                 <div className="input-field">
                   {/* <i className="fas fa-user"></i> */}
@@ -35,7 +40,7 @@ export const Main = () => {
 
               <form action="" className="sign-up-form formulario__login" method="" encType="" >
 
-                {/* <!-- <h2 className="title">Registrarse</h2> --> */}
+                <h2 className="title">Registrarse</h2>
 
 
                 <div className="foto"><img className="preliminar" src={Usuario} id="file" alt='' /></div>
@@ -79,7 +84,7 @@ export const Main = () => {
                   Registrate
                 </button>
               </div>
-              <img src="img/logoLogin.svg" className="image" alt="" />
+              <img src={LogoUno} className="image" alt="" />
             </div>
             <div className="panel right-panel">
               <div className="content">
@@ -91,7 +96,7 @@ export const Main = () => {
                   Inicia sesion
                 </button>
               </div>
-              <img src="image/foto2.png" className="image" alt="" />
+              <img src={LogoUno} className="image" alt="" />
             </div>
           </div>
         </div>
