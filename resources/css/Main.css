@@ -90,6 +90,11 @@ form.sign-in-form {
     gap: 0.5rem;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
+    grid-template-areas:
+        "area1 area2"
+        "area3 area4"
+        "area5 area6"
+        "area7 area7";
 }
 .input-field {
   max-width: 100%;
