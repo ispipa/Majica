@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\mapaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(mapaController::class)->group(function(){
+    
+    route::get("/sala", "all");
+    route::post("/sala", "store");
+    route::get("/sala/{id}", "show");
+    route::put("/sala/{id}", "update");
+    route::delete("/sala/{id}", "destroy");
+
 });
