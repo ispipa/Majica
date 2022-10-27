@@ -1,6 +1,8 @@
 import logo from '../assets/logo.png';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
 import PisoUno_Rojo_SVG from './pisoUno_Rojo_SVG';
 import PisoDos_Verde_SVG from './pisoDos_verde_SVG';
 import PisoTres_Azul_SVG from './pisoTres_Azul_SVG';
@@ -9,6 +11,8 @@ import MapaPequeno_piso2_SVG from './mapaPequeno_piso2_SVG';
 import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 
 export default function Map() {
+
+    // const [sala, setsala] = useState([]);
 
     const [idSala, setIdsala] = useState(null);
     const [disponibilidad, setIDisponibilidad] = useState(false);
@@ -20,6 +24,7 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
+    
 
     // const setId = (e) => {
     //     document.querySelector(".modal").classList.add("modalVisible");
@@ -27,6 +32,14 @@ export default function Map() {
     //     document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
     //     setIdsala(e.target.id)
     //     setIDisponibilidad(true)
+    //     getOneSala();
+    // }
+
+    // const getOneSala = async ()=>{
+    //     const res = await axios.get(`http://localhost:8000/sala/${idSala}`)
+    //                             .then((res) => console.log(res))
+    //                             .catch((err) => console.log(err))
+    //     // setsala(response);
     // }
 
     const setId = (e) => {
