@@ -20,7 +20,7 @@
     transition: .5s;
     background-repeat: no-repeat;
     background-size: cover;
-    background: linear-gradient(142deg, #134276 10%, #b1499f 39%, #120610 90%);
+    background: linear-gradient(142deg, #134276 10%, #b14aa0 39%, #120610 90%);
    /* background-image: url(../assets/p.png); */
    background-position: 10%;
 }
