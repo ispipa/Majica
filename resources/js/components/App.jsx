@@ -8,18 +8,20 @@ import {
     Route,
 } from "react-router-dom";
 
-
-
 const App = () => {
-  return(
-      <BrowserRouter>
-          <Header />
-          <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/map" element={<Map />} />
-          </Routes>
-      </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Header />
+            <Routes>
+                <Route 
+                    path="/" 
+                    element={<Main />} />
+                <Route 
+                    path="/map" 
+                    element={<Map />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
