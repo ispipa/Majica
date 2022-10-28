@@ -3,15 +3,19 @@ import { useState } from 'react';
 import Volver from '../assets/cerca.png';
 import Boton from '../Button/boton';
 
+
 const Modal = ({id, disponibilidad, precio1, precio2, descripcion }) => {
 
 
 
-   const volver = () =>{
-      document.querySelector(".modal").classList.toggle("modalVisible");
-      document.querySelector(".volver2").classList.toggle("volver2V");
-      document.querySelector(".containerMapaGrande").style.paddingBottom="0px";
-   }
+
+
+const volver = () =>{
+   document.querySelector(".modal").classList.toggle("modalVisible");
+   document.querySelector(".volver2").classList.toggle("volver2V");
+   document.querySelector(".containerMapaGrande").style.paddingBottom="0px";
+}
+
 
   return (
 

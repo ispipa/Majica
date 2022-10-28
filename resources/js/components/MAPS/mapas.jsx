@@ -1,7 +1,8 @@
 import logo from '../assets/logo.png';
-import Volver from '../assets/cerca.png';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
 import PisoUno_Rojo_SVG from './pisoUno_Rojo_SVG';
 import PisoDos_Verde_SVG from './pisoDos_verde_SVG';
 import PisoTres_Azul_SVG from './pisoTres_Azul_SVG';
@@ -9,62 +10,84 @@ import MapaPequeno_piso1_SVG from './mapaPequeno_piso1_SVG';
 import MapaPequeno_piso2_SVG from './mapaPequeno_piso2_SVG';
 import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 
+const URI = "http://localhost:8000/sala/";
+
 export default function Map() {
 
+
     const [idSala, setIdsala] = useState(null);
-    const [disponibilidad, setIDisponibilidad] = useState("");
+    const [disponibilidad, setIDisponibilidad] = useState(false);
+    const [verModal, setVerModal] = useState(false);
+    const [volver, setVolver] = useState(false)
+    const [verPiso1, setVerPiso1] = useState(false);
+    const [verPiso2, setVerPiso2] = useState(false);
+    const [verPiso3, setVerPiso3] = useState(false);
+    const [verMapaGrande1, setVerMapaGrande1] = useState(true);
+    const [verMapaGrande2, setVerMapaGrande2] = useState(false);
+    const [verMapaGrande3, setVerMapaGrande3] = useState(false);
+    
+
+    // const setId = (e) => {
+    //     document.querySelector(".modal").classList.add("modalVisible");
+    //     document.querySelector(".volver2").classList.add("volver2V");
+    //     document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+    //     setIdsala(e.target.id)
+    //     setIDisponibilidad(true)
+     
+    // }
+
 
 
     const setId = (e) => {
-        document.querySelector(".modal").classList.add("modalVisible");
-        document.querySelector(".volver2").classList.add("volver2V");
-        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
-        setIdsala(e.target.id)
-        setIDisponibilidad("true")
-
+        setVerModal(true);
+        setVolver(true);
+        setIdsala(e.target.id);
+        setIDisponibilidad(true)
     }
 
-    const VerPiso1 = () => {
-        document.querySelector(".piso3").classList.add("none");
-        document.querySelector(".piso2").classList.add("none");
-        document.querySelector(".piso1MapaGrandeSVG").classList.remove("noneMapa");
-        document.querySelector(".piso2MapaGrandeSVG").classList.add("noneMapa");
-        document.querySelector(".piso3MapaGrandeSVG").classList.add("noneMapa");
+    const mostrarPiso1 = () => {
+        setVerPiso2(false);
+        setVerPiso3(false);
+        setVerMapaGrande1(true)
+        setVerMapaGrande2(false);
+        setVerMapaGrande3(false);
     }
 
-    const VerPiso2 = () => {
-        document.querySelector(".piso2").classList.remove("none");
-        document.querySelector(".piso3").classList.add("none");
-        document.querySelector(".piso1MapaGrandeSVG").classList.add("noneMapa");
-        document.querySelector(".piso2MapaGrandeSVG").classList.remove("noneMapa");
-        document.querySelector(".piso3MapaGrandeSVG").classList.add("noneMapa");
-
+    const mostrarPiso2 = () => {
+        setVerPiso2(true);
+        setVerPiso3(false);
+        setVerMapaGrande1(false);
+        setVerMapaGrande2(true);
+        setVerMapaGrande3(false);
     }
 
-    const VerPiso3 = () => {
-        document.querySelector(".piso3").classList.remove("none");
-        document.querySelector(".piso2").classList.remove("none");
-        document.querySelector(".piso1MapaGrandeSVG").classList.add("noneMapa");
-        document.querySelector(".piso2MapaGrandeSVG").classList.add("noneMapa");
-        document.querySelector(".piso3MapaGrandeSVG").classList.remove("noneMapa");
+    const mostrarPiso3 = () => {
+        setVerPiso1(true);
+        setVerPiso2(true);
+        setVerPiso3(true);
+        setVerMapaGrande1(false);
+        setVerMapaGrande2(false);
+        setVerMapaGrande3(true);
     }
-
 
     return (
-
         <section className='seccionMapas'>
-
             <div className='headerMovil'>
                 <div className='botonesHeaderMovil'>
-                    <button onClick={VerPiso1} className="boton">Piso 1</button>
-                    <button onClick={VerPiso2} className="boton">Piso 2</button>
-                    <button onClick={VerPiso3} className="boton">Piso 3</button>
+                    <button 
+                        onClick={() => mostrarPiso3()} 
+                        className="boton">Piso 3
+                    </button>
+                    <button 
+                        onClick={() => mostrarPiso2()} 
+                        className="boton">Piso 2
+                    </button>
+                    <button 
+                        onClick={() => mostrarPiso1()} 
+                        className="boton">Piso 1
+                    </button>
                 </div>
-
             </div>
-
-
-
             <Modal
                 id={idSala}
                 disponibilidad={disponibilidad}
@@ -76,40 +99,56 @@ export default function Map() {
                              velit esse cillum dolore eu fugiat nulla pariatur."
                 precio1={60}
                 precio2={150}
-
+                verModal={verModal}
+                setVerModal={setVerModal}
+                volver={volver}
+                setVolver={setVolver}
             />
-
             <div className='container2'>
-
                 <div className='containerMapaGrande'>
-                    <div className='piso1MapaGrandeSVG'>
+                    <div 
+                        className={verMapaGrande1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG noneMapa'}>
                         <PisoUno_Rojo_SVG funcion={setId} />
                     </div>
-                    <div className='piso2MapaGrandeSVG noneMapa'>
-                        <PisoDos_Verde_SVG funcion={setId} />
+                    <div 
+                        className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
+                            <PisoDos_Verde_SVG funcion={setId} />
                     </div>
-                    <div className='piso3MapaGrandeSVG noneMapa'>
+                    <div 
+                        className={verMapaGrande3 ? 'piso3MapaGrandeSVG' : 'piso3MapaGrandeSVG noneMapa'}>
                         <PisoTres_Azul_SVG funcion={setId} />
                     </div>
                 </div>
                 <div className='containerMapaPequeno'>
                     <div className='mapasPequenos'>
-                        <div className='piso1'>
+                        <div className={verPiso1 ? 'piso1' : 'piso1'}>
                             <MapaPequeno_piso1_SVG />
                         </div>
-                        <div className='piso2 none'>
+                        <div className={verPiso2 ? 'piso2' : 'piso2 none'}>
                             <MapaPequeno_piso2_SVG />
                         </div>
-                        <div className='piso3 none'>
+                        <div className={verPiso3 ? 'piso3' : 'piso3 none'}>
                             <MapaPequeno_piso3_SVG />
                         </div>
                     </div>
                     <div className='botonesPisos'>
-                        <button onClick={VerPiso3} className="boton">Piso 3</button>
-                        <button onClick={VerPiso2} className="boton">Piso 2</button>
-                        <button onClick={VerPiso1} className="boton">Piso 1</button>
+                        <button 
+                            onClick={() => mostrarPiso3()} 
+                            className="boton">Piso 3
+                        </button>
+                        <button 
+                            onClick={() => mostrarPiso2()} 
+                            className="boton">Piso 2
+                        </button>
+                        <button 
+                            onClick={() => mostrarPiso1()} 
+                            className="boton">Piso 1
+                        </button>
                     </div>
-                    <img src={logo} alt="logo virtual museum" className='logo' />
+                    <img 
+                        src={logo} 
+                        alt="logo virtual museum" 
+                        className='logo' />
                 </div>
             </div>
         </section>
