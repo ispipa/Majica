@@ -10,9 +10,10 @@ import MapaPequeno_piso1_SVG from './mapaPequeno_piso1_SVG';
 import MapaPequeno_piso2_SVG from './mapaPequeno_piso2_SVG';
 import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 
+const URI = "http://localhost:8000/sala/";
+
 export default function Map() {
 
-    // const [sala, setsala] = useState([]);
 
     const [idSala, setIdsala] = useState(null);
     const [disponibilidad, setIDisponibilidad] = useState(false);
@@ -32,15 +33,10 @@ export default function Map() {
     //     document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
     //     setIdsala(e.target.id)
     //     setIDisponibilidad(true)
-    //     getOneSala();
+     
     // }
 
-    // const getOneSala = async ()=>{
-    //     const res = await axios.get(`http://localhost:8000/sala/${idSala}`)
-    //                             .then((res) => console.log(res))
-    //                             .catch((err) => console.log(err))
-    //     // setsala(response);
-    // }
+
 
     const setId = (e) => {
         setVerModal(true);
