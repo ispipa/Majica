@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('pisos', function (Blueprint $table) {
             $table->id();
-            $table->integer('usuario')->nullable();
-            $table->integer('sala')->nullable();
-            $table->integer('precio')->nullable();
+            $table->integer('usuario');
+            $table->integer('sala');
+            $table->integer('precio');
         });
     }
 

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreSala')->nullable();
-            $table->string('precio_1')->nullable();
-            $table->string('precio_2')->nullable();
-            $table->string('descripcionSala')->nullable();
+            $table->string('nombreSala');
+            $table->string('precio_1');
+            $table->string('precio_2');
+            $table->string('descripcionSala');
         });
     }
 
