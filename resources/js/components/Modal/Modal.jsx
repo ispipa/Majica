@@ -9,6 +9,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
    //    document.querySelector(".volver2").classList.toggle("volver2V");
    //    document.querySelector(".containerMapaGrande").style.paddingBottom = "0px";
    // }
+   console.log("alexix pato")
 
    const volverBtn1 = () => {
       setVerModal(false);
