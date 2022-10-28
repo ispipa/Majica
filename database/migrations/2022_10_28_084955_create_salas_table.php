@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreSala');
-            $table->string('precio_1');
-            $table->string('precio_2');
-            $table->string('descripcionSala');
+            $table->string('nombreSala',50);
+            $table->string('precio_1',50);
+            $table->string('precio_2',50);
+            $table->string('descripcionSala',50);
         });
     }
 
