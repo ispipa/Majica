@@ -18,7 +18,7 @@
     transition: .5s;
     background-repeat: no-repeat;
     background-size: cover;
-    background: linear-gradient(142deg, #134276 10%, #b14aa0 39%, #120610 90%);
+    background: linear-gradient(142deg, #1b5ca7 10%, #d52b5c 39%,  #10001d 90%);
     /* background-image: url(../assets/p.png); */
     background-position: 10%;
 }
@@ -47,9 +47,6 @@
 }
 
 .pisoUnoSVG {
-    /* height: 100vh; */
-    /* margin-left: 8px;
-    /*  */
     margin-top: 5px;
 }
 
