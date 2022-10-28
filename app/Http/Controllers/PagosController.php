@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Salas;
-use Illuminate\Support\Facades\Redirect;
 
-class mapaController extends Controller
+class PagosController extends Controller
 {
     /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function all()
+    public function index()
     {
-        $salas = Salas::all();
-        return $salas;
+        //
     }
 
     /**
@@ -30,15 +24,7 @@ class mapaController extends Controller
      */
     public function store(Request $request)
     {
-        $sala = new Salas();
-        $sala -> $request = $request -> id;
-        $sala -> $request = $request -> nombreSala;
-        $sala -> $request = $request -> precio_1;
-        $sala -> $request = $request -> precio_2;
-        $sala -> $request = $request -> descripcionSala;
-        $sala -> save();
-
-        return Redirect("/sala");
+        //
     }
 
     /**
@@ -49,8 +35,7 @@ class mapaController extends Controller
      */
     public function show($id)
     {
-        $oneSala = Salas::find($id);
-        return $oneSala;
+        //
     }
 
     /**
@@ -62,14 +47,7 @@ class mapaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sala = Salas::findOrFail($request -> $id);
-        $sala -> $request = $request -> id;
-        $sala -> $request = $request -> nombreSala;
-        $sala -> $request = $request -> precio_1;
-        $sala -> $request = $request -> precio_2;
-        $sala -> $request = $request -> descripcionSala;
-        $sala -> save();
-        return $sala;
+        //
     }
 
     /**
@@ -80,6 +58,6 @@ class mapaController extends Controller
      */
     public function destroy($id)
     {
-        Salas::destroy($id);
+        //
     }
 }
