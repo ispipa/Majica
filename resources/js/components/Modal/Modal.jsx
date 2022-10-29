@@ -12,8 +12,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
     const obtenerRegistros = () => {
-        if (localStorage.getItem("")) {
-            return JSON.parse(localStorage.getItem(""));
+        if (localStorage.getItem("datos")) {
+            return JSON.parse(localStorage.getItem("datos"));
         } else {
             return [];
         }
@@ -51,19 +51,24 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         document.querySelector(".containerMapaGrande").style.paddingBottom = "0px";
     }
 
+
+     //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
+    const eliminar = (e)=>{
+        const items = JSON.parse(localStorage.getItem("datos"));
+        const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
+        items.splice(indice,1);
+        setRegistros(items);
+        
+    }
+
+
     //GUARDO EN EL LOCALSTORAGE---
     useEffect(() => {
         localStorage.setItem("datos", JSON.stringify(registros));
     }, [registros])
 
 
-    //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
-    const eliminar = ()=>{
-       
-        localStorage.removeItem("datos");
-        setRegistros(obtenerRegistros())
-       
-    }
+   
 
 
 
@@ -110,7 +115,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                                 id="1" 
                                                 value='60' {...register('opcion1')} 
                                             />
-                                        {precio1}€
+                                        {" "+precio1}€
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
@@ -122,7 +127,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                                 id="2" 
                                                 value='150' {...register('opcion2')} 
                                             />
-                                        {precio2}€
+                                        {" "+precio2}€
                                     </label>
                                 </div>
                                 <button className='botonAgregar' onClick={setDatos}>Agregar a la compra</button>

@@ -36,7 +36,7 @@ export default function FormularioPago({datos, eliminar}){
                             <td>{ar.id}</td>
                             <td>{ar.precio}</td>
                             <td>{ar.mes}</td>
-                            <td onClick={eliminar}><button>x</button></td>
+                            <td onClick={()=>eliminar(ar.id)}><button>x</button></td>
                         </tr>
                     )
                 })}
