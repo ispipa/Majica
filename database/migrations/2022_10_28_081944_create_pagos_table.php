@@ -15,10 +15,19 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreSala',50);
-            $table->string('precio_1',50);
-            $table->string('precio_2',50);
-            $table->string('descripcionSala',50);
+            $table->enum('precios_pagos',['0','1','2']);
+           /* $table->string('sala',50);
+            $table->integer('usuario');*/
+
+            /*$table->foreign('usuario')->references('id')->on('usuarios');
+            $table->foreign('sala')->references('id')->on('salas');
+            $table->foreign('precios_pagos')->references('precio_sala')->on('salas');*/
+            $table->foreignId('sala')->constrained('salas');
+            $table->foreignId('usuario')->constrained('usuarios');
+
+            //falta esta relacion
+           $table->foreign('precios_pagos')->references('precio_sala')->on('salas');
+
         });
     }
 

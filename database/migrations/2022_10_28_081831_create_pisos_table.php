@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::create('pisos', function (Blueprint $table) {
             $table->id();
-            $table->integer('usuario');
-            $table->integer('sala');
-            $table->integer('precio');
+            $table->string('nombre_piso',50);
         });
     }
 
