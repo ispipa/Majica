@@ -1,4 +1,5 @@
 import logo from '../assets/logo.png';
+
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import axios from 'axios';
@@ -25,24 +26,14 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
+
     
-
-    // const setId = (e) => {
-    //     document.querySelector(".modal").classList.add("modalVisible");
-    //     document.querySelector(".volver2").classList.add("volver2V");
-    //     document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
-    //     setIdsala(e.target.id)
-    //     setIDisponibilidad(true)
-     
-    // }
-
-
-
     const setId = (e) => {
         setVerModal(true);
         setVolver(true);
         setIdsala(e.target.id);
-        setIDisponibilidad(true)
+        setIDisponibilidad(true);
+        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
     }
 
     const mostrarPiso1 = () => {
@@ -70,21 +61,23 @@ export default function Map() {
         setVerMapaGrande3(true);
     }
 
+
+
     return (
         <section className='seccionMapas'>
             <div className='headerMovil'>
                 <div className='botonesHeaderMovil'>
                     <button 
-                        onClick={() => mostrarPiso3()} 
-                        className="boton">Piso 3
+                        onClick={() => mostrarPiso1()} 
+                        className="boton">Piso 1
                     </button>
                     <button 
                         onClick={() => mostrarPiso2()} 
                         className="boton">Piso 2
                     </button>
                     <button 
-                        onClick={() => mostrarPiso1()} 
-                        className="boton">Piso 1
+                        onClick={() => mostrarPiso3()} 
+                        className="boton">Piso 3
                     </button>
                 </div>
             </div>
@@ -93,16 +86,14 @@ export default function Map() {
                 disponibilidad={disponibilidad}
                 descripcion="Lorem ipsum dolor sit amet, consectetur adipiscing
                              elit, sed do eiusmod tempor incididunt ut labore et dolore
-                             magna aliqua. Ut enim ad minim veniam, quis nostrud
-                             exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                             consequat. Duis aute irure dolor in reprehenderit in voluptate
-                             velit esse cillum dolore eu fugiat nulla pariatur."
+                             magna aliqua."
                 precio1={60}
                 precio2={150}
                 verModal={verModal}
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
+            
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
@@ -112,7 +103,7 @@ export default function Map() {
                     </div>
                     <div 
                         className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
-                            <PisoDos_Verde_SVG funcion={setId} />
+                        <PisoDos_Verde_SVG funcion={setId} />
                     </div>
                     <div 
                         className={verMapaGrande3 ? 'piso3MapaGrandeSVG' : 'piso3MapaGrandeSVG noneMapa'}>
@@ -133,16 +124,16 @@ export default function Map() {
                     </div>
                     <div className='botonesPisos'>
                         <button 
-                            onClick={() => mostrarPiso3()} 
-                            className="boton">Piso 3
+                            onClick={() => mostrarPiso1()} 
+                            className="boton">Piso 1
                         </button>
                         <button 
                             onClick={() => mostrarPiso2()} 
                             className="boton">Piso 2
                         </button>
                         <button 
-                            onClick={() => mostrarPiso1()} 
-                            className="boton">Piso 1
+                            onClick={() => mostrarPiso3()} 
+                            className="boton">Piso 3
                         </button>
                     </div>
                     <img 
@@ -152,6 +143,5 @@ export default function Map() {
                 </div>
             </div>
         </section>
-
     )
 }
