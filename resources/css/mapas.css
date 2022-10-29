@@ -61,6 +61,7 @@
     width: 30%;
     height: 100vh;
     position: relative;
+    margin-top: 20px;
 }
 
 .mapasPequenos {
@@ -139,11 +140,12 @@
     display: none;
 }
 
-/*---------------------------------------------*/
 
+
+/*---------------------------------------------*/
 /* VERSION MOVIL */
 
-@media (max-width:900px) {
+@media (max-width:1000px) {
     .seccionMapas .container2 {
         padding-top: 30px;
     }
@@ -163,7 +165,7 @@
     }
 
     .mapasPequenos {
-        margin-top: 30px;
+        margin-top: 100px;
         width: 100px;
         opacity: .8;
     }
