@@ -25,8 +25,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [check, setcheck] = useState("");
     const [mes, setMes] = useState("");
+    const [visible , setVisible] = useState(true);
 
-    //AGREGADO
     
 
     const setDatos = () => {
@@ -39,7 +39,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
             
             if(localStorage.getItem("datos").indexOf(id) > 1){
                 editar(id);
-                alert("Se a editado el precio de la sala "+id);
 
             } else{
 
@@ -87,12 +86,9 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         items.splice(indice,1); 
         items.push({ "id": id, "mes": mes });
         setRegistros(items);
-        
+        alert("Se editara el precio de la "+id);
         
     }
-
-
-
 
     //GUARDO EN EL LOCALSTORAGE---
     useEffect(() => {
@@ -165,7 +161,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                     </label>
                                 </div>
                                 
-                                <button className='botonAgregar' onClick={setDatos}>Agregar a la compra</button>
+                                <button className='botonAgregar' onClick={setDatos}>{localStorage.getItem("datos").indexOf(id) > 1 && visible === true ? "Cambiar precio" : "Agregar a la compra"}</button>
                             </div>
                         </div>
                     </div>
