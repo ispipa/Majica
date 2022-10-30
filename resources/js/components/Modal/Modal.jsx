@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './formulario';
+import { set } from 'lodash';
 
 
 
-const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver }) => {
+const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, }) => {
+     
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
     const obtenerRegistros = () => {
@@ -24,18 +26,32 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     const [check, setcheck] = useState("");
     const [mes, setMes] = useState("");
 
-
+    //AGREGADO
+    
 
     const setDatos = () => {
+        
         if (mes == "") {
             alert("debe seleccionar un precio");
-
+           
+            
         } else {
-            setRegistros([...registros, { "id": id, "mes": mes }]);
-            setcheck("");
-            setMes("");
-            reset();
+            
+            if(localStorage.getItem("datos").indexOf(id) > 1){
+                editar(id);
+                alert("Se a editado el precio de la sala "+id);
+
+            } else{
+
+                setRegistros([...registros, { "id": id, "mes": mes }]);
+                setVisible(true);
+                setcheck("");
+                setMes("");
+                reset();
+            }
+            
         }
+
     }
 
     //CAMBIO EL COLOR DEL CHECK
@@ -44,7 +60,9 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         setMes(e.target.value)
     }
 
-    //BORON DE VOLVER
+    
+
+    //BOTON DE VOLVER
     const volverBtn1 = () => {
         setVerModal(false);
         setVolver(false);
@@ -56,10 +74,24 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     const eliminar = (e)=>{
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
-        items.splice(indice,1);
+        items.splice(indice,1); 
         setRegistros(items);
+        setVisible(false);
         
     }
+
+    //EDITAR UN REGISTRO DEL LOCALSTORAGE
+    const editar = (e)=>{
+        const items = JSON.parse(localStorage.getItem("datos"));
+        const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
+        items.splice(indice,1); 
+        items.push({ "id": id, "mes": mes });
+        setRegistros(items);
+        
+        
+    }
+
+
 
 
     //GUARDO EN EL LOCALSTORAGE---
@@ -105,6 +137,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                 <p className='descripcion'>{descripcion}</p>
                             </div>
                             <div className='preciosModal' >
+                            <div className='modalAbvertencia' style={{ display: "none"}}><p>Ya has agregado esta sala</p><button onClick={()=>eliminar(id)}>Cambiar Precio</button></div>
                                 <p className='seleccione'>Selecccionar precio</p>
                                 <div className='precioBtn'>
                                     <p className='precio1'>1 mes </p>
@@ -119,6 +152,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
+                                    
                                     <p className='precio2'>3 meses </p>
                                     <label for="2" className='pSpan'>
                                             <input type="radio" 
@@ -130,6 +164,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                         {" "+precio2}€
                                     </label>
                                 </div>
+                                
                                 <button className='botonAgregar' onClick={setDatos}>Agregar a la compra</button>
                             </div>
                         </div>

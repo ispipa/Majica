@@ -26,7 +26,7 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
-
+    
     
     const setId = (e) => {
         setVerModal(true);
@@ -93,6 +93,7 @@ export default function Map() {
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
+               
             
             />
             <div className='container2'>

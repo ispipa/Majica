@@ -4,22 +4,13 @@ import { useEffect } from "react";
 export default function FormularioPago({datos, eliminar}){
 
     const  precios = [];
+    const datosDescendente = datos;
 
     datos.forEach(element => {
         precios.push(parseInt(element.mes))
     });
 
     let total = precios.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-    console.log(total);
-
-
-
-
-
-
-
-
 
     return(
         <div className='containerPagar'>
@@ -30,7 +21,7 @@ export default function FormularioPago({datos, eliminar}){
                 <th>PRECIO</th>
                 <th>Borrar</th>
                 </tr>
-                {datos.map(ar => {
+                {datosDescendente.map(ar => {
                     return(
                         <tr>
                             <td>{ar.id}</td>

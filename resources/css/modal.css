@@ -93,6 +93,22 @@
     
 }
 
+
+
+/* PRECIOS */
+
+.modalAbvertencia{
+    position: absolute;
+    z-index: 100;
+    height: 90%;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+    background-color: #fffffff5;
+    backdrop-filter: blur(10px);
+    border-radius: 0px;
+    padding: 20px;
+}
 .preciosModal{
     padding: 10px 0px 10px 20px;
     border-radius: 20px;
@@ -144,6 +160,9 @@
 
 /*---------------------------------------------*/
 /* CONTAINER PAGAR */
+
+
+
 .containerPagar{
     position: relative;
     width: 35%;
