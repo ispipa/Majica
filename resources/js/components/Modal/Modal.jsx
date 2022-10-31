@@ -4,12 +4,11 @@ import Boton from '../Button/boton';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import FormularioPago from './formulario';
-import { set } from 'lodash';
+import FormularioPago from './tabla';
 
 
 
-const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, }) => {
+const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, update}) => {
      
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
@@ -22,31 +21,29 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
     //ESTADOS---
     const [registros, setRegistros] = useState(obtenerRegistros());
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [check, setcheck] = useState("");
     const [mes, setMes] = useState("");
-    const [visible , setVisible] = useState(true);
-
-    
-
+    const [precio, setPrecio] = useState("");
+    const [errorr , setError] = useState(false);
+   
+    //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
     const setDatos = () => {
         
         if (mes == "") {
-            alert("debe seleccionar un precio");
+            setError(true);
            
-            
         } else {
             
             if(localStorage.getItem("datos").indexOf(id) > 1){
                 editar(id);
 
             } else{
-
-                setRegistros([...registros, { "id": id, "mes": mes }]);
-                setVisible(true);
+                setRegistros([...registros, { "id": id, "mes": mes , "precio":precio}]);
+                setError(false)
                 setcheck("");
                 setMes("");
                 reset();
+
             }
             
         }
@@ -57,10 +54,11 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     const actualizarCheck = (e) => {
         setcheck(e.target.id)
         setMes(e.target.value)
+        setPrecio(e.target)
+        
     }
 
     
-
     //BOTON DE VOLVER
     const volverBtn1 = () => {
         setVerModal(false);
@@ -75,8 +73,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
         items.splice(indice,1); 
         setRegistros(items);
-        setVisible(false);
-        
     }
 
     //EDITAR UN REGISTRO DEL LOCALSTORAGE
@@ -84,23 +80,24 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
         items.splice(indice,1); 
-        items.push({ "id": id, "mes": mes });
-        setRegistros(items);
-        alert("Se editara el precio de la "+id);
+        const items2 = items;
+        items2.unshift({ "id": id, "mes": mes })
+        setRegistros(items2);
+        alert("Se editara el precio de la sala "+id);
         
     }
+
+    //PINTAR FONDO POR 2 SEGUNDOS
+    
 
     //GUARDO EN EL LOCALSTORAGE---
     useEffect(() => {
         localStorage.setItem("datos", JSON.stringify(registros));
+
     }, [registros])
 
 
    
-
-
-
-
     return (
         <div>
             <div
@@ -133,39 +130,40 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                 <p className='descripcion'>{descripcion}</p>
                             </div>
                             <div className='preciosModal' >
-                            <div className='modalAbvertencia' style={{ display: "none"}}><p>Ya has agregado esta sala</p><button onClick={()=>eliminar(id)}>Cambiar Precio</button></div>
-                                <p className='seleccione'>Selecccionar precio</p>
+                                <p className='seleccione' style={{display: errorr === true ? "block" : "none"}}>Selecccionar un precio</p>
                                 <div className='precioBtn'>
                                     <p className='precio1'>1 mes </p>
-                                    <label for="1" className='pSpan'>
+                                    <label for="1" className={ errorr === true ? 'modalAbvertencia' : 'pSpan' }>
                                             <input type="radio"
                                                 checked={check == "1" ? true : false}
                                                 onClick={actualizarCheck} 
                                                 id="1" 
-                                                value='60' {...register('opcion1')} 
+                                                name='1'
+                                                value='60'
                                             />
+                                            
                                         {" "+precio1}€
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
                                     
                                     <p className='precio2'>3 meses </p>
-                                    <label for="2" className='pSpan'>
+                                    <label for="2" className={ errorr  === true ? 'modalAbvertencia' : 'pSpan' }>
                                             <input type="radio" 
                                                 checked={check == "2" ? true : false} 
                                                 onClick={actualizarCheck} 
                                                 id="2" 
-                                                value='150' {...register('opcion2')} 
+                                                value='150'
                                             />
                                         {" "+precio2}€
                                     </label>
                                 </div>
                                 
-                                <button className='botonAgregar' onClick={setDatos}>{localStorage.getItem("datos").indexOf(id) > 1 && visible === true ? "Cambiar precio" : "Agregar a la compra"}</button>
+                                <button className='botonAgregar' onClick={setDatos}>{true  ? "Agregar" : "Actualizar"}</button>
                             </div>
                         </div>
                     </div>
-                    <FormularioPago datos={registros} eliminar={eliminar}/>
+                    <FormularioPago datos={registros} eliminar={eliminar} update={update}/>
                 </div>
             </div>
         </div>

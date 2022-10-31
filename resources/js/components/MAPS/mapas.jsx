@@ -14,8 +14,7 @@ import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 const URI = "http://localhost:8000/sala/";
 
 export default function Map() {
-
-
+    
     const [idSala, setIdsala] = useState(null);
     const [disponibilidad, setIDisponibilidad] = useState(false);
     const [verModal, setVerModal] = useState(false);
@@ -26,14 +25,19 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
-    
+    const [bolean, setBolean] = useState(false);
     
     const setId = (e) => {
+        const id = e.target.id;
         setVerModal(true);
         setVolver(true);
-        setIdsala(e.target.id);
+        setIdsala(id);
         setIDisponibilidad(true);
         document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+    }
+
+    const actualizarId = (e) =>{
+        setIdsala(e);
     }
 
     const mostrarPiso1 = () => {
@@ -93,8 +97,8 @@ export default function Map() {
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
-               
-            
+                boleano={bolean}
+                update={actualizarId}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>

@@ -98,17 +98,51 @@
 /* PRECIOS */
 
 .modalAbvertencia{
-    position: absolute;
-    z-index: 100;
-    height: 90%;
-    left: 0px;
-    text-align: center;
-    width: 100%;
-    background-color: #fffffff5;
-    backdrop-filter: blur(10px);
-    border-radius: 0px;
-    padding: 20px;
+    color: rgb(48, 48, 48);
+    font-weight: 600;
+    margin-left: 15px;
+    border: 1px solid #d52b5c;
+    padding: 0 12px;
+    border-radius: 30px;
+    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+
 }
+
+.seleccione{
+    font-size: 12px;
+    color: #9b002e;
+    font-weight: 500;
+}
+
+@-webkit-keyframes shake-horizontal {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-10px);
+              transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(10px);
+              transform: translateX(10px);
+    }
+    80% {
+      -webkit-transform: translateX(8px);
+              transform: translateX(8px);
+    }
+    90% {
+      -webkit-transform: translateX(-8px);
+              transform: translateX(-8px);
+    }
+  }
 .preciosModal{
     padding: 10px 0px 10px 20px;
     border-radius: 20px;
@@ -116,10 +150,7 @@
     position: relative;
 }
 
-.seleccione{
-    font-size: 12px;
-    color: #5e5e5e;
-}
+
 
 .precioBtn{
     display: flex;
@@ -158,39 +189,7 @@
 
 
 
-/*---------------------------------------------*/
-/* CONTAINER PAGAR */
 
-
-
-.containerPagar{
-    position: relative;
-    width: 35%;
-    height: 100%;
-    padding: 10px;
-    background-color: #f7f1f6;
-}
-
-.tablaPagar{
-    width: 100%;
-    text-align: center;
-}
-
-.botonPagarr{
-    border: none;
-    width: 100px;
-    height: 30px;
-    border: 20px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    position: absolute;
-    border-radius: 20px;
-    right: 10px;
-    bottom: 15px;
-    background-color: #440033;
-}
 
 .botonAgregar{
     border: none;
@@ -204,13 +203,6 @@
     border-radius: 20px;
     background-color: #d52b5c;
 }
-
-.total{
-    position: absolute;
-    bottom: 15px;
-    right: 150px;
-}
-
 
 
 

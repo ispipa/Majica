@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Usuario from '../assets/usu2.jpg';
 import Logo from '../assets/Logo.png'
 // import LogoMJ from '../assets/LogoMj.png'
-import LogoMJPort from '../assets/LogoMJPortada.png'
+// import LogoMJPort from '../assets/LogoMJPortada.png'
 
 export const Main = () => {
 
@@ -209,7 +209,7 @@ export const Main = () => {
                   <div className="panel left-panel">
                       <div className="content">
                           <img
-                              src={LogoMJPort}
+                            //   src={LogoMJPort}
                               className="preliminar"
                               alt="logoMajica"
                           />

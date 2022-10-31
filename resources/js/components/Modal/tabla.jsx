@@ -1,0 +1,52 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { TiDelete } from "react-icons/ti";
+import { AiFillEdit } from "react-icons/ai";
+
+import '../../../css/tabla.css';
+
+export default function FormularioPago({datos, eliminar, update}){
+
+    const  precios = [];
+    const datosDescendente = datos;
+
+    datos.forEach(element => {
+        precios.push(parseInt(element.mes))
+    });
+
+    let total = precios.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    return(
+        <div className='containerPadrePagar'>
+        <div className='containerPagar'>
+            <table className='tablaPagar' >
+                <tr className="tr">
+                <th>SALA</th>
+                <th>PISO</th>
+                <th>PRECIO</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                </tr>
+                {datosDescendente.map(ar => {
+                    return(
+                        <tr>
+                            <td className="nSala" id={ar.id} onClick={()=>update(ar.id)}>{ar.id}</td>
+                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}</td>
+                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.mes}€</td>
+                            <td className="borrar" onClick={()=>eliminar(ar.id)}><TiDelete /></td>
+                            
+                        </tr>
+                    )
+                })}
+            </table>
+            
+        </div>
+          <div className="divTotal">
+            <button className='botonPagarr'>Pagar</button>
+            <p className='total'>Total : {total}€</p>
+          </div>
+
+        </div>
+    )
+}
