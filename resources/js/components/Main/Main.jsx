@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Usuario from '../assets/usu2.jpg';
 import Logo from '../assets/Logo.png'
-import LogoMJ from '../assets/LogoMj.png'
+// import LogoMJ from '../assets/LogoMj.png'
 import LogoMJPort from '../assets/LogoMJPortada.png'
 
 export const Main = () => {
