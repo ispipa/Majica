@@ -28,7 +28,7 @@ export default function Map() {
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
     
     
-    const setId = (e) => {
+    const setId = (e) => {k
         setVerModal(true);
         setVolver(true);
         setIdsala(e.target.id);
