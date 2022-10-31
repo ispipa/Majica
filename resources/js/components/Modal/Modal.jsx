@@ -54,7 +54,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     const actualizarCheck = (e) => {
         setcheck(e.target.id)
         setMes(e.target.value)
-        setPrecio(e.target)
         
     }
 
