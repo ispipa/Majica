@@ -11,7 +11,7 @@ export default function FormularioPago({datos, eliminar, update}){
     const datosDescendente = datos;
 
     datos.forEach(element => {
-        precios.push(parseInt(element.mes))
+        precios.push(parseInt(element.precio))
     });
 
     let total = precios.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -32,15 +32,13 @@ export default function FormularioPago({datos, eliminar, update}){
                     return(
                         <tr>
                             <td className="nSala" id={ar.id} onClick={()=>update(ar.id)}>{ar.id}</td>
-                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}</td>
-                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.mes}€</td>
+                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.id[1]}</td>
+                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}€</td>
                             <td className="borrar" onClick={()=>eliminar(ar.id)}><TiDelete /></td>
-                            
                         </tr>
                     )
                 })}
             </table>
-            
         </div>
           <div className="divTotal">
             <button className='botonPagarr'>Pagar</button>

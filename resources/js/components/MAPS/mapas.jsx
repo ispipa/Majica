@@ -25,7 +25,6 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
-    const [bolean, setBolean] = useState(false);
     
     const setId = (e) => {
         const id = e.target.id;
@@ -97,7 +96,6 @@ export default function Map() {
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
-                boleano={bolean}
                 update={actualizarId}
             />
             <div className='container2'>

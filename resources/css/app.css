@@ -4,17 +4,20 @@
 @import url(mapas.css);
 @import url(modal.css);
 
-.sala1:hover {
-   fill: #ffcbee;
-   cursor: pointer;
+.texto {
+   fill: #727272;
 }
 
+.sala:hover  {
+   fill: #eaebef;
+}
+/* 
 .sala2:hover {
    fill: #a8ffb0;
    cursor: pointer;
 }
 
 .sala3:hover {
-   fill: #a8cbff;
+   fill: #f2f6fd;
    cursor: pointer;
-}
+} */
