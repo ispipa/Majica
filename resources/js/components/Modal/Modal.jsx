@@ -49,7 +49,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         }
     }
 
-    //CAMBIO EL COLOR DEL CHECK
+    //CAMBIO EL COLOR DEL CHECK Y OBTENGO SU VALUE
     const actualizarCheck = (e) =>
     {
         setcheck(e.target.id)

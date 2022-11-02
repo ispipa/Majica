@@ -249,7 +249,7 @@ export const Main = () => {
             </div>
             <div className="panel right-panel">
               <div className="content">
-                    <img src={LogoMJPort} className="image-second" alt="Majica" /> 
+                    {/* <img src={LogoMJPort} className="image-second" alt="Majica" />  */}
             </div>
                       {/* <img src={Logo} className="image" alt="" /> */}
                   </div>
