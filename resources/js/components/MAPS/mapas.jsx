@@ -35,7 +35,7 @@ export default function Map() {
         document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
     }
 
-    const actualizarId = (e) =>{
+    const updateId = (e) =>{
         setIdsala(e);
     }
 
@@ -96,7 +96,7 @@ export default function Map() {
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
-                updateId={actualizarId}
+                updateId={updateId}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
