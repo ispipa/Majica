@@ -1,7 +1,7 @@
 import React from 'react';
 import Volver from '../assets/cerca.png';
 import Boton from '../Button/boton';
-import { useForm } from 'react-hook-form';
+//import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './tabla';
@@ -31,13 +31,13 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         if (precio == "")
         {
             setError(true);
-        } 
-        else 
+        }
+        else
         {
-            if (localStorage.getItem("datos").indexOf(id) > 1) 
+            if (localStorage.getItem("datos").indexOf(id) > 1)
             {
                 editar(id);
-            } 
+            }
             else
             {
                 setRegistros([...registros, { "id": id, "piso": piso, "precio": precio }]);
@@ -50,14 +50,14 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
 
     //CAMBIO EL COLOR DEL CHECK
-    const actualizarCheck = (e) => 
+    const actualizarCheck = (e) =>
     {
         setcheck(e.target.id)
         setPrecio(e.target.value)
     }
 
     //BOTON DE VOLVER
-    const volverBtn1 = () => 
+    const volverBtn1 = () =>
     {
         setVerModal(false);
         setVolver(false);
@@ -65,7 +65,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
 
     //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
-    const eliminar = (e) => 
+    const eliminar = (e) =>
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
@@ -74,7 +74,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
 
     //EDITAR UN REGISTRO DEL LOCALSTORAGE
-    const editar = (e) => 
+    const editar = (e) =>
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
@@ -87,7 +87,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
 
     //GUARDO EN EL LOCALSTORAGE---
-    useEffect(() => 
+    useEffect(() =>
     {
         localStorage.setItem("datos", JSON.stringify(registros));
 

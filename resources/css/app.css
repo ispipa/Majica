@@ -3,7 +3,7 @@
 @import url(Main.css);
 @import url(mapas.css);
 @import url(modal.css);
-
+@import url(tabla.css);
 .texto {
    fill: #727272;
 }
@@ -11,7 +11,7 @@
 .sala:hover  {
    fill: #eaebef;
 }
-/* 
+/*
 .sala2:hover {
    fill: #a8ffb0;
    cursor: pointer;

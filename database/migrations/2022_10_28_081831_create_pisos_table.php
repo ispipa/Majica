@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -14,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salas', function (Blueprint $table) {
+        Schema::create('pisos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_sala',50);
-            $table->string('descripcion_sala',50);
-            $table->enum('precio_sala',['0','1','2'])->index();
-            $table->enum('activo',['true','false']);
-            $table->foreignId('piso')->constrained('pisos');
+            $table->integer('usuario');
+            $table->integer('sala');
+            $table->integer('precio');
         });
     }
 
@@ -31,7 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salas');
+        Schema::dropIfExists('pisos');
     }
-
 };
