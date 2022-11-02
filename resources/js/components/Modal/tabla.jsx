@@ -5,7 +5,7 @@ import { TiDelete } from "react-icons/ti";
 
 
 
-export default function FormularioPago({datos, eliminar, update}){
+export default function FormularioPago({datos, eliminar, updateId}){
 
     const  precios = [];
     const datosDescendente = datos;
@@ -31,9 +31,9 @@ export default function FormularioPago({datos, eliminar, update}){
                 {datosDescendente.map(ar => {
                     return(
                         <tr>
-                            <td className="nSala" id={ar.id} onClick={()=>update(ar.id)}>{ar.id}</td>
-                            <td className="nPiso" id={ar.id} onClick={()=>update(ar.id)}>{ar.id[1]}</td>
-                            <td className="precio" id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}€</td>
+                            <td className="nSala" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.id}</td>
+                            <td className="nPiso" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.id[1]}</td>
+                            <td className="precio" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.precio}€</td>
                             <td className="borrar" onClick={()=>eliminar(ar.id)}><TiDelete /></td>
                         </tr>
                     )

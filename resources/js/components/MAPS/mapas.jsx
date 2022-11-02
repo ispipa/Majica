@@ -96,7 +96,7 @@ export default function Map() {
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
-                update={actualizarId}
+                updateId={actualizarId}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>

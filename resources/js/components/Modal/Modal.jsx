@@ -8,7 +8,7 @@ import FormularioPago from './tabla';
 
 
 
-const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, update }) => {
+const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, updateId }) => {
 
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
@@ -162,7 +162,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                     </div>
                     <FormularioPago datos={registros}
                         eliminar={eliminar}
-                        update={update}
+                        updateId={updateId}
                     />
                 </div>
             </div>
