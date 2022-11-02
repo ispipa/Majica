@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-//import { TiDelete } from "react-icons/ti";
+import { TiDelete } from "react-icons/ti";
 //import { AiFillEdit } from "react-icons/ai";
 
 
