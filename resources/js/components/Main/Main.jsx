@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Usuario from '../assets/usu2.jpg';
 import Logo from '../assets/Logo.png'
 // import LogoMJ from '../assets/LogoMj.png'
-// import LogoMJPort from '../assets/LogoMJPortada.png'
+import LogoMJPort from '../assets/LogoMJPortada.png'
 
 export const Main = () => {
 
@@ -213,11 +213,11 @@ export const Main = () => {
               <div className="panels-container">
                   <div className="panel left-panel">
                       <div className="content">
-                          {/*<img
-                            //   src={LogoMJPort}
+                          <img
+                              src={LogoMJPort}
                               className="LogoPreliminar"
                               alt="logoMajica"
-                          />*/}
+                          />
                           <div className="text-panel">
                               <p>
                                   Lorem ipsum dolor sit amet consectetur
@@ -249,7 +249,7 @@ export const Main = () => {
             </div>
             <div className="panel right-panel">
               <div className="content">
-                  {/*<img src={LogoMJPort} className="image-second" alt="Majica" />*/}
+                  <img src={LogoMJPort} className="image-second" alt="Majica" />
             </div>
                       {/* <img src={Logo} className="image" alt="" /> */}
                   </div>
