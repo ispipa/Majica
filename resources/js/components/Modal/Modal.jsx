@@ -8,6 +8,10 @@ import FormularioPago from './tabla';
 
 
 
+
+
+
+
 const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, updateId }) => {
 
 
@@ -40,11 +44,13 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
             }
             else
             {
-                setRegistros([...registros, { "id": id, "piso": piso, "precio": precio }]);
+                
+
+                setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...registros]);
                 setError(false)
                 setcheck("");
                 setPrecio("");
-                reset();
+                
             }
         }
     }
@@ -79,9 +85,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
         items.splice(indice, 1);
-        const items2 = items;
-        items2.unshift({ "id": id, "precio": precio , "piso":piso})
-        setRegistros(items2);
+        // console.log(items[1])
+        setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...items]);
         alert("Se editara el precio de la sala " + id);
 
     }
@@ -92,6 +97,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         localStorage.setItem("datos", JSON.stringify(registros));
 
     }, [registros])
+
 
     return (
         <div>
@@ -160,6 +166,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                             </div>
                         </div>
                     </div>
+
                     <FormularioPago datos={registros}
                         eliminar={eliminar}
                         updateId={updateId}

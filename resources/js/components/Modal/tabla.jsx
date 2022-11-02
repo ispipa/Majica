@@ -10,7 +10,7 @@ export default function FormularioPago({datos, eliminar, updateId}){
     const  precios = [];
     const datosDescendente = datos;
 
-    datos.forEach(element => {
+    datosDescendente.forEach(element => {
         precios.push(parseInt(element.precio))
     });
 
