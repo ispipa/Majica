@@ -32,8 +32,8 @@ export default function FormularioPago({datos, eliminar, update}){
                     return(
                         <tr>
                             <td className="nSala" id={ar.id} onClick={()=>update(ar.id)}>{ar.id}</td>
-                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.id[1]}</td>
-                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}€</td>
+                            <td className="nPiso" id={ar.id} onClick={()=>update(ar.id)}>{ar.id[1]}</td>
+                            <td className="precio" id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}€</td>
                             <td className="borrar" onClick={()=>eliminar(ar.id)}><TiDelete /></td>
                         </tr>
                     )
