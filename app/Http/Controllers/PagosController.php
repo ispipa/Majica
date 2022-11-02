@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PagosController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

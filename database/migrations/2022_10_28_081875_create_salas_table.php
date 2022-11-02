@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -15,10 +16,11 @@ return new class extends Migration
     {
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreSala',50);
-            $table->string('precio_1',50);
-            $table->string('precio_2',50);
-            $table->string('descripcionSala',50);
+            $table->string('nombre_sala',50);
+            $table->string('descripcion_sala',50);
+            $table->enum('precio_sala',['0','1','2'])->index();
+            $table->enum('activo',['true','false']);
+            $table->foreignId('piso')->constrained('pisos');
         });
     }
 

@@ -1,4 +1,5 @@
 import logo from '../assets/logo.png';
+
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import axios from 'axios';
@@ -13,8 +14,7 @@ import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 const URI = "http://localhost:8000/sala/";
 
 export default function Map() {
-
-
+    
     const [idSala, setIdsala] = useState(null);
     const [disponibilidad, setIDisponibilidad] = useState(false);
     const [verModal, setVerModal] = useState(false);
@@ -25,20 +25,18 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
-
-    // const setId = (e) => {
-    //     document.querySelector(".modal").classList.add("modalVisible");
-    //     document.querySelector(".volver2").classList.add("volver2V");
-    //     document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
-    //     setIdsala(e.target.id)
-    //     setIDisponibilidad(true)
-    // }
-
+    
     const setId = (e) => {
+        const id = e.target.id;
         setVerModal(true);
         setVolver(true);
-        setIdsala(e.target.id);
-        setIDisponibilidad(true)
+        setIdsala(id);
+        setIDisponibilidad(true);
+        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+    }
+
+    const actualizarId = (e) =>{
+        setIdsala(e);
     }
 
     const mostrarPiso1 = () => {
@@ -66,6 +64,8 @@ export default function Map() {
         setVerMapaGrande3(true);
     }
 
+
+
     return (
         <section className='seccionMapas'>
             <div className='headerMovil'>
@@ -89,16 +89,14 @@ export default function Map() {
                 disponibilidad={disponibilidad}
                 descripcion="Lorem ipsum dolor sit amet, consectetur adipiscing
                              elit, sed do eiusmod tempor incididunt ut labore et dolore
-                             magna aliqua. Ut enim ad minim veniam, quis nostrud
-                             exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                             consequat. Duis aute irure dolor in reprehenderit in voluptate
-                             velit esse cillum dolore eu fugiat nulla pariatur."
+                             magna aliqua."
                 precio1={60}
                 precio2={150}
                 verModal={verModal}
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
+                update={actualizarId}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
@@ -108,14 +106,14 @@ export default function Map() {
                     </div>
                     <div 
                         className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
-                            <PisoDos_Verde_SVG funcion={setId} />
+                        <PisoDos_Verde_SVG funcion={setId} />
                     </div>
                     <div 
                         className={verMapaGrande3 ? 'piso3MapaGrandeSVG' : 'piso3MapaGrandeSVG noneMapa'}>
                         <PisoTres_Azul_SVG funcion={setId} />
                     </div>
                 </div>
-                <div className='containerMapaPequeno'>
+                <aside className='containerMapaPequeno'>
                     <div className='mapasPequenos'>
                         <div className={verPiso1 ? 'piso1' : 'piso1'}>
                             <MapaPequeno_piso1_SVG />
@@ -145,7 +143,7 @@ export default function Map() {
                         src={logo} 
                         alt="logo virtual museum" 
                         className='logo' />
-                </div>
+                </aside>
             </div>
         </section>
     )
