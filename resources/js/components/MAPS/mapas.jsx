@@ -37,6 +37,7 @@ export default function Map() {
 
     const updateId = (e) =>{
         setIdsala(e);
+
     }
 
     const mostrarPiso1 = () => {

@@ -44,8 +44,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
             }
             else
             {
-                
-
                 setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...registros]);
                 setError(false)
                 setcheck("");
@@ -84,10 +82,9 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
-        items.splice(indice, 1);
-        // console.log(items[1])
-        setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...items]);
-        alert("Se editara el precio de la sala " + id);
+        items[indice] = {"id": id, "piso": piso, "precio": precio };
+        setRegistros(items);
+        // alert("Se editara el precio de la sala " + id);
 
     }
 
