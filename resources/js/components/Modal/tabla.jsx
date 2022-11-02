@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { TiDelete } from "react-icons/ti";
-import { AiFillEdit } from "react-icons/ai";
+//import { TiDelete } from "react-icons/ti";
+//import { AiFillEdit } from "react-icons/ai";
 
-import '../../../css/tabla.css';
+
 
 export default function FormularioPago({datos, eliminar, update}){
 
