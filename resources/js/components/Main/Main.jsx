@@ -27,38 +27,39 @@ export const Main = () => {
                           <img src={Logo} className="image" alt="Majica" />
                           <h2 className="title">Iniciar sesion</h2>
                           <div className="content-input">
-                            <div className="input-field">
-                              {/* <i className="fas fa-user"></i> */}
+                              <div className="input-field">
+                                  {/* <i className="fas fa-user"></i> */}
+                                  <input
+                                      name="correo"
+                                      type="text"
+                                      placeholder="Email"
+                                  />
+                              </div>
+                              <div className="input-field">
+                                  {/* <i className="fas fa-lock"></i> */}
+                                  <input
+                                      name="clave"
+                                      type="password"
+                                      placeholder="Contraseña"
+                                  />
+                              </div>
+                              <div className="btn-register">
                               <input
-                                  name="correo"
-                                  type="text"
-                                  placeholder="Email"
-                              />
+                                      type=""
+                                      value="Crear Cuenta"
+                                      className="btn solid"
+                                      onClick={Sign_in_btn}
+                                      preventDefault=""
+                                  />
+
+                                  <input
+                                      type="submit"
+                                      value="Iniciar sesion"
+                                      className="btn solid"
+                                  />
+                                  
+                              </div>
                           </div>
-                          <div className="input-field">
-                              {/* <i className="fas fa-lock"></i> */}
-                              <input
-                                  name="clave"
-                                  type="password"
-                                  placeholder="Contraseña"
-                              />
-                          </div>
-                          <div className="btn-register">
-                              <input
-                                  type="submit"
-                                  value="Iniciar sesion"
-                                  className="btn solid"
-                              />
-                              <input
-                                  type=""
-                                  value="Registrarse"
-                                  className="btn solid"
-                                  onClick={Sign_in_btn}
-                                  preventDefault=""
-                              />
-                          </div>
-                          </div>
-                         
                       </form>
 
                       <form
@@ -91,107 +92,111 @@ export const Main = () => {
                               name="src-file1"
                               aria-label="Archivo"
                           />
-                          <div className="container-inputs">
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area1" }}
-                              >
-                                  <i className="fas fa-user"></i>
-                                  <input
-                                      name="nombre"
-                                      className="nombre"
-                                      type="text"
-                                      placeholder="Nombre"
-                                      required
-                                  />
+                          <div className="content-input">
+                              <div className="container-inputs">
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area1" }}
+                                  >
+                                      <i className="fas fa-user"></i>
+                                      <input
+                                          name="nombre"
+                                          className="nombre"
+                                          type="text"
+                                          placeholder="Nombre"
+                                          required
+                                      />
+                                  </div>
+
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area2" }}
+                                  >
+                                      <i className="fas fa-user"></i>
+                                      <input
+                                          name="apellidos"
+                                          type="text"
+                                          placeholder="Apellidos"
+                                          required
+                                      />
+                                  </div>
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area3" }}
+                                  >
+                                      <i className="fas fa-user"></i>
+                                      <input
+                                          name="telefono"
+                                          type="text"
+                                          placeholder="Teléfono"
+                                          required
+                                      />
+                                  </div>
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area4" }}
+                                  >
+                                      <i className="fas fa-lock"></i>
+                                      <input
+                                          name="clave"
+                                          type="password"
+                                          placeholder="Contraseña"
+                                      />
+                                  </div>
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area5" }}
+                                  >
+                                      <i className="fas fa-user"></i>
+                                      <input
+                                          name="codigo-postal"
+                                          type="text"
+                                          placeholder="Codigo Postal"
+                                          required
+                                      />
+                                  </div>
+
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area6" }}
+                                  >
+                                      <i className="fas fa-envelope"></i>
+                                      <input
+                                          name="correo"
+                                          type="email"
+                                          placeholder="Email"
+                                      />
+                                  </div>
+
+                                  <div
+                                      className="input-field"
+                                      style={{ gridArea: "area7" }}
+                                  >
+                                      <i className="fas fa-user"></i>
+                                      <input
+                                          name="dirección"
+                                          type="text"
+                                          placeholder="Dirección"
+                                          required
+                                      />
+                                  </div>
                               </div>
 
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area2" }}
-                              >
-                                  <i className="fas fa-user"></i>
-                                  <input
-                                      name="apellidos"
-                                      type="text"
-                                      placeholder="Apellidos"
-                                      required
-                                  />
-                              </div>
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area3" }}
-                              >
-                                  <i className="fas fa-user"></i>
-                                  <input
-                                      name="telefono"
-                                      type="text"
-                                      placeholder="Teléfono"
-                                      required
-                                  />
-                              </div>
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area4" }}
-                              >
-                                  <i className="fas fa-lock"></i>
-                                  <input
-                                      name="clave"
-                                      type="password"
-                                      placeholder="Contraseña"
-                                  />
-                              </div>
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area5" }}
-                              >
-                                  <i className="fas fa-user"></i>
-                                  <input
-                                      name="codigo-postal"
-                                      type="text"
-                                      placeholder="Codigo Postal"
-                                      required
-                                  />
-                              </div>
-
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area6" }}
-                              >
-                                  <i className="fas fa-envelope"></i>
-                                  <input
-                                      name="correo"
-                                      type="email"
-                                      placeholder="Email"
-                                  />
-                              </div>
-
-                              <div
-                                  className="input-field"
-                                  style={{ gridArea: "area7" }}
-                              >
-                                  <i className="fas fa-user"></i>
-                                  <input
-                                      name="dirección"
-                                      type="text"
-                                      placeholder="Dirección"
-                                      required
-                                  />
-                              </div>
-                          </div>
-
-                          <div className="btn-register">
+                              <div className="btn-register">
                               <input
-                                  type="submit"
-                                  className="btn"
-                                  value="Registrarse"
-                              />
-                              <input
-                                  type=""
-                                  className="btn"
-                                  value="Iniciar Sesión"
-                                  onClick={Sing_up_btn}
-                              />
+                                      type=""
+                                      className="btn"
+                                      value="Iniciar Sesión"
+                                      onClick={Sing_up_btn}
+                                  />
+
+                                  <input
+                                      type="submit"
+                                      className="btn"
+                                      value="Registrarse"
+                                  />
+                                
+                              </div>
                           </div>
                           <div className="social-media"></div>
                       </form>
@@ -210,20 +215,26 @@ export const Main = () => {
                       <div className="content">
                           <img
                               src={LogoMJPort}
-                              className="preliminar"
+                              className="LogoPreliminar"
                               alt="logoMajica"
                           />
                           <div className="text-panel">
-                            <p>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Neque, accusamus animi distinctio blanditiis
-                              dignissimos doloremque corrupti ad. Sed, porro
-                              accusamus incidunt odio provident quod rem beatae
-                              nobis, quam, nulla perferendis?
-                            </p>
+                              <p>
+                                  Lorem ipsum dolor sit amet consectetur
+                                  adipisicing elit. Neque, accusamus animi
+                                  distinctio blanditiis dignissimos doloremque
+                                  corrupti ad. Sed, porro accusamus incidunt
+                                  odio provident quod rem beatae nobis, quam,
+                                  nulla perferendis?
+                              </p>
 
-                            <button className="btn transparent" id="sign-up-btn" onClick="">Saber mas</button>
-
+                              <button
+                                  className="btn transparent"
+                                  id="sign-up-btn"
+                                  onClick=""
+                              >
+                                  Saber mas
+                              </button>
                           </div>
 
                           {/* <h3>¿Aún no tienes una cuenta?</h3>
@@ -232,21 +243,15 @@ export const Main = () => {
                 </p>  */}
                           {/* <button className="btn transparent" id="sign-up-btn" onClick={Sign_in_btn}>
                   Registrate
-                </button>
+                </button> */}
               </div>
-              <img src="" className="image" alt="" />
+              {/* <img src={Logo} className="image" alt="" /> */}
             </div>
             <div className="panel right-panel">
               <div className="content">
-                {/* <h3>¿Ya tienes una cuenta?</h3>
-                <p>
-                  Inicia sesión para entrar en la página
-                </p> */}
-                          {/* <button className="btn transparent" id="sign-in-btn" onClick={Sing_up_btn}>
-                  Inicia sesion
-                </button> */}
-                      </div>
-                      <img src="" className="image" alt="" />
+                    <img src={LogoMJPort} className="image-second" alt="Majica" /> 
+            </div>
+                      {/* <img src={Logo} className="image" alt="" /> */}
                   </div>
               </div>
           </div>
