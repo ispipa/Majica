@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
-import { AiFillEdit } from "react-icons/ai";
+//import { AiFillEdit } from "react-icons/ai";
 
-import '../../../css/tabla.css';
 
-export default function FormularioPago({datos, eliminar, update}){
+
+export default function FormularioPago({datos, eliminar, updateId}){
 
     const  precios = [];
     const datosDescendente = datos;
 
-    datos.forEach(element => {
+    datosDescendente.forEach(element => {
         precios.push(parseInt(element.precio))
     });
 
@@ -31,9 +31,9 @@ export default function FormularioPago({datos, eliminar, update}){
                 {datosDescendente.map(ar => {
                     return(
                         <tr>
-                            <td className="nSala" id={ar.id} onClick={()=>update(ar.id)}>{ar.id}</td>
-                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.id[1]}</td>
-                            <td id={ar.id} onClick={()=>update(ar.id)}>{ar.precio}€</td>
+                            <td className="nSala" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.id}</td>
+                            <td className="nPiso" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.id[1]}</td>
+                            <td className="precio" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.precio}€</td>
                             <td className="borrar" onClick={()=>eliminar(ar.id)}><TiDelete /></td>
                         </tr>
                     )

@@ -1,14 +1,18 @@
 import React from 'react';
 import Volver from '../assets/cerca.png';
 import Boton from '../Button/boton';
-import { useForm } from 'react-hook-form';
+//import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './tabla';
 
 
 
-const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, update }) => {
+
+
+
+
+const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, updateId }) => {
 
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
@@ -31,33 +35,35 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         if (precio == "")
         {
             setError(true);
-        } 
-        else 
+        }
+        else
         {
-            if (localStorage.getItem("datos").indexOf(id) > 1) 
+            if (localStorage.getItem("datos").indexOf(id) > 1)
             {
                 editar(id);
-            } 
+            }
             else
             {
-                setRegistros([...registros, { "id": id, "piso": piso, "precio": precio }]);
+                
+
+                setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...registros]);
                 setError(false)
                 setcheck("");
                 setPrecio("");
-                reset();
+                
             }
         }
     }
 
-    //CAMBIO EL COLOR DEL CHECK
-    const actualizarCheck = (e) => 
+    //CAMBIO EL COLOR DEL CHECK Y OBTENGO SU VALUE
+    const actualizarCheck = (e) =>
     {
         setcheck(e.target.id)
         setPrecio(e.target.value)
     }
 
     //BOTON DE VOLVER
-    const volverBtn1 = () => 
+    const volverBtn1 = () =>
     {
         setVerModal(false);
         setVolver(false);
@@ -65,7 +71,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
 
     //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
-    const eliminar = (e) => 
+    const eliminar = (e) =>
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
@@ -74,24 +80,24 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     }
 
     //EDITAR UN REGISTRO DEL LOCALSTORAGE
-    const editar = (e) => 
+    const editar = (e) =>
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
         items.splice(indice, 1);
-        const items2 = items;
-        items2.unshift({ "id": id, "precio": precio , "piso":piso})
-        setRegistros(items2);
+        // console.log(items[1])
+        setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...items]);
         alert("Se editara el precio de la sala " + id);
 
     }
 
     //GUARDO EN EL LOCALSTORAGE---
-    useEffect(() => 
+    useEffect(() =>
     {
         localStorage.setItem("datos", JSON.stringify(registros));
 
     }, [registros])
+
 
     return (
         <div>
@@ -160,9 +166,10 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                             </div>
                         </div>
                     </div>
+
                     <FormularioPago datos={registros}
                         eliminar={eliminar}
-                        update={update}
+                        updateId={updateId}
                     />
                 </div>
             </div>

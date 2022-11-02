@@ -35,7 +35,7 @@ export default function Map() {
         document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
     }
 
-    const actualizarId = (e) =>{
+    const updateId = (e) =>{
         setIdsala(e);
     }
 
@@ -96,7 +96,7 @@ export default function Map() {
                 setVerModal={setVerModal}
                 volver={volver}
                 setVolver={setVolver}
-                update={actualizarId}
+                updateId={updateId}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
@@ -113,7 +113,7 @@ export default function Map() {
                         <PisoTres_Azul_SVG funcion={setId} />
                     </div>
                 </div>
-                <div className='containerMapaPequeno'>
+                <aside className='containerMapaPequeno'>
                     <div className='mapasPequenos'>
                         <div className={verPiso1 ? 'piso1' : 'piso1'}>
                             <MapaPequeno_piso1_SVG />
@@ -143,7 +143,7 @@ export default function Map() {
                         src={logo} 
                         alt="logo virtual museum" 
                         className='logo' />
-                </div>
+                </aside>
             </div>
         </section>
     )
