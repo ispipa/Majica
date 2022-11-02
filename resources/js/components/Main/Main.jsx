@@ -57,7 +57,7 @@ export const Main = () => {
                                       value="Iniciar sesion"
                                       className="btn solid"
                                   />
-                                  
+
                               </div>
                           </div>
                       </form>
@@ -195,7 +195,7 @@ export const Main = () => {
                                       className="btn"
                                       value="Registrarse"
                                   />
-                                
+
                               </div>
                           </div>
                           <div className="social-media"></div>
@@ -213,11 +213,11 @@ export const Main = () => {
               <div className="panels-container">
                   <div className="panel left-panel">
                       <div className="content">
-                          <img
+                          {/*<img
                             //   src={LogoMJPort}
                               className="LogoPreliminar"
                               alt="logoMajica"
-                          />
+                          />*/}
                           <div className="text-panel">
                               <p>
                                   Lorem ipsum dolor sit amet consectetur
@@ -249,7 +249,7 @@ export const Main = () => {
             </div>
             <div className="panel right-panel">
               <div className="content">
-                    {/* <img src={LogoMJPort} className="image-second" alt="Majica" />  */}
+                  {/*<img src={LogoMJPort} className="image-second" alt="Majica" />*/}
             </div>
                       {/* <img src={Logo} className="image" alt="" /> */}
                   </div>
