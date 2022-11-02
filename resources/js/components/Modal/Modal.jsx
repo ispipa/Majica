@@ -43,7 +43,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                 setRegistros([...registros, { "id": id, "piso": piso, "precio": precio }]);
                 setError(false)
                 setcheck("");
-                setMes("");
+                setPrecio("");
                 reset();
             }
         }
