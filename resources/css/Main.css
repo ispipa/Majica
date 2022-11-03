@@ -28,8 +28,8 @@ input {
   width: 100%;
 }
 .LogoPreliminar {
-  width: 62%;
-  margin-top: 52px;
+  width: 78%;
+  margin-top: 86px;
   transform: (3%, 3%);
 }
 .container {
@@ -228,12 +228,11 @@ form.sign-in-form {
   margin-top: 20px;
 }
 .image-second {
-  width: 100%;
+  width: 94%;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
-  /* margin-top: 20px; */
+  margin-top: 40px;
 }
-
 .fondo-img{
     width: 119%;
     position: absolute;
@@ -366,8 +365,14 @@ display: none;
     flex-direction: column;
     margin-left: 0px !important;
     width: 100%;
-    /* margin-top: 10px; */
-}.panel p {
+    align-items: center;
+}
+
+
+
+
+
+.panel p {
   font-size: 0.85rem;
   text-align: left;
   line-height: 17px !important;
@@ -378,7 +383,13 @@ display: none;
   width: 110px;
   height: 35px;
   font-size: 0.7rem;
-  display: none;
+}
+.btn.transparent:hover {
+    background-color: #d52b5c;
+    transform: scale(1.4) translateY(0) translateZ(0);
+    width: 110px;
+    height: 35px;
+    font-size: 0.7rem;
 }
 
 .panel .content {
@@ -547,4 +558,5 @@ display: none;
     left: 50%;
   }
 }
+  
 

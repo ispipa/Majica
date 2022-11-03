@@ -3,6 +3,8 @@ import Usuario from '../assets/usu2.jpg';
 import Logo from '../assets/Logo.png'
 // import LogoMJ from '../assets/LogoMj.png'
 import LogoMJPort from '../assets/LogoMJPortada.png'
+import LogoVm from '../assets/Nueva carpeta - copia/LogoVm.png'
+
 
 export const Main = () => {
 
@@ -85,13 +87,17 @@ export const Main = () => {
                                   alt=""
                               />
                           </div>
+
                           <input
                               id="file-arch"
                               type="file"
                               encType="multipart/form-data"
                               name="src-file1"
                               aria-label="Archivo"
+                              className='input-file-doc'
                           />
+
+
                           <div className="content-input">
                               <div className="container-inputs">
                                   <div
@@ -214,7 +220,7 @@ export const Main = () => {
                   <div className="panel left-panel">
                       <div className="content">
                           <img
-                              src={LogoMJPort}
+                              src={LogoVm}
                               className="LogoPreliminar"
                               alt="logoMajica"
                           />
@@ -227,7 +233,8 @@ export const Main = () => {
                                   odio provident quod rem beatae nobis, quam,
                                   nulla perferendis?
                               </p>
-
+                            <a href="https://www.majica.es/programacion
+                            ">
                               <button
                                   className="btn transparent"
                                   id="sign-up-btn"
@@ -235,6 +242,7 @@ export const Main = () => {
                               >
                                   Saber mas
                               </button>
+                              </a>
                           </div>
 
                           {/* <h3>¿Aún no tienes una cuenta?</h3>
@@ -249,7 +257,7 @@ export const Main = () => {
             </div>
             <div className="panel right-panel">
               <div className="content">
-                  <img src={LogoMJPort} className="image-second" alt="Majica" />
+                  <img src={LogoVm} className="image-second" alt="Majica" />
             </div>
                       {/* <img src={Logo} className="image" alt="" /> */}
                   </div>
