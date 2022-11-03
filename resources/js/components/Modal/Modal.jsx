@@ -148,9 +148,9 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                     style={{ display: errorr === true ? "block" : "none" }}>Selecccionar un precio
                                 </p>
                                 <div className='precioBtn'>
-                                    <p className='precio1'>1 Mes </p>
                                     <label for="1" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
-                                        <input type="radio"
+                                    <p className='precio1'>1 Mes </p>
+                                        <input type="checkbox"
                                             checked={check == "1" ? true : false}
                                             onClick={actualizarCheck}
                                             id="1"
@@ -160,11 +160,10 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
 
                                         {" " + precio1} €
                                     </label>
-                                </div>
-                                <div className='precioBtn'>
-                                    <p className='precio2'>3 Meses </p>
+                               
                                     <label for="2" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
-                                        <input type="radio"
+                                    <p className='precio2'>3 Meses </p>
+                                        <input type="checkbox"
                                             checked={check == "2" ? true : false}
                                             onClick={actualizarCheck}
                                             id="2"
