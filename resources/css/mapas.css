@@ -161,6 +161,8 @@
         padding-top: 30px;
     }
 
+    
+
     .headerMovil {
         position: fixed;
         width: 100%;
@@ -225,6 +227,11 @@
     .mapaGrandeSVG {
         width: 150%;
         height: 100vh;
+    }
+
+
+    .paddingBottom{
+        padding-bottom: 250px;
     }
 }
 

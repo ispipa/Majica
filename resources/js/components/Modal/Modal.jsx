@@ -32,7 +32,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     const [precio, setPrecio] = useState("");
     const [errorr, setError] = useState(false);
     const [mostrarTabla, setMostratTabla] = useState(true);
-    const [contadorCompra, setContadorCompra] = useState(0);
+    const [contadorCompra, setContadorCompra] = useState(JSON.parse(localStorage.getItem("datos")).length);
 
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
     const setDatos = () => {
@@ -71,7 +71,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     {
         setVerModal(false);
         setVolver(false);
-        document.querySelector(".containerMapaGrande").style.paddingBottom = "0px";
+        document.querySelector(".containerMapaGrande").classList.remove("paddingBottom");
         document.querySelector(".botonesPisos").classList.remove("displayFlex");
     }
 
@@ -113,8 +113,10 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
 
     return (
         <div>
-            <p className='contadorCompra'>{contadorCompra}</p>
-            <button onClick={mostratTablaCompra} className='btnMostrarTabla'><BsFillBagCheckFill /></button>
+            <div className='divContadorCompra'>
+                <p className='contadorCompra'>{contadorCompra}</p>
+                <button onClick={mostratTablaCompra} className='btnMostrarTabla'><BsFillBagCheckFill /></button>
+            </div>
             <div
                 className={volver ? 'volver2 volver2V' : 'volver2'}
                 onClick={() => volverBtn1()}>
@@ -156,7 +158,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                             value='60'
                                         />
 
-                                        {" " + precio1}€
+                                        {" " + precio1} €
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
@@ -168,10 +170,10 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                             id="2"
                                             value='150'
                                         />
-                                        {" " + precio2}€
+                                        {" " + precio2} €
                                     </label>
                                 </div>
-                                <button style={{ background: true ? "#ff2c5a" : "#440033" }} className='botonAgregar' onClick={setDatos}>{ true ? "Agregar" : "Actualizar"}</button>
+                                <button style={{ background: true ? "#ff2c5a" : "#440033" }} className='botonAgregar' onClick={setDatos}>{ true ? "AÑADIR A LA COMPRA" : "Actualizar"}</button>
                             </div>
                         </div>
                     </div>

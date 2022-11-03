@@ -11,24 +11,28 @@
     backdrop-filter: blur(14px);
     padding: 0 0px;
 }
+.divContadorCompra{
+    position: fixed;
+    right: 20px;
+    width: 40px;
+    top: 20px;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .btnMostrarTabla{
     font-size: 30px;
     color: #ffffff;
     background-color: rgba(245, 222, 179, 0);
     border: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 200;
+}
+   
     
 
-}
 
 .contadorCompra{
-    position: fixed;
-    right: 53px;
-    top: 27px;
     color: white;
 }
 
@@ -123,7 +127,6 @@
       
     color: rgb(255, 255, 255);
     font-weight: 600;
-    margin-left: 15px;
     border: 1px solid #d52b5c;
     padding: 5px 18px;
     border-radius: 30px;
@@ -170,21 +173,25 @@
 .preciosModal{
     border-radius: 20px;
     padding: 0 20px;
-    display: flex;flex-direction: column;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
     height: 100%;
     margin-top: 0;
     position: relative;
+   
 }
 
 
 
 .precioBtn{
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
+    margin-top: 18px;
 }
 
 .modal h2{
@@ -196,14 +203,15 @@
 .precio1, .precio2{
     font-size: 20px;
     font-weight: 400;
-    margin-top: 20px;
     color: #c4c4c4;
+    margin-left: 15px;
+   
 }
 
 .pSpan{
     color: rgb(255, 255, 255);
     font-weight: 600;
-    margin-left: 15px;
+    margin-left: 0px;
     border: 1px solid #d52b5c;
     padding: 5px 18px;
     border-radius: 30px;
@@ -273,6 +281,10 @@
    .preciosModal{
       width: 100%;
       margin-top: 0px;
+   }
+
+   .precioBtn{
+    margin-top: 10px;
    }
 
    .modalVisible{
