@@ -34,7 +34,7 @@ export default function Map() {
         setVolver(true);
         setIdsala(id);
         setIDisponibilidad(true);
-        // document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+        document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
         document.querySelector(".botonesPisos").classList.add("displayFlex");
     }
     
