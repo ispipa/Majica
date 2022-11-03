@@ -147,6 +147,9 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                 <p className='seleccione'
                                     style={{ display: errorr === true ? "block" : "none" }}>Selecccionar un precio
                                 </p>
+                                <p style={{ display: errorr === false ? "block" : "none" }} className='pPrecios'>
+                                    Precios por mes
+                                </p>
                                 <div className='precioBtn'>
                                     <label for="1" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
                                     <p className='precio1'>1 Mes </p>
