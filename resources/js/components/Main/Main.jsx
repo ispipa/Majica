@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Usuario from '../assets/usu2.jpg';
 import Logo from '../assets/Logo.png'
 // import LogoMJ from '../assets/LogoMj.png'
-// import LogoMJPort from '../assets/LogoMJPortada.png'
+import LogoMJPort from '../assets/LogoMJPortada.png'
 
 export const Main = () => {
 
@@ -138,9 +138,9 @@ export const Main = () => {
                                   >
                                       <i className="fas fa-lock"></i>
                                       <input
-                                          name="clave"
-                                          type="password"
-                                          placeholder="Contraseña"
+                                          name="dirección"
+                                          type="text"
+                                          placeholder="Dirección"
                                       />
                                   </div>
                                   <div
@@ -148,12 +148,10 @@ export const Main = () => {
                                       style={{ gridArea: "area5" }}
                                   >
                                       <i className="fas fa-user"></i>
-                                      <input
-                                          name="codigo-postal"
-                                          type="text"
-                                          placeholder="Codigo Postal"
-                                          required
-                                      />
+                                      <select name="tipo_de_artista" id="type_of_artist">
+                                          <option value="dibujante" selected>dibujante</option>
+                                          <option value="fotografo">fotografo</option>
+                                      </select>
                                   </div>
 
                                   <div
@@ -161,24 +159,18 @@ export const Main = () => {
                                       style={{ gridArea: "area6" }}
                                   >
                                       <i className="fas fa-envelope"></i>
-                                      <input
-                                          name="correo"
-                                          type="email"
-                                          placeholder="Email"
-                                      />
+                                      <select name="tipo_de_arte" id="type_of_art">
+                                          <option value="abstracto" selected>Abstracto</option>
+                                          <option value="realismo">Realismo</option>
+                                      </select>
                                   </div>
 
                                   <div
-                                      className="input-field"
+                                      className="input-field input-field-textarea"
                                       style={{ gridArea: "area7" }}
                                   >
                                       <i className="fas fa-user"></i>
-                                      <input
-                                          name="dirección"
-                                          type="text"
-                                          placeholder="Dirección"
-                                          required
-                                      />
+                                      <textarea id="descripción" name="descripción" rows="4" cols="50" placeholder="Descripción" required></textarea>
                                   </div>
                               </div>
 
@@ -213,11 +205,11 @@ export const Main = () => {
               <div className="panels-container">
                   <div className="panel left-panel">
                       <div className="content">
-                          {/*<img
-                            //   src={LogoMJPort}
+                          <img
+                              src={LogoMJPort}
                               className="LogoPreliminar"
                               alt="logoMajica"
-                          />*/}
+                          />
                           <div className="text-panel">
                               <p>
                                   Lorem ipsum dolor sit amet consectetur
@@ -249,7 +241,7 @@ export const Main = () => {
             </div>
             <div className="panel right-panel">
               <div className="content">
-                  {/*<img src={LogoMJPort} className="image-second" alt="Majica" />*/}
+                  <img src={LogoMJPort} className="image-second" alt="Majica" />
             </div>
                       {/* <img src={Logo} className="image" alt="" /> */}
                   </div>

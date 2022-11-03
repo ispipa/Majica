@@ -20,10 +20,8 @@ return new class extends Migration
             $table->foreignId('sala')->constrained('salas');
             $table->foreignId('usuario')->constrained('usuarios');
             $table->foreign('precios_pagos')->references('precio_sala')->on('salas');
-
         });
     }
-
     /**
      * Reverse the migrations.
      *
