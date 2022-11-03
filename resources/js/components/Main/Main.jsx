@@ -148,12 +148,10 @@ export const Main = () => {
                                       style={{ gridArea: "area5" }}
                                   >
                                       <i className="fas fa-user"></i>
-                                      <input
-                                          name="codigo-postal"
-                                          type="text"
-                                          placeholder="Codigo Postal"
-                                          required
-                                      />
+                                      <select name="tipo_de_artista" id="type_of_artist">
+                                          <option value="dibujante" selected>dibujante</option>
+                                          <option value="fotografo">fotografo</option>
+                                      </select>
                                   </div>
 
                                   <div
