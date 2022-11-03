@@ -7,7 +7,7 @@
     width: 30%;
     height: 44vh;
     bottom: -100%;
-    background:  linear-gradient(#dbced900, rgba(0, 0, 0, 0.986));
+    background:  linear-gradient(#00000000, rgba(20, 0, 15, 0.986));
     backdrop-filter: blur(14px);
     padding: 0 0px;
 }
@@ -89,7 +89,7 @@
 .headerModal{
 
     padding: 20px 20px 0 20px;
-    margin-bottom: -20px;
+    margin-bottom: -0px;
     align-items: flex-end;
     display: flex;
     justify-content: space-between;
@@ -126,34 +126,21 @@
 
 /* PRECIOS */
 
-.modalAbvertencia{
-    
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    background-color: #4b1e34d2;
-    padding: 5px 18px;
-    border-radius: 10px;
-    font-size: 20px;
-    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 
-}
 
 .seleccione{
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 15px;
-    color: #f0f0f0;
-    font-weight: 500;
+    color: hsl(0, 0%, 94%);
+    font-weight: 300;
     letter-spacing: 1px;
 }
 
 .pPrecios{
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 10px;
     color: #dbdbdb;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 1px;
 }
 
@@ -201,9 +188,9 @@
 
 .precioBtn{
     display: flex;
-    /* flex-direction: row-reverse; */
-    /* align-items: center;
-    justify-content: space-betw; */
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-betw; */
     width: auto;
     
 }
@@ -215,25 +202,43 @@
 }
 
 .precio1, .precio2{
-    font-size: 16px;
-    font-weight: 400;
-    color: #c4c4c4;
-    /* margin-left: 15px; */
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    margin-left: 15px;
    
 }
 
 .pSpan{
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    margin-right: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    /* margin-left: 15px; */
     margin-bottom: 10px;
-    background-color: #4d1a32d2;
-    padding: 5px 18px;
-    border-radius: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: #ffffff;
+    padding: 0px 18px;
+    border-radius: 20px;
     font-size: 20px;
-    
+    display: flex;
 }
+.checkbox{
+    margin-right: 10px;
+}
+.modalAbvertencia{
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    /* margin-left: 15px; */
+    margin-bottom: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: #ffffff;
+    padding: 0px 18px;
+    border-radius: 20px;
+    font-size: 20px;
+    display: flex;
+    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 
+}
 
 
 
@@ -274,7 +279,7 @@
     transition: .5s;
     position: fixed;
     bottom: -100%;
-    height: 250px;
+    height: 280px;
     z-index: 3002;
     justify-content: flex-start;
     align-items: flex-start;
@@ -285,7 +290,7 @@
 
 
    .containerModalHijo{
-    height: 250px;
+    height: 280px;
    }
    .descripcionModal{
     width: 100%;
@@ -299,6 +304,14 @@
 
    .precioBtn{
     margin-top: 0px;
+   }
+
+   .pSpan{
+    font-size: 18px;
+   }
+
+   .modalAbvertencia{
+    font-size: 18px;
    }
 
    .modalVisible{
@@ -323,7 +336,7 @@
     display: block;
     position: fixed;
     width: 34px;
-    bottom:250px;
+    bottom:246px;
 
     right: -40px;
     background-color: hsl(347, 100%, 61%);
@@ -347,6 +360,9 @@
     height: 100%;
 }
    
-
+.botonAgregar{
+    height: 40px;
+    
+}
 
 }

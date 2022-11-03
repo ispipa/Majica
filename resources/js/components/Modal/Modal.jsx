@@ -148,31 +148,33 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                     style={{ display: errorr === true ? "block" : "none" }}>Selecccionar un precio
                                 </p>
                                 <p style={{ display: errorr === false ? "block" : "none" }} className='pPrecios'>
-                                    Precios por mes
+                                    Precios
                                 </p>
                                 <div className='precioBtn'>
                                     <label for="1" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
-                                    <p className='precio1'>1 Mes </p>
                                         <input type="checkbox"
                                             checked={check == "1" ? true : false}
                                             onClick={actualizarCheck}
                                             id="1"
                                             name='1'
                                             value='60'
+                                            className='checkbox'
                                         />
-
                                         {" " + precio1} €
+                                    <p className='precio1'>1 Mes </p>
                                     </label>
-                               
+                                </div>
+                                <div className='precioBtn'>
                                     <label for="2" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
-                                    <p className='precio2'>3 Meses </p>
                                         <input type="checkbox"
                                             checked={check == "2" ? true : false}
                                             onClick={actualizarCheck}
                                             id="2"
                                             value='150'
+                                            className='checkbox'
                                         />
                                         {" " + precio2} €
+                                    <p className='precio2'>3 Meses </p>
                                     </label>
                                 </div>
                                 <button style={{ background: true ? "#ff2c5a" : "#440033" }} className='botonAgregar' onClick={setDatos}>{ true ? "AÑADIR A LA COMPRA" : "Actualizar"}</button>
