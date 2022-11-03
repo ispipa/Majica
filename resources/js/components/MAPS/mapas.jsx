@@ -25,21 +25,25 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
+    const [boleano, setBoleano] = useState(false);
     
+    //OBTENGO EL ID DE LA SALA
     const setId = (e) => {
         const id = e.target.id;
         setVerModal(true);
         setVolver(true);
         setIdsala(id);
         setIDisponibilidad(true);
-        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+        // document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+        document.querySelector(".botonesPisos").classList.add("displayFlex");
     }
-
-    const updateId = (e) =>{
-        setIdsala(e);
-
+    
+    //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
+    const updateId = (id) =>{
+        setIdsala(id);
+        setBoleano(true)
     }
-
+ 
     const mostrarPiso1 = () => {
         setVerPiso2(false);
         setVerPiso3(false);
@@ -88,9 +92,6 @@ export default function Map() {
             <Modal
                 id={idSala}
                 disponibilidad={disponibilidad}
-                descripcion="Lorem ipsum dolor sit amet, consectetur adipiscing
-                             elit, sed do eiusmod tempor incididunt ut labore et dolore
-                             magna aliqua."
                 precio1={60}
                 precio2={150}
                 verModal={verModal}
@@ -115,6 +116,7 @@ export default function Map() {
                     </div>
                 </div>
                 <aside className='containerMapaPequeno'>
+                    
                     <div className='mapasPequenos'>
                         <div className={verPiso1 ? 'piso1' : 'piso1'}>
                             <MapaPequeno_piso1_SVG />

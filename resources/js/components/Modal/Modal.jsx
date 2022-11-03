@@ -5,6 +5,7 @@ import Boton from '../Button/boton';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './tabla';
+import { BsFillBagCheckFill } from "react-icons/bs";
 
 
 
@@ -12,7 +13,7 @@ import FormularioPago from './tabla';
 
 
 
-const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, updateId }) => {
+const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId}) => {
 
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
@@ -24,16 +25,19 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         }
     }
     //ESTADOS---
+    
     const [registros, setRegistros] = useState(obtenerRegistros());
     const [check, setcheck] = useState("");
     const [piso, setpiso] = useState("");
     const [precio, setPrecio] = useState("");
     const [errorr, setError] = useState(false);
+    const [mostrarTabla, setMostratTabla] = useState(true);
+    const [contadorCompra, setContadorCompra] = useState(0);
 
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
     const setDatos = () => {
         if (precio == "")
-        {
+        {   
             setError(true);
         }
         else
@@ -44,13 +48,15 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
             }
             else
             {
-                setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...registros]);
-                setError(false)
+                setRegistros([ { "id": id, "piso": piso, "precio": precio, "check": check } , ...registros]);
+                setError(false);
                 setcheck("");
                 setPrecio("");
+                setContadorCompra(JSON.parse(localStorage.getItem("datos")).length + 1);
                 
             }
         }
+       
     }
 
     //CAMBIO EL COLOR DEL CHECK Y OBTENGO SU VALUE
@@ -66,6 +72,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         setVerModal(false);
         setVolver(false);
         document.querySelector(".containerMapaGrande").style.paddingBottom = "0px";
+        document.querySelector(".botonesPisos").classList.remove("displayFlex");
     }
 
     //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
@@ -75,6 +82,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
         items.splice(indice, 1);
         setRegistros(items);
+        setContadorCompra(JSON.parse(localStorage.getItem("datos")).length - 1);
+
     }
 
     //EDITAR UN REGISTRO DEL LOCALSTORAGE
@@ -82,11 +91,17 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
-        items[indice] = {"id": id, "piso": piso, "precio": precio };
-        setRegistros(items);
-        // alert("Se editara el precio de la sala " + id);
-
+        items[indice] = {"id": id, "piso": piso, "precio": precio, "check": check  };
+        setRegistros(items); 
     }
+
+
+    const mostratTablaCompra = ()=>{
+         setMostratTabla(false);
+    }
+    const ocultarTablaPagar =  ()=>{
+        setMostratTabla(true);
+   }
 
     //GUARDO EN EL LOCALSTORAGE---
     useEffect(() =>
@@ -98,6 +113,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
 
     return (
         <div>
+            <p className='contadorCompra'>{contadorCompra}</p>
+            <button onClick={mostratTablaCompra} className='btnMostrarTabla'><BsFillBagCheckFill /></button>
             <div
                 className={volver ? 'volver2 volver2V' : 'volver2'}
                 onClick={() => volverBtn1()}>
@@ -118,23 +135,18 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                             </h1>
                             <h1
                                 className='disponibilidad'
-                                style={{ color: disponibilidad == true ? "#146300" : "red" }}>
+                                style={{ color: disponibilidad == true ? "#afffad" : "red" }}>
                                 {disponibilidad == true ? "Disponible" : "Ocupado"}
                             </h1>
                         </div>
                         <div className='descripcionModal'>
-                            <div className='descripcionDiv'>
-                                <h2>Descripcion</h2>
-                                <p className='descripcion'>
-                                    {descripcion}
-                                </p>
-                            </div>
+                           
                             <div className='preciosModal' >
                                 <p className='seleccione'
                                     style={{ display: errorr === true ? "block" : "none" }}>Selecccionar un precio
                                 </p>
                                 <div className='precioBtn'>
-                                    <p className='precio1'>1 mes </p>
+                                    <p className='precio1'>1 Mes </p>
                                     <label for="1" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
                                         <input type="radio"
                                             checked={check == "1" ? true : false}
@@ -148,7 +160,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
-                                    <p className='precio2'>3 meses </p>
+                                    <p className='precio2'>3 Meses </p>
                                     <label for="2" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
                                         <input type="radio"
                                             checked={check == "2" ? true : false}
@@ -159,17 +171,19 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                         {" " + precio2}€
                                     </label>
                                 </div>
-                                <button className='botonAgregar' onClick={setDatos}>{true ? "Agregar" : "Actualizar"}</button>
+                                <button style={{ background: true ? "#ff2c5a" : "#440033" }} className='botonAgregar' onClick={setDatos}>{ true ? "Agregar" : "Actualizar"}</button>
                             </div>
                         </div>
                     </div>
-
-                    <FormularioPago datos={registros}
-                        eliminar={eliminar}
-                        updateId={updateId}
-                    />
                 </div>
             </div>
+                    <div className={mostrarTabla === true ? 'tablaCompra': 'tablaCompra MostrartablaCompra'}>
+                        <FormularioPago datos={registros}
+                            eliminar={eliminar}
+                            updateId={updateId}
+                            ocultarTablaPagar={ocultarTablaPagar}
+                        />
+                    </div>
         </div>
     )
 }
