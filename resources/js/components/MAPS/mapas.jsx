@@ -34,8 +34,8 @@ export default function Map() {
         setVolver(true);
         setIdsala(id);
         setIDisponibilidad(true);
-        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
-        document.querySelector(".mapasPequenos").classList.toggle("displayFlex");
+        // document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
+        document.querySelector(".botonesPisos").classList.add("displayFlex");
     }
     
     //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
@@ -116,6 +116,7 @@ export default function Map() {
                     </div>
                 </div>
                 <aside className='containerMapaPequeno'>
+                    
                     <div className='mapasPequenos'>
                         <div className={verPiso1 ? 'piso1' : 'piso1'}>
                             <MapaPequeno_piso1_SVG />

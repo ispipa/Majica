@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
-//import { AiFillEdit } from "react-icons/ai";
 
 
 
-export default function FormularioPago({datos, eliminar, updateId }){
+
+export default function FormularioPago({datos, eliminar, updateId, ocultarTablaPagar }){
 
     const  precios = [];
     const datosDescendente = datos;
@@ -18,6 +18,7 @@ export default function FormularioPago({datos, eliminar, updateId }){
 
     return(
         <div className='containerPadrePagar'>
+        <button onClick={ocultarTablaPagar} className="ocultarTablaPagar">x</button>
         <div className='containerPagar'>
             <table className='tablaPagar' >
                 <tr className="tr">
@@ -30,7 +31,7 @@ export default function FormularioPago({datos, eliminar, updateId }){
                 </tr>
                 {datosDescendente.map(ar => {
                     return(
-                        <tr>
+                        <tr className="tr2">
                             <td className="nSala" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.id}</td>
                             <td className="nPiso" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.id[1]}</td>
                             <td className="precio" id={ar.id} onClick={()=>updateId(ar.id)}>{ar.precio}€</td>
