@@ -5,7 +5,7 @@ import { TiDelete } from "react-icons/ti";
 
 
 
-export default function FormularioPago({datos, eliminar, updateId}){
+export default function FormularioPago({datos, eliminar, updateId }){
 
     const  precios = [];
     const datosDescendente = datos;

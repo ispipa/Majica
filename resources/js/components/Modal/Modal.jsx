@@ -12,7 +12,7 @@ import FormularioPago from './tabla';
 
 
 
-const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, volver, setVerModal, setVolver, updateId }) => {
+const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId}) => {
 
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
@@ -24,6 +24,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         }
     }
     //ESTADOS---
+    
     const [registros, setRegistros] = useState(obtenerRegistros());
     const [check, setcheck] = useState("");
     const [piso, setpiso] = useState("");
@@ -33,7 +34,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
     const setDatos = () => {
         if (precio == "")
-        {
+        {   
             setError(true);
         }
         else
@@ -44,13 +45,14 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
             }
             else
             {
-                setRegistros([ { "id": id, "piso": piso, "precio": precio } , ...registros]);
-                setError(false)
+                setRegistros([ { "id": id, "piso": piso, "precio": precio, "check": check } , ...registros]);
+                setError(false);
                 setcheck("");
                 setPrecio("");
                 
             }
         }
+       
     }
 
     //CAMBIO EL COLOR DEL CHECK Y OBTENGO SU VALUE
@@ -75,6 +77,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
         items.splice(indice, 1);
         setRegistros(items);
+
     }
 
     //EDITAR UN REGISTRO DEL LOCALSTORAGE
@@ -82,10 +85,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
     {
         const items = JSON.parse(localStorage.getItem("datos"));
         const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
-        items[indice] = {"id": id, "piso": piso, "precio": precio };
-        setRegistros(items);
-        // alert("Se editara el precio de la sala " + id);
-
+        items[indice] = {"id": id, "piso": piso, "precio": precio, "check": check  };
+        setRegistros(items); 
     }
 
     //GUARDO EN EL LOCALSTORAGE---
@@ -123,12 +124,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                             </h1>
                         </div>
                         <div className='descripcionModal'>
-                            <div className='descripcionDiv'>
-                                <h2>Descripcion</h2>
-                                <p className='descripcion'>
-                                    {descripcion}
-                                </p>
-                            </div>
+                           
                             <div className='preciosModal' >
                                 <p className='seleccione'
                                     style={{ display: errorr === true ? "block" : "none" }}>Selecccionar un precio
@@ -159,7 +155,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, descripcion, verModal, vo
                                         {" " + precio2}€
                                     </label>
                                 </div>
-                                <button className='botonAgregar' onClick={setDatos}>{true ? "Agregar" : "Actualizar"}</button>
+                                <button style={{ background: true ? "#ff2c5a" : "#440033" }} className='botonAgregar' onClick={setDatos}>{ true ? "Agregar" : "Actualizar"}</button>
                             </div>
                         </div>
                     </div>
