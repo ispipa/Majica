@@ -92,6 +92,8 @@
 /*---------------------------------------------*/
 
 /* BOTONES */
+
+
 .botonesPisos {
     width: 100%;
     display: flex;
@@ -115,7 +117,11 @@
     font-weight: 600;
     background-color: rgba(255, 255, 255, 0.548);
     cursor: pointer;
-    transition: .5s;
+    transition: .2s;
+}
+.activo{
+    background-color: #ffffff;
+    font-size: 16px;
 }
 
 .boton:hover {

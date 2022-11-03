@@ -131,15 +131,15 @@ export default function Map() {
                     <div className='botonesPisos'>
                         <button 
                             onClick={() => mostrarPiso1()} 
-                            className="boton">Piso 1
+                            className={verMapaGrande1 ? 'boton activo' : 'boton'}>Piso 1
                         </button>
                         <button 
                             onClick={() => mostrarPiso2()} 
-                            className="boton">Piso 2
+                            className={verMapaGrande2 ? 'boton activo' : 'boton'}>Piso 2
                         </button>
                         <button 
                             onClick={() => mostrarPiso3()} 
-                            className="boton">Piso 3
+                            className={verMapaGrande3 ? 'boton activo' : 'boton'}>Piso 3
                         </button>
                     </div>
                     <img 
