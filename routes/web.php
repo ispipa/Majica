@@ -18,10 +18,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(SalasController::class)->group(function(){
-    route::get("/sala", "all");
-    route::post("/sala", "store");
-    route::get("/sala/{id}", "show");
-    route::put("/sala/{id}", "update");
-    route::delete("/sala/{id}", "destroy");
-});

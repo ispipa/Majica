@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace  App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Salas extends Model
 {
     use HasFactory;
-    //protected $table = "salas";
+    protected $fillable = ['nombre_sala', 'descripcion_sala', 'precio_salas', 'activo', 'piso'];
 }

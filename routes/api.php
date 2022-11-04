@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\SalasController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::controller(SalasController::class)->group(function(){
+    route::get("/sala",  "index");
+    route::post("/sala", "store");
+    route::get("/sala/{id}", "show");
+    route::put("/sala/{id}", "update");
+    route::delete("/sala/{id}", "destroy");
 });
