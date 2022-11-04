@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
+import { GrClose } from "react-icons/gr";
+
 
 
 
@@ -18,7 +20,7 @@ export default function FormularioPago({datos, eliminar, updateId, ocultarTablaP
 
     return(
         <div className='containerPadrePagar'>
-        <button onClick={ocultarTablaPagar} className="ocultarTablaPagar">x</button>
+        <div onClick={ocultarTablaPagar} className="ocultarTablaPagar"><GrClose/></div>
         <div className='containerPagar'>
             <table className='tablaPagar' >
                 <tr className="tr">
