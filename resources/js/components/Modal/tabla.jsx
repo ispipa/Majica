@@ -1,21 +1,18 @@
-import { useState } from "react";
-import { useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
 import { GrClose } from "react-icons/gr";
 
-
-
-
-
 export default function FormularioPago({datos, eliminar, updateId, ocultarTablaPagar }){
 
+    //ALMACENO TODOS LOS PRECIOS EN UN ARRAY Y LOS SUMO
     const  precios = [];
     const datosDescendente = datos;
 
+    //RECORRO EL ARRAY DE PRECIOS
     datosDescendente.forEach(element => {
         precios.push(parseInt(element.precio))
     });
-
+    
+    //SUMO TODOS LOS PRECIOS DE ARRAY
     let total = precios.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
     return(
@@ -42,12 +39,11 @@ export default function FormularioPago({datos, eliminar, updateId, ocultarTablaP
                     )
                 })}
             </table>
-        </div>
-          <div className="divTotal">
-            <button className='botonPagarr'>Pagar</button>
-            <p className='total'>Total : {total}€</p>
-          </div>
-
-        </div>
+            </div>
+                <div className="divTotal">
+                        <button className='botonPagarr'>Pagar</button>
+                        <p className='total'>Total : {total}€</p>
+                </div>
+            </div>
     )
 }

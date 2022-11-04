@@ -1,16 +1,9 @@
 import React from 'react';
 import Volver from '../assets/cerca.png';
-import Boton from '../Button/boton';
-//import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './tabla';
 import { BsFillBagCheckFill } from "react-icons/bs";
-
-
-
-
-
 
 
 const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId}) => {
@@ -24,8 +17,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
             return [];
         }
     }
+
     //ESTADOS---
-    
     const [registros, setRegistros] = useState(obtenerRegistros());
     const [check, setcheck] = useState("");
     const [piso, setpiso] = useState("");
@@ -71,6 +64,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     {
         setVerModal(false);
         setVolver(false);
+        //esto hay que pasarlo a codigo de react
         document.querySelector(".containerMapaGrande").classList.remove("paddingBottom");
         document.querySelector(".botonesPisos").classList.remove("displayFlex");
     }
@@ -96,12 +90,14 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     }
 
 
+    //MOSTRAR LA TABLA DE COMPRA
     const mostratTablaCompra = ()=>{
          setMostratTabla(false);
     }
+    //OCULTAR LA TABLA DE COMPRA
     const ocultarTablaPagar =  ()=>{
         setMostratTabla(true);
-   }
+    }
 
     //GUARDO EN EL LOCALSTORAGE---
     useEffect(() =>
@@ -183,13 +179,13 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                     </div>
                 </div>
             </div>
-                    <div className={mostrarTabla === true ? 'tablaCompra': 'tablaCompra MostrartablaCompra'}>
-                        <FormularioPago datos={registros}
-                            eliminar={eliminar}
-                            updateId={updateId}
-                            ocultarTablaPagar={ocultarTablaPagar}
-                        />
-                    </div>
+            <div className={mostrarTabla === true ? 'tablaCompra': 'tablaCompra MostrartablaCompra'}>
+                <FormularioPago datos={registros}
+                    eliminar={eliminar}
+                    updateId={updateId}
+                    ocultarTablaPagar={ocultarTablaPagar}
+                />
+            </div>
         </div>
     )
 }
