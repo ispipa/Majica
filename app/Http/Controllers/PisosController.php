@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Pisos;
 use Illuminate\Http\Request;
+
 
 class PisosController extends Controller
 {
@@ -14,7 +16,8 @@ class PisosController extends Controller
      */
     public function index()
     {
-        //
+        $pisos = Pisos::all();
+        return $pisos;
     }
 
     /**
@@ -25,7 +28,10 @@ class PisosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $piso = new Pisos();
+       $piso->piso = $request->piso;
+       $piso->activo = $request->activo;
+       $piso->save();
     }
 
     /**
@@ -36,7 +42,8 @@ class PisosController extends Controller
      */
     public function show($id)
     {
-        //
+        $piso = Pisos::find($id);
+        return $piso;
     }
 
     /**
@@ -48,7 +55,10 @@ class PisosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $piso = Pisos::findOrfail($request->id);
+        $piso->piso = $request->piso;
+        $piso->activo = $request->activo;
+        return $piso;
     }
 
     /**
@@ -59,6 +69,7 @@ class PisosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $piso = Pisos::destroy($id);
+        return $piso;
     }
 }

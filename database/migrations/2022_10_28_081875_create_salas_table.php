@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('precio_sala',['0','1','2'])->index();
             $table->enum('activo',['true','false']);
             $table->foreignId('piso')->constrained('pisos');
+            $table->timestamps();
         });
     }
 

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('pisos', function (Blueprint $table) {
             $table->id();
-            $table->integer('usuario');
-            $table->integer('sala');
-            $table->integer('precio');
+            $table->string('piso')->unique();
+            $table->enum('activo',['true','false']);
+            $table->timestamps();
         });
     }
 

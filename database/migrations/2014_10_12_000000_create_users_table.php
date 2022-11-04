@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('telefono', 50);
             $table->string('codigo_postal', 50);
             $table->string('direccion', 50);
-
+            $table->timestamps();
         });
     }
 

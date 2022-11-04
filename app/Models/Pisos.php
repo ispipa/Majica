@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Pisos extends Model
 {
     use HasFactory;
+    protected $fillable = ['piso','activo'];
 }
