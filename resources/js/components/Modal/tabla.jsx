@@ -20,7 +20,7 @@ export default function FormularioPago({datos, eliminar, updateId, ocultarTablaP
 
     return(
         <div className='containerPadrePagar'>
-        {/* <div onClick={ocultarTablaPagar} className="ocultarTablaPagar"><GrClose/></div> */}
+        <div onClick={ocultarTablaPagar} className="ocultarTablaPagar"><GrClose/></div>
         <div className='containerPagar'>
             <table className='tablaPagar' >
                 <tr className="tr">

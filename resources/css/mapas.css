@@ -100,24 +100,25 @@
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    transition: .5s;
+    transition: 1s;
 }
 
-.displayFlex{
-    flex-direction: row;
-    transition: .5s;
-}
 
 .boton {
     border: none;
     margin: 10px;
     border-radius: 20px;
-    width: 27%;
+    width: 60%;
     font-weight: 600;
     height: 30px;
     background-color: rgba(255, 255, 255, 0.548);
     cursor: pointer;
-    transition: .2s;
+    transition: 1s;
+}
+.displayFlex{
+    width: 94%;
+    flex-direction: row;
+    transition: 1s;
 }
 
 .activo{
