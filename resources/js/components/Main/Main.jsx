@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Usuario from '../assets/usu2.jpg';
 import Logo from '../assets/Logo.png'
 // import LogoMJ from '../assets/LogoMj.png'
-import LogoMJPort from '../assets/LogoMJPortada.png'
+import LogoMJ from '../assets/LogoMJ.png'
 import LogoVm from '../assets/Nueva carpeta - copia/LogoVm.png'
 
 
@@ -26,7 +26,7 @@ export const Main = () => {
                           className="sign-in-form formulario__login"
                           method=""
                       >
-                          <img src={Logo} className="image" alt="Majica" />
+                          <img src={LogoMJ} className="image" alt="Majica" />
                           <h2 className="title">Iniciar sesion</h2>
                           <div className="content-input">
                               <div className="input-field">
@@ -155,7 +155,8 @@ export const Main = () => {
                                   >
                                       <i className="fas fa-user"></i>
                                       <select name="tipo_de_artista" id="type_of_artist">
-                                          <option value="dibujante" selected>dibujante</option>
+                                          <option value="Artista" disabled selected>Artista</option>
+                                          <option value="dibujante">dibujante</option>
                                           <option value="fotografo">fotografo</option>
                                       </select>
                                   </div>
@@ -166,13 +167,14 @@ export const Main = () => {
                                   >
                                       <i className="fas fa-envelope"></i>
                                       <select name="tipo_de_arte" id="type_of_art">
-                                          <option value="abstracto" selected>Abstracto</option>
+                                          <option value="Arte" disabled selected>Arte</option>
+                                          <option value="abstracto">Abstracto</option>
                                           <option value="realismo">Realismo</option>
                                       </select>
                                   </div>
 
                                   <div
-                                      className="input-field input-field-textarea"
+                                      className="input-field-tx input-field-textarea"
                                       style={{ gridArea: "area7" }}
                                   >
                                       <i className="fas fa-user"></i>

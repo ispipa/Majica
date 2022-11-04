@@ -1,9 +1,9 @@
 .tablaCompra{
     position: fixed;
     top: 0;
-    right: 0;
-    display: none;
-    width: 30%;
+    right: -100%;
+    width: 0%;
+    transition: .3s;
     height: 40vh;
     padding: 0 0 20px 0;
     background: linear-gradient(#ffffff , #ffffff ) ;
@@ -20,7 +20,9 @@
 }
 
 .MostrartablaCompra{
-    display: block;
+    right: 0;
+    width: 30%;
+    transition: .3s;
 }
 th{
     border-bottom: 1px solid rgb(155, 155, 155);
