@@ -59,19 +59,19 @@
     justify-content: space-around;
     align-items: center;
     width: 30%;
+    max-width: 420px;
     height: 100vh;
     position: relative;
     margin-top: 20px;
+    z-index: 0;
 }
 
-.displayFlex{
-    
-}
 
 .mapasPequenos {
     width: 250px;
     position: relative;
 }
+
 
 .mapaPequenoSVG {
     width: 100%;
@@ -92,23 +92,38 @@
 /*---------------------------------------------*/
 
 /* BOTONES */
+
+
 .botonesPisos {
     width: 100%;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
+    transition: 1s;
 }
+
 
 .boton {
     border: none;
     margin: 10px;
     border-radius: 20px;
-    width: 50%;
-    height: 30px;
+    width: 60%;
     font-weight: 600;
+    height: 30px;
     background-color: rgba(255, 255, 255, 0.548);
     cursor: pointer;
+    transition: 1s;
+}
+.displayFlex{
+    width: 94%;
+    flex-direction: row;
+    transition: 1s;
+}
+
+.activo{
+    background-color: white;
+    font-size: 16px;
 }
 
 .boton:hover {
@@ -149,10 +164,12 @@
 /*---------------------------------------------*/
 /* VERSION MOVIL */
 
-@media (max-width:1000px) {
+@media (max-width:1060px) {
     .seccionMapas .container2 {
         padding-top: 30px;
     }
+
+    
 
     .headerMovil {
         position: fixed;
@@ -218,6 +235,11 @@
     .mapaGrandeSVG {
         width: 150%;
         height: 100vh;
+    }
+
+
+    .paddingBottom{
+        padding-bottom: 250px;
     }
 }
 

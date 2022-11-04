@@ -1,29 +1,54 @@
 .modal{
     position: fixed;
+    display: flex;
     transition: .5s;
     z-index: 3001;
     backdrop-filter: blur(4px);
-    width: 100%;
-    height: 250px;
+    width: 30%;
+    height: 44vh;
     bottom: -100%;
-    background-color: rgba(255, 255, 255, 0.85);
+    background:  linear-gradient(#00000000, rgba(20, 0, 15, 0.986));
     backdrop-filter: blur(14px);
-    padding: 0 20px;
+    padding: 0 0px;
+}
+.divContadorCompra{
+    position: fixed;
+    right: 20px;
+    width: 40px;
+    top: 20px;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnMostrarTabla{
+    font-size: 30px;
+    color: #ffffff;
+    background-color: rgba(245, 222, 179, 0);
+    border: none;
+}
+
+.contadorCompra{
+    color: white;
 }
 
 .modalVisible{
-    transition: .5s;
+    /* transition: .5s; */
     bottom: 0;
+    right: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: auto;
 }
 .containerModal{
-    transition: .5s;
-    max-width: 1200px;
+    /* transition: .5s; */
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 
 }
@@ -31,7 +56,9 @@
 .containerModalHijo{
      display: flex;
      flex-direction: column;
-     width: 60%;
+     justify-content: center;
+     width: 100%;
+     height: 100%;
 }
 
 .volver{
@@ -57,62 +84,61 @@
 
 /* DATOS DEL MODAL */
 .headerModal{
+
+    padding: 20px 20px 0 20px;
+    margin-bottom: -0px;
     align-items: flex-end;
     display: flex;
     justify-content: space-between;
 }
 
-.descripcionDiv{
+/* .descripcionDiv{
     width: 60%;
     padding: 10px 20px 10px 0;
-}
+} */
 
 .descripcionModal{
     width: 100%;
+    height: 100%;
     display: flex;
-    border-top: 1px solid  #d52b5c;
+    align-items: center;
+    border-top: 1px solid  #d52b5b00;
 }
 
 
 
 .disponibilidad{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 .numPiso{
-    color:#35293a ;
-    font-size: 50px;
+    color:#ffffff ;
+    font-size: 35px;
     font-weight: 400;
-}
-
-.descripcionModal .descripcion{
-    color: #5e5e5e;
-    margin-top: 10px;
-    width: 100%;
-    
+    margin-bottom: 0px;
 }
 
 
 
 /* PRECIOS */
 
-.modalAbvertencia{
-    color: rgb(48, 48, 48);
-    font-weight: 600;
-    margin-left: 15px;
-    border: 1px solid #d52b5c;
-    padding: 0 12px;
-    border-radius: 30px;
-    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 
-}
 
 .seleccione{
-    font-size: 12px;
-    color: #9b002e;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: hsl(0, 0%, 94%);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.pPrecios{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #dbdbdb;
     font-weight: 500;
+    letter-spacing: 1px;
 }
 
 @-webkit-keyframes shake-horizontal {
@@ -144,46 +170,77 @@
     }
   }
 .preciosModal{
-    padding: 10px 0px 10px 20px;
     border-radius: 20px;
-    width: 40%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     position: relative;
+   
 }
 
 
 
 .precioBtn{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    /* justify-content: space-betw; */
+    width: auto;
+    
 }
 
 .modal h2{
-    color: #35293a;
+    color: #c42222;
     font-weight: 400;
     margin-bottom: 15px;
 }
 
 .precio1, .precio2{
     font-size: 20px;
-    font-weight: 400;
-    margin-top: 5px;
-    color: #1f1f1f;
+    font-weight: 500;
+    color: #000000;
+    margin-left: 15px;
+   
 }
 
 .pSpan{
-    color: rgb(48, 48, 48);
-    font-weight: 600;
-    margin-left: 15px;
-    border: 1px solid #d52b5c;
-    padding: 0 12px;
-    border-radius: 30px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    /* margin-left: 15px; */
+    margin-bottom: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: #ffffff;
+    padding: 0px 18px;
+    border-radius: 20px;
+    font-size: 20px;
+    display: flex;
+}
+.checkbox{
+    margin-right: 10px;
+}
+.modalAbvertencia{
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    /* margin-left: 15px; */
+    margin-bottom: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: #ffffff;
+    padding: 0px 18px;
+    border-radius: 20px;
+    font-size: 20px;
+    display: flex;
+    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+
 }
 
 
+
 .comprar:hover{
-    background-color: #880a6d;
+    background-color: #3f0132;
 }
 
 
@@ -212,24 +269,26 @@
 
 
 
-
-
-
-
-@media (max-width:1000px){
+@media (max-width:1060px){
 
    .modal{
     width: 100%;
     transition: .5s;
     position: fixed;
     bottom: -100%;
-    height: 300px;
+    height: 280px;
     z-index: 3002;
     justify-content: flex-start;
     align-items: flex-start;
     overflow: auto;
+    background-color: #29000aa9;
    }
 
+
+
+   .containerModalHijo{
+    height: 280px;
+   }
    .descripcionModal{
     width: 100%;
     overflow :scroll;
@@ -237,11 +296,23 @@
 
    .preciosModal{
       width: 100%;
-      margin-top: 30px;
+      margin-top: 0px;
+   }
+
+   .precioBtn{
+    margin-top: 0px;
+   }
+
+   .pSpan{
+    font-size: 18px;
+   }
+
+   .modalAbvertencia{
+    font-size: 18px;
    }
 
    .modalVisible{
-    bottom: 0;
+    bottom: 0px;
     transition: .5s;
    }
 
@@ -250,7 +321,7 @@
     width: 100%;
     height: auto;
     transition: .5s;
-    overflow: auto;
+    overflow: 100%;
    }
    .volver{
     right: 0 !important;
@@ -262,7 +333,7 @@
     display: block;
     position: fixed;
     width: 34px;
-    bottom:266px;
+    bottom:246px;
 
     right: -40px;
     background-color: hsl(347, 100%, 61%);
@@ -286,6 +357,11 @@
     height: 100%;
 }
    
-
+.botonAgregar{
+    height: 40px;
+    
+}
 
 }
+
+

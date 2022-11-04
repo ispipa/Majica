@@ -1,9 +1,6 @@
 import logo from '../assets/logo.png';
-
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
-import axios from 'axios';
-import { useEffect } from 'react';
 import PisoUno_Rojo_SVG from './pisoUno_Rojo_SVG';
 import PisoDos_Verde_SVG from './pisoDos_verde_SVG';
 import PisoTres_Azul_SVG from './pisoTres_Azul_SVG';
@@ -28,14 +25,16 @@ export default function Map() {
     const [boleano, setBoleano] = useState(false);
     
     //OBTENGO EL ID DE LA SALA
+     //AQUI SE DEBE HACER LA CONSULTA A LA BASE DE LOS DATOS DE CADA SALA
     const setId = (e) => {
         const id = e.target.id;
         setVerModal(true);
         setVolver(true);
         setIdsala(id);
         setIDisponibilidad(true);
-        document.querySelector(".containerMapaGrande").style.paddingBottom = "250px";
-        document.querySelector(".mapasPequenos").classList.toggle("displayFlex");
+        //esto hay que pasarlo a codigo de react
+        document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
+        document.querySelector(".botonesPisos").classList.add("displayFlex");
     }
     
     //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
@@ -44,6 +43,7 @@ export default function Map() {
         setBoleano(true)
     }
  
+    //SE OCULTA Y SE MUESTRAN LOS MAPAS GRANDES Y PEQUEÑOS
     const mostrarPiso1 = () => {
         setVerPiso2(false);
         setVerPiso3(false);
@@ -116,6 +116,7 @@ export default function Map() {
                     </div>
                 </div>
                 <aside className='containerMapaPequeno'>
+                    
                     <div className='mapasPequenos'>
                         <div className={verPiso1 ? 'piso1' : 'piso1'}>
                             <MapaPequeno_piso1_SVG />
@@ -130,15 +131,15 @@ export default function Map() {
                     <div className='botonesPisos'>
                         <button 
                             onClick={() => mostrarPiso1()} 
-                            className="boton">Piso 1
+                            className={verMapaGrande1 ? 'boton activo' : 'boton'}>Piso 1
                         </button>
                         <button 
                             onClick={() => mostrarPiso2()} 
-                            className="boton">Piso 2
+                            className={verMapaGrande2 ? 'boton activo' : 'boton'}>Piso 2
                         </button>
                         <button 
                             onClick={() => mostrarPiso3()} 
-                            className="boton">Piso 3
+                            className={verMapaGrande3 ? 'boton activo' : 'boton'}>Piso 3
                         </button>
                     </div>
                     <img 
