@@ -14,7 +14,7 @@ use App\Http\Controllers\SalasController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{path}', function () {
     return view('welcome');
-});
+})->where('path', '(.*)');
 
