@@ -33,3 +33,10 @@ Route::controller(PisosController::Class)->group(function(){
     route::put("/piso/{id}", "update");
     route::delete("/piso/{id}", "destroy");
 });
+Route::controller(PagosController::Class)->group(function(){
+    route::get("/pago", "index");
+    route::post("/pago", "store");
+    route::get("/pago/{id}", "show");
+    route::put("/pago/{id}", "update");
+    route::delete("/pago/{id}", "destroy");
+});
