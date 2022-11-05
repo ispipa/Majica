@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Salas extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre_sala', 'descripcion_sala', 'precio_salas', 'activo', 'piso'];
+    protected $fillable = [
+        'nombre_sala',
+        'descripcion_sala',
+        'precio_salas',
+        'activo',
+        'piso'
+    ];
 }

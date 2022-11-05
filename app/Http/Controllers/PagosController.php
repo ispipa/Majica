@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagos;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $pagos = Pagos::all();
+        return $pagos;
     }
 
     /**
@@ -24,7 +26,11 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pago = new Pagos();
+        $pago->precios_pagos = $request->precios_pagos;
+        $pago->sala = $request->sala;
+        $pago->usuario = $request->usuario;
+        $pago->save();
     }
 
     /**
@@ -35,7 +41,8 @@ class PagosController extends Controller
      */
     public function show($id)
     {
-        //
+        $pago = Pagos::find($id);
+        return $pago;
     }
 
     /**
@@ -47,7 +54,11 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pago = Pagos::findOrfail($request->id);
+        $pago->precios_pagos = $request->precios_pagos;
+        $pago->sala = $request->sala;
+        $pago->usuario = $request->usuario;
+        $pago->save();
     }
 
     /**
@@ -58,6 +69,7 @@ class PagosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pago = Pagos::destroy($id);
+        return $pago;
     }
 }
