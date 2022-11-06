@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\SalasController;
 use App\Http\Controllers\PisosController;
+use App\Http\Controllers\PagosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,4 +33,11 @@ Route::controller(PisosController::Class)->group(function(){
     route::get("/piso/{id}", "show");
     route::put("/piso/{id}", "update");
     route::delete("/piso/{id}", "destroy");
+});
+Route::controller(PagosController::Class)->group(function(){
+    route::get("/pago", "index");
+    route::post("/pago", "store");
+    route::get("/pago/{id}", "show");
+    route::put("/pago/{id}", "update");
+    route::delete("/pago/{id}", "destroy");
 });
