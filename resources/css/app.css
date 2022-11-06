@@ -8,16 +8,17 @@
    fill: #3d3d3d;
 }
 
-.sala:hover  {
+.salaUno:hover  {
    fill: #efeaec;
-}
-/*
-.sala2:hover {
-   fill: #a8ffb0;
    cursor: pointer;
 }
 
-.sala3:hover {
-   fill: #f2f6fd;
+.salaDos:hover {
+   fill: #efeaec;
    cursor: pointer;
-} */
+}
+
+.salaTres:hover {
+   fill: #efeaec;
+   cursor: pointer;
+}

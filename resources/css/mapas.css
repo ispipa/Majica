@@ -100,10 +100,19 @@
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    transition: 1s;
+    transition: .5s;
 }
 
+.ocupado{
+    fill: #6b6b6b !important;
+}
 
+.disponible{
+    fill: #ffffff !important;
+}
+.j{
+    margin: 60px;
+}
 .boton {
     border: none;
     margin: 10px;
@@ -118,7 +127,7 @@
 .displayFlex{
     width: 94%;
     flex-direction: row;
-    transition: 1s;
+    transition: .5s;
 }
 
 .activo{
@@ -164,7 +173,7 @@
 /*---------------------------------------------*/
 /* VERSION MOVIL */
 
-@media (max-width:1060px) {
+@media (max-width:1000px) {
     .seccionMapas .container2 {
         padding-top: 30px;
     }

@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import FormularioPago from './tabla';
 import { BsFillBagCheckFill } from "react-icons/bs";
 
-
 const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId}) => {
 
 
@@ -16,15 +15,17 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
         } else {
             return [];
         }
+
+        
     }
 
     //ESTADOS---
-    const [registros, setRegistros] = useState(obtenerRegistros());
-    const [check, setcheck] = useState("");
     const [piso, setpiso] = useState("");
+    const [check, setcheck] = useState("");
     const [precio, setPrecio] = useState("");
     const [errorr, setError] = useState(false);
     const [mostrarTabla, setMostratTabla] = useState(true);
+    const [registros, setRegistros] = useState(obtenerRegistros());
     const [contadorCompra, setContadorCompra] = useState(JSON.parse(localStorage.getItem("datos")).length);
 
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
@@ -41,10 +42,10 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
             }
             else
             {
-                setRegistros([ { "id": id, "piso": piso, "precio": precio, "check": check } , ...registros]);
-                setError(false);
+                setRegistros([ { "id": id, "piso": piso, "precio": precio, "check": check }, ...registros]);
                 setcheck("");
                 setPrecio("");
+                setError(false);
                 setContadorCompra(JSON.parse(localStorage.getItem("datos")).length + 1);
                 
             }
@@ -103,6 +104,10 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     useEffect(() =>
     {
         localStorage.setItem("datos", JSON.stringify(registros));
+        
+    
+        // a();
+        // console.log(registros)
 
     }, [registros])
 
@@ -133,8 +138,8 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                             </h1>
                             <h1
                                 className='disponibilidad'
-                                style={{ color: disponibilidad == true ? "#afffad" : "red" }}>
-                                {disponibilidad == true ? "Disponible" : "Ocupado"}
+                                style={{ color: disponibilidad == "true" ? "#afffad" : "red" }}>
+                                {disponibilidad == "true" ? "Disponible" : "Ocupado"}
                             </h1>
                         </div>
                         <div className='descripcionModal'>

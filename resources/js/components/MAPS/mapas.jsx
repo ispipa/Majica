@@ -1,40 +1,74 @@
-import logo from '../assets/logo.png';
-import Modal from '../Modal/Modal';
+import axios from 'axios';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import Modal from '../Modal/Modal';
+import logo from '../assets/logo.png';
 import PisoUno_Rojo_SVG from './pisoUno_Rojo_SVG';
 import PisoDos_Verde_SVG from './pisoDos_verde_SVG';
 import PisoTres_Azul_SVG from './pisoTres_Azul_SVG';
 import MapaPequeno_piso1_SVG from './mapaPequeno_piso1_SVG';
 import MapaPequeno_piso2_SVG from './mapaPequeno_piso2_SVG';
 import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
+import { parsePath } from 'react-router-dom';
+import { parse, stringify } from 'postcss';
 
-const URI = "http://localhost:8000/sala/";
 
 export default function Map() {
-    
+
+    const [datos, setDatos] = useState([]);
     const [idSala, setIdsala] = useState(null);
-    const [disponibilidad, setIDisponibilidad] = useState(false);
-    const [verModal, setVerModal] = useState(false);
-    const [volver, setVolver] = useState(false)
+    const [precios, setPrecios] = useState([]);
+    const [volver, setVolver] = useState(false);
+    const [boleano, setBoleano] = useState(false);
     const [verPiso1, setVerPiso1] = useState(false);
     const [verPiso2, setVerPiso2] = useState(false);
     const [verPiso3, setVerPiso3] = useState(false);
+    const [verModal, setVerModal] = useState(false);
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
-    const [boleano, setBoleano] = useState(false);
+    const [disponibilidad, setIDisponibilidad] = useState(false);
     
-    //OBTENGO EL ID DE LA SALA
-     //AQUI SE DEBE HACER LA CONSULTA A LA BASE DE LOS DATOS DE CADA SALA
-    const setId = (e) => {
-        const id = e.target.id;
-        setVerModal(true);
+
+    //CONSULTA A LA BASE DE LOS DATOS
+    useEffect(() =>
+    { 
+        getAllData();
+        
+    }, [idSala]);
+    
+    const getAllData  = async ()=>{
+        const response = await axios.get("http://localhost:8000/api/sala")
+        setDatos(response.data)
+        pintarSalasOcupadas(101,129);
+        pintarSalasOcupadas(201,229);
+        pintarSalasOcupadas(301,329);
+    }
+
+    const pintarSalasOcupadas = (min, max)=>{
+        
+        for(let i = min; max > i; i++){
+            
+            if(datos.find(indice => indice.id === i).activo === "false"){
+                document.querySelector(".sala"+i).classList.add("ocupado");
+            }   else{
+                    document.querySelector(".sala"+i).classList.remove("ocupado");
+                }
+        }
+    }
+    
+        
+    //OBTENGO TODOS LOS DATOS DE LA SALA SELECCIONADA
+    const setId = async (e) => {
+        const id = parseInt(e.target.id);
+        const sala = datos.find(indice => indice.id === id)
+        setIdsala(sala.nombre_sala);
+        setIDisponibilidad(sala.activo);
+        setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
         setVolver(true);
-        setIdsala(id);
-        setIDisponibilidad(true);
-        //esto hay que pasarlo a codigo de react
-        document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
+        setVerModal(true);
         document.querySelector(".botonesPisos").classList.add("displayFlex");
+        document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
     }
     
     //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
@@ -69,8 +103,7 @@ export default function Map() {
         setVerMapaGrande3(true);
     }
 
-
-
+   
     return (
         <section className='seccionMapas'>
             <div className='headerMovil'>
@@ -91,20 +124,20 @@ export default function Map() {
             </div>
             <Modal
                 id={idSala}
-                disponibilidad={disponibilidad}
-                precio1={60}
-                precio2={150}
-                verModal={verModal}
-                setVerModal={setVerModal}
                 volver={volver}
-                setVolver={setVolver}
                 updateId={updateId}
+                verModal={verModal}
+                setVolver={setVolver}
+                setVerModal={setVerModal}
+                precio1={precios.precio1}
+                precio2={precios.precio2}
+                disponibilidad={disponibilidad}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
                     <div 
                         className={verMapaGrande1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG noneMapa'}>
-                        <PisoUno_Rojo_SVG funcion={setId} />
+                        <PisoUno_Rojo_SVG funcion={setId} datos={datos}/>
                     </div>
                     <div 
                         className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
