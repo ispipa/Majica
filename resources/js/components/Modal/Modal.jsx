@@ -15,8 +15,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
         } else {
             return [];
         }
-
-        
     }
 
     //ESTADOS---
@@ -30,27 +28,22 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
 
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
     const setDatos = () => {
-        if (precio == "")
-        {   
+        if (precio == ""){   
             setError(true);
         }
-        else
-        {
-            if (localStorage.getItem("datos").indexOf(id) > 1)
-            {
+        else{
+
+            if (localStorage.getItem("datos").indexOf(id) > 1){
                 editar(id);
             }
-            else
-            {
+            else{
                 setRegistros([ { "id": id, "piso": piso, "precio": precio, "check": check }, ...registros]);
                 setcheck("");
                 setPrecio("");
                 setError(false);
-                setContadorCompra(JSON.parse(localStorage.getItem("datos")).length + 1);
-                
+                setContadorCompra(JSON.parse(localStorage.getItem("datos")).length + 1);  
             }
         }
-       
     }
 
     //CAMBIO EL COLOR DEL CHECK Y OBTENGO SU VALUE
@@ -65,7 +58,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     {
         setVerModal(false);
         setVolver(false);
-        //esto hay que pasarlo a codigo de react
         document.querySelector(".containerMapaGrande").classList.remove("paddingBottom");
         document.querySelector(".botonesPisos").classList.remove("displayFlex");
     }
@@ -104,10 +96,6 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     useEffect(() =>
     {
         localStorage.setItem("datos", JSON.stringify(registros));
-        
-    
-        // a();
-        // console.log(registros)
 
     }, [registros])
 

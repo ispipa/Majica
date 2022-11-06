@@ -30,35 +30,22 @@ export default function Map() {
     const [disponibilidad, setIDisponibilidad] = useState(false);
     
 
-    //CONSULTA A LA BASE DE LOS DATOS
     useEffect(() =>
     { 
         getAllData();
         
     }, [idSala]);
     
+    
+    //CONSULTA A LA BASE DE LOS DATOS
     const getAllData  = async ()=>{
         const response = await axios.get("http://localhost:8000/api/sala")
-        setDatos(response.data)
-        pintarSalasOcupadas(101,129);
-        pintarSalasOcupadas(201,229);
-        pintarSalasOcupadas(301,329);
+        setDatos(response.data);
+       
     }
 
-    const pintarSalasOcupadas = (min, max)=>{
-        
-        for(let i = min; max > i; i++){
-            
-            if(datos.find(indice => indice.id === i).activo === "false"){
-                document.querySelector(".sala"+i).classList.add("ocupado");
-            }   else{
-                    document.querySelector(".sala"+i).classList.remove("ocupado");
-                }
-        }
-    }
     
-        
-    //OBTENGO TODOS LOS DATOS DE LA SALA SELECCIONADA
+    //SE OBTINEN TODOS LOS DATOS DE LA SALA SELECCIONADA
     const setId = async (e) => {
         const id = parseInt(e.target.id);
         const sala = datos.find(indice => indice.id === id)
@@ -69,6 +56,22 @@ export default function Map() {
         setVerModal(true);
         document.querySelector(".botonesPisos").classList.add("displayFlex");
         document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
+        pintarSalasOcupadas(101,129);
+        pintarSalasOcupadas(201,229);
+        pintarSalasOcupadas(301,329);
+    }
+
+
+    //SE PINTAN LAS SALAS QUE ESTAN OCUPADAS
+    const pintarSalasOcupadas = (min, max)=>{
+        for(let i = min; max > i; i++){
+            if(datos.find(indice => indice.id === i).activo === "false"){
+                document.querySelector(".sala"+i).classList.add("ocupado");
+            }   
+            else{
+                document.querySelector(".sala"+i).classList.remove("ocupado");
+            }
+        }
     }
     
     //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
@@ -77,7 +80,7 @@ export default function Map() {
         setBoleano(true)
     }
  
-    //SE OCULTA Y SE MUESTRAN LOS MAPAS GRANDES Y PEQUEÑOS
+    //SE OCULTAN Y SE MUESTRAN LOS MAPAS GRANDES Y PEQUEÑOS
     const mostrarPiso1 = () => {
         setVerPiso2(false);
         setVerPiso3(false);
