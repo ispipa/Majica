@@ -4,6 +4,7 @@ import Logo from '../assets/Logo.png'
 // import LogoMJ from '../assets/LogoMj.png'
 import LogoMJ from '../assets/LogoMJ.png'
 import LogoVm from '../assets/Nueva carpeta - copia/LogoVm.png'
+import axios from "axios";
 
 
 export const Main = () => {
@@ -16,6 +17,20 @@ export const Main = () => {
     setSign(false)
   }
 
+  const Sign_in= (e) => {
+    e.preventDefault();
+    let correoUser = e.target.correo.value;
+    let passUser = e.target.clave.value;
+    axios.get(`http://127.0.0.1:8000/api/usuario`)
+        .then((res => {  console.log(res) }))
+    //console.log("Correo Usuario: " + correoUser + " Contraseña Usuario " + passUser)
+  }
+
+  const Sign_up = (e) => {
+    e.preventDefault();
+    console.log("Sign up")
+  }
+
   return (
       <div>
           <div className={sign ? "container sign-up-mode" : "container"}>
@@ -25,6 +40,7 @@ export const Main = () => {
                           action=""
                           className="sign-in-form formulario__login"
                           method=""
+                          onSubmit={Sign_in}
                       >
                           <img src={LogoMJ} className="image" alt="Majica" />
                           <h2 className="title">Iniciar sesion</h2>
@@ -35,6 +51,7 @@ export const Main = () => {
                                       name="correo"
                                       type="text"
                                       placeholder="Email"
+
                                   />
                               </div>
                               <div className="input-field">
@@ -76,6 +93,7 @@ export const Main = () => {
                           className="sign-up-form formulario__login"
                           method=""
                           encType=""
+                          onSubmit={Sign_up}
                       >
                           <h2 className="title">Registrarse</h2>
 

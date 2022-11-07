@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -10,12 +11,14 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $usuarios = Usuario::all();
-        return $usuarios;
+        //todos los usuarios
+        //$usuarios = Usuario::all();
+        $usuarios = Usuario::where('correo', "usuario1@gmail.com")->get();
+        return response()->json($usuarios);
     }
 
     /**
@@ -28,9 +31,12 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario();
         $usuario->nombre = $request->nombre;
-        $usuario->apellido = $request->apellido;
-        $usuario->email = $request->email;
-        $usuario->password = $request->password;
+        $usuario->correo = $request->correo;
+        $usuario->contraseña = $request->contraseña;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->telefono = $request->telefono;
+        $usuario->codigo_postal = $request->codigo_postal;
+        $usuario->direccion = $request->direccion;
         $usuario->save();
 
     }
