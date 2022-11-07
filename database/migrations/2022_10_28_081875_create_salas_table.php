@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_sala',50);
             $table->string('descripcion_sala',50);
-            $table->enum('precio_sala',['0','1','2'])->index();
+            $table->set('precio_sala',['0','1','2'])->index();
             $table->enum('activo',['true','false']);
             $table->foreignId('piso')->constrained('pisos');
             $table->timestamps();
