@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('precios_pagos',['0','1','2']);
             $table->foreignId('sala')->constrained('salas');
             $table->foreignId('usuario')->constrained('usuarios');
-            $table->foreign('precios_pagos')->references('precio_sala')->on('salas');
+            //$table->foreign('precios_pagos')->references('precio_sala')->on('salas');
             $table->timestamps();
         });
     }
