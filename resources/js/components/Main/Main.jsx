@@ -88,6 +88,10 @@ export const Main = () => {
                               />
                           </div>
 
+                      
+
+
+                          <div className="content-input">
                           <input
                               id="file-arch"
                               type="file"
@@ -96,9 +100,6 @@ export const Main = () => {
                               aria-label="Archivo"
                               className='input-file-doc'
                           />
-
-
-                          <div className="content-input">
                               <div className="container-inputs">
                                   <div
                                       className="input-field"
