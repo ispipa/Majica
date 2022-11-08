@@ -475,10 +475,12 @@ display: none;
   align-items: center;
   padding: 2.5rem 8%;
   grid-column: 1 / 2;
+  
 }
 
 .right-panel {
   grid-row: 3 / 4;
+  z-index: -1;
 }
 
 .left-panel {
@@ -586,9 +588,27 @@ display: none;
   }
 
   .container.sign-up-mode:before {
-    bottom: 21%;
+    bottom: 8%;
     left: 50%;
   }
 }
   
 
+input[type=file]::-webkit-file-upload-button {
+  border: none;
+  background: #d52b5c ;
+  border-radius: 30px !important;
+  padding: 15px 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 30px;
+  color: #fff;
+}
+input[type=file] {
+  padding: 10px 10px;
+  background-color: #f0f0f0;
+  border-radius: 55px;
+  cursor: pointer !important;
+  width: 100%;
+}
