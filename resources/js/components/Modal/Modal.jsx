@@ -140,7 +140,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                     Precios
                                 </p>
                                 <div className='precioBtn'>
-                                    <label for="1" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
+                                    <label htmlFor="1" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
                                         <input type="radio"
                                             checked={check == "1" ? true : false}
                                             onClick={actualizarCheck}
@@ -154,7 +154,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
-                                    <label for="2" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
+                                    <label htmlFor="2" className={errorr === true ? 'modalAbvertencia' : 'pSpan'}>
                                         <input type="radio"
                                             checked={check == "2" ? true : false}
                                             onClick={actualizarCheck}
