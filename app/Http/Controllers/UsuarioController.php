@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Usuario;
+use App\Models\Usuarios;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 
 class UsuarioController extends Controller
 {
@@ -15,27 +17,25 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function login(Request $request)
     {
-        $response = ["status" => 0, "msg" => ""];
-        $request->validate([
-            "correo" => "required","email","unique:App\Models\Usuario,correo","max:150",
-
+       $credentials = $request->validate([
+            'correo' => ['required'],
+            'password' => ['required']
         ]);
-        $credentials = $request->only("correo");
-        if(!Auth::attempt($credentials))
-        {
-            $response["msg"] = "Unauthorized";
-            return response()->json($$response, 401);
+        if(!Auth::attempt($credentials)){
+            return response()->json("Bienvenido");
         }
-        /*$usuario = Usuario::where('correo', "usuario1@gmail.com")->get();
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return $response->json(["status" => 1, "msg" => "Login correcto"]);
-        }
-        else{
-            return $response->json(["status" => 0, "msg" => "Login incorrecto"]);
-        }
+        /*$usuario = Usuarios::where('correo', $request->correo)->first();
+        if(isset($usuario)){
+            if(Auth::attempt(['correo' => $request->correo, 'password' => $request->contraseña])){
+                $token = $usuario->createToken('authToken')->accessToken;
+                return response()->json(['token' => $token], 200);
+            }else{
+                return response()->json(['error' => 'Contraseña incorrecta'], 401);
+            }
+        }*/
+        return response()->json(["message" => "usuario login"], 201);
         //return $request->all();*/
     }
 
@@ -47,7 +47,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = new Usuario();
+        $usuario = new Usuarios();
         $usuario->nombre = $request->nombre;
         $usuario->correo = $request->correo;
         $usuario->contraseña = $request->contraseña;
@@ -67,7 +67,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::find($id);
+        $usuario = Usuarios::find($id);
         return $usuario;
     }
 
@@ -80,7 +80,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario = Usuario::findOrfail($request->id);
+        $usuario = Usuarios::findOrfail($request->id);
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
         $usuario->email = $request->email;
@@ -96,7 +96,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::destroy($id);
+        $usuario = Usuarios::destroy($id);
         return $usuario;
     }
 }
