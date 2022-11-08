@@ -1,23 +1,6 @@
 import { useState } from "react"
-export default function PisoUno_Rojo({ funcion , funcionTexto, datos}) {
+export default function PisoUno_Rojo({ funcion , funcionTexto}) {
     
-//    const [activo, setActivo] = useState(true) 506
-    // const sala = [datos.find(indice => indice.id === 22)][0].activo
-
-    // for(i = 0; )
-    
-
-
-    // const aaa = ()=>{
-    //     for(let i=0;datos.length > i; i++){
-    //         // const a = [datos.find(indice => indice.id === 1)][0].activo
-
-    //         if([datos.find(indice => indice.id === i)][0].activo === "false"){
-    //             document.querySelector(".sala"+i).classList.add("ocupado");
-    //             console.log(".sala"+i)
-    //         }
-    //     }
-    // }
 
    
     
