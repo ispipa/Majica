@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Usuario;
+use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -13,12 +15,28 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //todos los usuarios
-        //$usuarios = Usuario::all();
-        $usuarios = Usuario::where('correo', "usuario1@gmail.com")->get();
-        return response()->json($usuarios);
+        $response = ["status" => 0, "msg" => ""];
+        $request->validate([
+            "correo" => "required","email","unique:App\Models\Usuario,correo","max:150",
+
+        ]);
+        $credentials = $request->only("correo");
+        if(!Auth::attempt($credentials))
+        {
+            $response["msg"] = "Unauthorized";
+            return response()->json($$response, 401);
+        }
+        /*$usuario = Usuario::where('correo', "usuario1@gmail.com")->get();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return $response->json(["status" => 1, "msg" => "Login correcto"]);
+        }
+        else{
+            return $response->json(["status" => 0, "msg" => "Login incorrecto"]);
+        }
+        //return $request->all();*/
     }
 
     /**

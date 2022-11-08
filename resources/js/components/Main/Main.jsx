@@ -21,7 +21,7 @@ export const Main = () => {
     e.preventDefault();
     let correoUser = e.target.correo.value;
     let passUser = e.target.clave.value;
-    axios.get(`http://127.0.0.1:8000/api/usuario`)
+    axios.get(`http://127.0.0.1:8000/api/usuario?correo=${correoUser}`)
         .then((res => {  console.log(res) }))
     //console.log("Correo Usuario: " + correoUser + " Contraseña Usuario " + passUser)
   }
