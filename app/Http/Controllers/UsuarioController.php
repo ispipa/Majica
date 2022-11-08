@@ -7,8 +7,8 @@ use App\Models\Usuarios;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Hash;
+use \stdClass;
 
 class UsuarioController extends Controller
 {
@@ -19,23 +19,22 @@ class UsuarioController extends Controller
      */
     public function login(Request $request)
     {
-       $credentials = $request->validate([
-            'correo' => ['required'],
+       $request->validate([
+            'email' => ['required'],
             'password' => ['required']
         ]);
-        if(!Auth::attempt($credentials)){
-            return response()->json("Bienvenido");
+        if(!Auth::attempt($request->only('email', 'password'))){
+            return response()->json(["message" => 'Unauthorized'], 401);
         }
-        /*$usuario = Usuarios::where('correo', $request->correo)->first();
-        if(isset($usuario)){
-            if(Auth::attempt(['correo' => $request->correo, 'password' => $request->contraseña])){
-                $token = $usuario->createToken('authToken')->accessToken;
-                return response()->json(['token' => $token], 200);
-            }else{
-                return response()->json(['error' => 'Contraseña incorrecta'], 401);
-            }
-        }*/
-        return response()->json(["message" => "usuario login"], 201);
+       $user = Usuarios::where('email', $request->email)->first();
+       $token = $user->createToken('authToken')->plainTextToken;
+
+        return response()->json([
+            "message" => "Hi ". $user->nombre,
+            "access_token" => $token,
+            "token_type" => "Bearer",
+            "user" => $user
+        ], 200);
         //return $request->all();*/
     }
 
@@ -43,19 +42,23 @@ class UsuarioController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $usuario = new Usuarios();
-        $usuario->nombre = $request->nombre;
-        $usuario->correo = $request->correo;
-        $usuario->contraseña = $request->contraseña;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->telefono = $request->telefono;
-        $usuario->codigo_postal = $request->codigo_postal;
-        $usuario->direccion = $request->direccion;
-        $usuario->save();
+        $user = new Usuarios();
+        $user->nombre = $request->nombre;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->apellidos = $request->apellidos;
+        $user->telefono = $request->telefono;
+        $user->codigo_postal = $request->codigo_postal;
+        $user->direccion = $request->direccion;
+        $user->save();
+
+        $token = $user->createToken("authToken")->plainTextToken;
+
+        return response()->json(['data' => $user,'token' => $token, 'token_type' => 'Bearer'], 200);
 
     }
 
