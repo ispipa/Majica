@@ -40,16 +40,25 @@ export default function Map() {
     const getAllData  = async ()=>{
         const response = await axios.get("http://localhost:8000/api/sala")
         setDatos(response.data);
+        // console.log(datos)
     }
 
 
     //SE OBTINEN TODOS LOS DATOS DE LA SALA SELECCIONADA
     const setId = async (e) => {
         const id = parseInt(e.target.id);
+        const validarSiExiste = datos.find(indice => indice.id === id)
         const sala = datos.find(indice => indice.id === id);
-        setIdsala(sala.nombre_sala);
-        setIDisponibilidad(sala.activo);
-        setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
+
+        if(validarSiExiste != undefined){
+            setIDisponibilidad(sala.activo);
+            setIdsala(sala.nombre_sala);
+            setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
+        } else{
+            setIDisponibilidad("false");
+            setIdsala("");
+            setPrecios({"precio1": "", "precio2":""})
+        }
         acciones();
     }
     
@@ -67,7 +76,11 @@ export default function Map() {
     //SE PINTA LAS SALAS QUE ESTAN OCUPADAS
     const pintarSalasOcupadas = (min, max)=>{
         for(let i = min; max > i; i++){
-            if(datos.find(indice => indice.id === i).activo === "false"){
+
+            // const a = datos.find(indice => indice.id === i)
+            console.log(datos.find(indice => indice.id === 14))
+
+            if(datos.includes(datos.find(indice => indice.id === i)) === false){
                 document.querySelector(".sala"+i).classList.add("ocupado");
             }   
             else{

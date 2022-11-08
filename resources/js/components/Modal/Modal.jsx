@@ -24,7 +24,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     const [errorr, setError] = useState(false);
     const [mostrarTabla, setMostratTabla] = useState(true);
     const [registros, setRegistros] = useState(obtenerRegistros());
-    const [contadorCompra, setContadorCompra] = useState(JSON.parse(localStorage.getItem("datos")).length);
+    const [contadorCompra, setContadorCompra] = useState(0);
 
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
     const setDatos = () => {
@@ -130,7 +130,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                 {disponibilidad == "true" ? "Disponible" : "Ocupado"}
                             </h1>
                         </div>
-                        <div className='descripcionModal' >
+                        <div className={disponibilidad == "true" ? "descripcionModal" : "descripcionModal none"} >
                            
                             <div className='preciosModal' >
                                 <p className='seleccione'
