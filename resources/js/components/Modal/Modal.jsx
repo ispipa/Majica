@@ -130,7 +130,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                 {disponibilidad == "true" ? "Disponible" : "Ocupado"}
                             </h1>
                         </div>
-                        <div className='descripcionModal'>
+                        <div className='descripcionModal' >
                            
                             <div className='preciosModal' >
                                 <p className='seleccione'
