@@ -3,3 +3,22 @@
 @import url(Main.css);
 @import url(mapas.css);
 @import url(modal.css);
+@import url(tabla.css);
+.texto {
+   fill: #3d3d3d;
+}
+
+.salaUno:hover  {
+   fill: #efeaec;
+   cursor: pointer;
+}
+
+.salaDos:hover {
+   fill: #efeaec;
+   cursor: pointer;
+}
+
+.salaTres:hover {
+   fill: #efeaec;
+   cursor: pointer;
+}

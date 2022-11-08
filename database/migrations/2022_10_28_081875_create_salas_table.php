@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,15 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('salas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 50);
-            $table->string('correo', 50)->unique();
-            $table->string('contraseña', 50);
-            $table->string('apellidos', 50);
-            $table->string('telefono', 50);
-            $table->string('codigo_postal', 50);
-            $table->string('direccion', 50);
+            $table->string('nombre_sala',50);
+            $table->string('descripcion_sala',50);
+            //$table->set('precio_sala',['0','1','2'])->index();
+            $table->set('precio_sala',['0','1','2']);
+            $table->enum('activo',['true','false']);
+            $table->foreignId('piso')->constrained('pisos');
             $table->timestamps();
         });
     }
@@ -33,6 +33,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('salas');
     }
+
 };
