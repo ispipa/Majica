@@ -33,7 +33,7 @@ export default function Map() {
         getAllData();
         
     }, [idSala] );
-
+ 
       
     
     //CONSULTA A LA BASE DE LOS DATOS
@@ -46,11 +46,12 @@ export default function Map() {
 
     //SE OBTINEN TODOS LOS DATOS DE LA SALA SELECCIONADA
     const setId = async (e) => {
+        
         const id = parseInt(e.target.id);
         const validarSiExiste = datos.find(indice => indice.id === id)
-        const sala = datos.find(indice => indice.id === id);
-
+        
         if(validarSiExiste != undefined){
+            const sala = datos.find(indice => indice.id === id);
             setIDisponibilidad(sala.activo);
             setIdsala(sala.nombre_sala);
             setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
