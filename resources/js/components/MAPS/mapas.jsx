@@ -9,9 +9,6 @@ import PisoTres_Azul_SVG from './pisoTres_Azul_SVG';
 import MapaPequeno_piso1_SVG from './mapaPequeno_piso1_SVG';
 import MapaPequeno_piso2_SVG from './mapaPequeno_piso2_SVG';
 import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
-import { parsePath } from 'react-router-dom';
-import { parse, stringify } from 'postcss';
-
 
 export default function Map() {
 
@@ -28,13 +25,15 @@ export default function Map() {
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
     const [disponibilidad, setIDisponibilidad] = useState(false);
+    const [activo, setActivo] = useState(true);
 
 
     useEffect(() =>
     {
         getAllData();
 
-    }, [idSala]);
+    }, [idSala] );
+
 
 
     //CONSULTA A LA BASE DE LOS DATOS
@@ -48,10 +47,22 @@ export default function Map() {
     //SE OBTINEN TODOS LOS DATOS DE LA SALA SELECCIONADA
     const setId = async (e) => {
         const id = parseInt(e.target.id);
-        const sala = datos.find(indice => indice.id === id)
-        setIdsala(sala.nombre_sala);
-        setIDisponibilidad(sala.activo);
-        setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
+        const validarSiExiste = datos.find(indice => indice.id === id)
+        const sala = datos.find(indice => indice.id === id);
+
+        if(validarSiExiste != undefined){
+            setIDisponibilidad(sala.activo);
+            setIdsala(sala.nombre_sala);
+            setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
+        } else{
+            setIDisponibilidad("false");
+            setIdsala("");
+            setPrecios({"precio1": "", "precio2":""})
+        }
+        acciones();
+    }
+
+    const acciones = () =>{
         setVolver(true);
         setVerModal(true);
         document.querySelector(".botonesPisos").classList.add("displayFlex");
@@ -62,10 +73,14 @@ export default function Map() {
     }
 
 
-    //SE PINTAN LAS SALAS QUE ESTAN OCUPADAS
+    //SE PINTA LAS SALAS QUE ESTAN OCUPADAS
     const pintarSalasOcupadas = (min, max)=>{
         for(let i = min; max > i; i++){
-            if(datos.find(indice => indice.id === i).activo === "false"){
+
+            // const a = datos.find(indice => indice.id === i)
+            console.log(datos.find(indice => indice.id === 14))
+
+            if(datos.includes(datos.find(indice => indice.id === i)) === false){
                 document.querySelector(".sala"+i).classList.add("ocupado");
             }
             else{
@@ -140,7 +155,7 @@ export default function Map() {
                 <div className='containerMapaGrande'>
                     <div
                         className={verMapaGrande1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG noneMapa'}>
-                        <PisoUno_Rojo_SVG funcion={setId} datos={datos}/>
+                        <PisoUno_Rojo_SVG funcion={setId}  datos={datos}/>
                     </div>
                     <div
                         className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
