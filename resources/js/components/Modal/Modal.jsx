@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import FormularioPago from './tabla';
 import { BsFillBagCheckFill } from "react-icons/bs";
 
-const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId}) => {
+const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId, descripcion}) => {
 
 
     //RECUPERO DATOS DEL LOCAL STORAGE---
@@ -129,6 +129,11 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                 style={{ color: disponibilidad == "true" ? "#afffad" : "red" }}>
                                 {disponibilidad == "true" ? "Disponible" : "Ocupado"}
                             </h1>
+                        </div>
+                        <div className={disponibilidad == "true" ? "descripcionMapa none" : "descripcionMapa"} >
+                            <p className='descripcionSala'>
+                                {descripcion}
+                            </p>
                         </div>
                         <div className={disponibilidad == "true" ? "descripcionModal" : "descripcionModal none"} >
                            
