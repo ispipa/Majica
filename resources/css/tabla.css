@@ -29,7 +29,9 @@
 .MostrartablaCompra{
     right: 0;
     width: 30%;
+    background: #fff;
     transition: .3s;
+    opacity: .8;
 }
 th{
     /* border-bottom: 1px solid rgb(212, 212, 212); */
