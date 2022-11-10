@@ -21,7 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::controller(SalasController::class)->group(function(){
     route::get("/sala",  "index");
     route::post("/sala", "store");
@@ -45,9 +44,10 @@ Route::controller(PagosController::Class)->group(function(){
 });
 
 Route::controller(UsuarioController::class)->group(function(){
-    route::get("/usuario", "index");
+    route::post("/login", "login");
     route::post("/usuario", "store");
     route::get("/usuario/{id}", "show");
     route::put("/usuario/{id}", "update");
     route::delete("/usuario/{id}", "destroy");
 });
+
