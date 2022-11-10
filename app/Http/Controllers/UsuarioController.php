@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Usuario;
+use App\Models\Usuarios;
+use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use \stdClass;
 
 class UsuarioController extends Controller
 {
@@ -13,31 +17,48 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function login(Request $request)
     {
-        //todos los usuarios
-        //$usuarios = Usuario::all();
-        $usuarios = Usuario::where('correo', "usuario1@gmail.com")->get();
-        return response()->json($usuarios);
+       $request->validate([
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+        if(!Auth::attempt($request->only('email', 'password'))){
+            return response()->json(["message" => 'Unauthorized'], 401);
+        }
+       $user = Usuarios::where('email', $request->email)->first();
+       $token = $user->createToken('authToken')->plainTextToken;
+
+        return response()->json([
+            "message" => "Hi ". $user->nombre,
+            "access_token" => $token,
+            "token_type" => "Bearer",
+            "user" => $user
+        ], 200);
+        //return $request->all();*/
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $usuario = new Usuario();
-        $usuario->nombre = $request->nombre;
-        $usuario->correo = $request->correo;
-        $usuario->contraseña = $request->contraseña;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->telefono = $request->telefono;
-        $usuario->codigo_postal = $request->codigo_postal;
-        $usuario->direccion = $request->direccion;
-        $usuario->save();
+        $user = new Usuarios();
+        $user->nombre = $request->nombre;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->apellidos = $request->apellidos;
+        $user->telefono = $request->telefono;
+        $user->codigo_postal = $request->codigo_postal;
+        $user->direccion = $request->direccion;
+        $user->save();
+
+        $token = $user->createToken("authToken")->plainTextToken;
+
+        return response()->json(['data' => $user,'token' => $token, 'token_type' => 'Bearer'], 200);
 
     }
 
@@ -49,7 +70,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::find($id);
+        $usuario = Usuarios::find($id);
         return $usuario;
     }
 
@@ -62,7 +83,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario = Usuario::findOrfail($request->id);
+        $usuario = Usuarios::findOrfail($request->id);
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
         $usuario->email = $request->email;
@@ -78,7 +99,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::destroy($id);
+        $usuario = Usuarios::destroy($id);
         return $usuario;
     }
 }
