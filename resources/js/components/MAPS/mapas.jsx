@@ -12,7 +12,8 @@ import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 
 export default function Map() {
 
-    const [datos, setDatos] = useState([]);
+    // const [datos, setDatos] = useState([]);
+    // const [sala, setSala] = useState([]);
     const [idSala, setIdsala] = useState(null);
     const [precios, setPrecios] = useState([]);
     const [volver, setVolver] = useState(false);
@@ -26,67 +27,70 @@ export default function Map() {
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
     const [disponibilidad, setIDisponibilidad] = useState(false);
     const [descripcion, setIDescripcion] = useState(false);
-    const [activo, setActivo] = useState(true);
+         
 
-
-    useEffect(() =>
+    //HAGO UNA CONSULTA PARA PINTAR LAS SALAS OCUPADAS
+    useEffect( async () =>
     {
-        getAllData();
+        pintarSalasOcupadas()
 
-    }, [idSala] );
+    },[]);
+      
+    
+    //SE OBTINEN EL ID DE LA SALA
+    const setId =  (e) => {
+        const id = parseInt(e.target.id);
+        setBaseDeDatos(id);  
+    }
 
+ 
+    //CONSULTA A LA BASE DE DATOS
+    const setBaseDeDatos = async (id)=>{
+        const response = await axios.get("http://localhost:8000/api/sala/"+id);
+        const responseData = response.data;
+        setDatosSala(responseData)
+        pintarSalasOcupadas()
+        setModal()
+    }
+    
 
+    //SE PINTAN LAS SALAS OCUPADAS
+    const pintarSalasOcupadas  = async ()=>{
+        const response = await axios.get("http://localhost:8000/api/sala");
+        const salas = response.data;
 
-    //CONSULTA A LA BASE DE LOS DATOS
-    const getAllData  = async ()=>{
-        const response = await axios.get("http://localhost:8000/api/sala")
-        setDatos(response.data);
+        const pintar =  (min, max,)=>{
+            for(let i = min; max > i; i++){
+                if(salas.find(indice => indice.id === i).activo ==="false"){
+                    document.querySelector(".sala"+i).classList.add("ocupado");
+                }
+                else{
+                    document.querySelector(".sala"+i).classList.remove("ocupado");
+                }
+            }
+        }
+
+        pintar(101,129);
+        pintar(201,229);
+        pintar(301,329);
     }
 
 
-    //SE OBTINEN TODOS LOS DATOS DE LA SALA SELECCIONADA
-    const setId = (e) => {
-
-        const id = parseInt(e.target.id);
-        const validarSiExiste = datos.find(indice => indice.id === id)
-        console.log(validarSiExiste);
-
-        const sala = datos.find(indice => indice.id === id);
+    //SE OBTIENEN LOS DATOS DE LA SALA
+    const setDatosSala = (sala)=>{
         setIDisponibilidad(sala.activo);
-        setIdsala(sala.nombre_sala);
+        setIdsala(sala.nombre_sala); 
         setIDescripcion(sala.descripcion_sala);
         setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
-           
-        acciones();
-     
-
     }
 
-    const acciones = () =>{
-        setVolver(true);
+
+    //MOSTAR EL MODAL
+    const setModal = ()=>{
+        setVolver(true);//boton de volver
         setVerModal(true);
         document.querySelector(".botonesPisos").classList.add("displayFlex");
         document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
-        pintarSalasOcupadas(101,129);
-        pintarSalasOcupadas(201,229);
-        pintarSalasOcupadas(301,329);
-    }
-
-
-    //SE PINTA LAS SALAS QUE ESTAN OCUPADAS
-    const pintarSalasOcupadas = (min, max)=>{
-        for(let i = min; max > i; i++){
-
-            // const a = datos.find(indice => indice.id === i)
-            // console.log(datos.find(indice => indice.id === 14))
-
-            if(datos.find(indice => indice.id === i).activo ==="false"){
-                document.querySelector(".sala"+i).classList.add("ocupado");
-            }
-            else{
-                document.querySelector(".sala"+i).classList.remove("ocupado");
-            }
-        }
     }
 
     //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
@@ -121,6 +125,13 @@ export default function Map() {
         setVerMapaGrande3(true);
     }
 
+    // useEffect(() =>
+    // {
+      
+    //     acciones();
+
+        
+    // }, [] );
 
     return (
         <section className='seccionMapas'>
@@ -156,7 +167,7 @@ export default function Map() {
                 <div className='containerMapaGrande'>
                     <div
                         className={verMapaGrande1 ? 'piso1MapaGrandeSVG' : 'piso1MapaGrandeSVG noneMapa'}>
-                        <PisoUno_Rojo_SVG funcion={setId}  datos={datos}/>
+                        <PisoUno_Rojo_SVG funcion={setId} />
                     </div>
                     <div
                         className={verMapaGrande2 ? 'piso2MapaGrandeSVG' : 'piso2MapaGrandeSVG noneMapa'}>
