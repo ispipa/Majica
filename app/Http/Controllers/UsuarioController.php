@@ -46,6 +46,17 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => ['required'],
+            'email' => ['required','email','unique:App\Models\Usuarios,email'],
+            'password' => ['required'],
+            'apellidos' => ['required'],
+            'telefono' => ['required'],
+            'codigo_postal' => ['required'],
+            'direccion' => ['required']
+        ]);
+
+
         $user = new Usuarios();
         $user->nombre = $request->nombre;
         $user->email = $request->email;
