@@ -12,8 +12,8 @@ import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 
 export default function Map() {
 
-    const [datos, setDatos] = useState([]);
-    const [sala, setSala] = useState([]);
+    // const [datos, setDatos] = useState([]);
+    // const [sala, setSala] = useState([]);
     const [idSala, setIdsala] = useState(null);
     const [precios, setPrecios] = useState([]);
     const [volver, setVolver] = useState(false);
@@ -32,12 +32,10 @@ export default function Map() {
     //HAGO UNA CONSULTA PARA PINTAR LAS SALAS OCUPADAS
     useEffect( async () =>
     {
-        const response = await axios.get("http://localhost:8000/api/sala");
-        const datos = response.data;
-        pintarSalasOcupadas(datos)
-
+        pintarSalasOcupadas()
     },[]);
-         
+      
+    
     //SE OBTINEN EL ID DE LA SALA
     const setId =  (e) => {
         const id = parseInt(e.target.id);
@@ -47,21 +45,22 @@ export default function Map() {
  
     //CONSULTA A LA BASE DE DATOS
     const setBaseDeDatos = async (id)=>{
-        const response = await axios.get("http://localhost:8000/api/sala");
+        const response = await axios.get("http://localhost:8000/api/sala/"+id);
         const datosResponse = response.data;
-        setDatos(datosResponse)
-        const datoSala =  datosResponse.find(indice => indice.id === id);
-        setDatosSala(datoSala)
-        pintarSalasOcupadas(datosResponse)
+        setDatosSala(datosResponse)
+        pintarSalasOcupadas()
         setModal()
     }
     
 
     //SE PINTAN LAS SALAS OCUPADAS
-    const pintarSalasOcupadas = (datos)=>{
-        const pintar =  (min, max, datos)=>{
+    const pintarSalasOcupadas  = async ()=>{
+        const response = await axios.get("http://localhost:8000/api/sala");
+        const salas = response.data;
+
+        const pintar =  (min, max,)=>{
             for(let i = min; max > i; i++){
-                if(datos.find(indice => indice.id === i).activo ==="false"){
+                if(salas.find(indice => indice.id === i).activo ==="false"){
                     document.querySelector(".sala"+i).classList.add("ocupado");
                 }
                 else{
@@ -70,9 +69,9 @@ export default function Map() {
             }
         }
 
-        pintar(101,129, datos);
-        pintar(201,229, datos);
-        pintar(301,329, datos);
+        pintar(101,129);
+        pintar(201,229);
+        pintar(301,329);
     }
 
 
