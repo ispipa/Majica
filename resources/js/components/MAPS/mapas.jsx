@@ -25,6 +25,7 @@ export default function Map() {
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
     const [disponibilidad, setIDisponibilidad] = useState(false);
+    const [descripcion, setIDescripcion] = useState(false);
     const [activo, setActivo] = useState(true);
 
 
@@ -40,27 +41,25 @@ export default function Map() {
     const getAllData  = async ()=>{
         const response = await axios.get("http://localhost:8000/api/sala")
         setDatos(response.data);
-
     }
 
 
     //SE OBTINEN TODOS LOS DATOS DE LA SALA SELECCIONADA
-    const setId = async (e) => {
-        
+    const setId = (e) => {
+
         const id = parseInt(e.target.id);
         const validarSiExiste = datos.find(indice => indice.id === id)
-        
-        if(validarSiExiste != undefined){
-            const sala = datos.find(indice => indice.id === id);
-            setIDisponibilidad(sala.activo);
-            setIdsala(sala.nombre_sala);
-            setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
-        } else{
-            setIDisponibilidad("false");
-            setIdsala("");
-            setPrecios({"precio1": "", "precio2":""})
-        }
+        console.log(validarSiExiste);
+
+        const sala = datos.find(indice => indice.id === id);
+        setIDisponibilidad(sala.activo);
+        setIdsala(sala.nombre_sala);
+        setIDescripcion(sala.descripcion_sala);
+        setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
+           
         acciones();
+     
+
     }
 
     const acciones = () =>{
@@ -79,9 +78,9 @@ export default function Map() {
         for(let i = min; max > i; i++){
 
             // const a = datos.find(indice => indice.id === i)
-            console.log(datos.find(indice => indice.id === 14))
+            // console.log(datos.find(indice => indice.id === 14))
 
-            if(datos.includes(datos.find(indice => indice.id === i)) === false){
+            if(datos.find(indice => indice.id === i).activo ==="false"){
                 document.querySelector(".sala"+i).classList.add("ocupado");
             }
             else{
@@ -151,6 +150,7 @@ export default function Map() {
                 precio1={precios.precio1}
                 precio2={precios.precio2}
                 disponibilidad={disponibilidad}
+                descripcion={descripcion}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
