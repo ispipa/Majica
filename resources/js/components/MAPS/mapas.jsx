@@ -33,6 +33,7 @@ export default function Map() {
     useEffect( async () =>
     {
         pintarSalasOcupadas()
+
     },[]);
       
     
@@ -46,8 +47,8 @@ export default function Map() {
     //CONSULTA A LA BASE DE DATOS
     const setBaseDeDatos = async (id)=>{
         const response = await axios.get("http://localhost:8000/api/sala/"+id);
-        const datosResponse = response.data;
-        setDatosSala(datosResponse)
+        const responseData = response.data;
+        setDatosSala(responseData)
         pintarSalasOcupadas()
         setModal()
     }
