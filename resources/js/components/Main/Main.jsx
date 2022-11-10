@@ -21,17 +21,16 @@ export const Main = () => {
     e.preventDefault();
     let correoUser = e.target.correo.value;
     let passUser = e.target.clave.value;
-
-  axios.post(`http://127.0.0.1:8000/api/login`,
-      {
-    email: correoUser,
-    password: passUser
-  }
-    ).then(res => {
-        console.log(res);
-        console.log(res.data);
-        })
-  }
+      axios.post(`http://127.0.0.1:8000/api/login`,
+          {
+        email: correoUser,
+        password: passUser
+      }
+        ).then(res => {
+            console.log(res);
+            console.log(res.data);
+            })
+      }
 
   const Sign_up = (e) => {
     e.preventDefault();
@@ -113,7 +112,7 @@ export const Main = () => {
                               />
                           </div>
 
-                      
+
 
 
                           <div className="content-input">
