@@ -34,7 +34,7 @@ const App = () => {
                 try {
                     const { data } = await Axios.post('http://localhost:3001/api/checkout', {
                         id,
-                        amount: 1000
+                        amount: 6000
                     })
                     console.log(data)
                     elements.getElement(CardElement).clear();
@@ -51,7 +51,7 @@ const App = () => {
                     className='form'
                     onSubmit={handleSubmit} >
                     <CardElement />
-                    <h3>10$</h3>
+                    {/* <h3>{amount}</h3> */}
                     <button type="submit" disabled={!stripe}>Pagar</button>
                 </form>
             </>
