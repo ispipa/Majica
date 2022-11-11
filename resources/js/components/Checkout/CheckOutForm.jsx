@@ -5,6 +5,7 @@ import {
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
+import Axios from "axios";
 
 const CheckOutForm = () => {
     const stripe = useStripe();
