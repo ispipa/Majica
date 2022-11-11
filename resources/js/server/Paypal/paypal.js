@@ -36,7 +36,6 @@ const createPayment = (req, res) => {
             user_action: 'PAY_NOW', //BOTON DE ACCION
             return_url: 'http://localhost:3002/execute-payment', //URL DESPUES DE REALIZAR EL PAGO
             cancel_url: 'http://localhost:3002/cancel-payment' //URL EN CASO DE QUE EL USUARIO CANCELE EL PAGO
-
         }
     }
 
