@@ -5,15 +5,13 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './tabla';
 import { BsFillBagCheckFill } from "react-icons/bs";
-import { identity } from 'lodash';
 
-const Modal = ({ id, disponibilidad, verModal, volver, setVerModal, setVolver, updateId, descripcion, precio1, precio2}) => {
+const Modal = ({ id, piso, disponibilidad, verModal, volver, setVerModal, setVolver, updateId, descripcion, precio1, precio2}) => {
 
-     const usuario = 1;
-
+    const usuario = 1;
     
     //ESTADOS---
-    const [piso, setpiso] = useState("");
+    
     const [check, setcheck] = useState("");
     const [precio, setPrecio] = useState("");
     const [errorr, setError] = useState(false);
@@ -33,6 +31,7 @@ const Modal = ({ id, disponibilidad, verModal, volver, setVerModal, setVolver, u
         const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
         const usuarioData = response.data;
         setRegistros(usuarioData)
+        // console.log(registros)
         setContadorCompra(usuarioData.length)
     }
 
@@ -55,7 +54,7 @@ const Modal = ({ id, disponibilidad, verModal, volver, setVerModal, setVolver, u
             else{
                 axios.post('http://localhost:8000/api/pago', {
                     'precio':precio,
-                    'piso':"1",
+                    'piso':piso,
                     'sala':id,
                     'usuario': usuario,
                     'pagado': 'false'

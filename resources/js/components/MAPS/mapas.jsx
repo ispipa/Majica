@@ -15,6 +15,7 @@ export default function Map() {
     // const [datos, setDatos] = useState([]);
     // const [sala, setSala] = useState([]);
     const [idSala, setIdsala] = useState(null);
+    const [piso, setPiso] = useState(null);
     const [precios, setPrecios] = useState([]);
     const [volver, setVolver] = useState(false);
     const [boleano, setBoleano] = useState(false);
@@ -79,7 +80,8 @@ export default function Map() {
     //SE OBTIENEN LOS DATOS DE LA SALA
     const setDatosSala = (sala)=>{
         setIDisponibilidad(sala.activo);
-        setIdsala(sala.nombre_sala); 
+        setIdsala(sala.nombre_sala);
+        setPiso(sala.piso)
         setIDescripcion(sala.descripcion_sala);
         setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
     }
@@ -162,6 +164,7 @@ export default function Map() {
                 precio2={precios.precio2}
                 disponibilidad={disponibilidad}
                 descripcion={descripcion}
+                piso={piso}
             />
             <div className='container2'>
                 <div className='containerMapaGrande'>
