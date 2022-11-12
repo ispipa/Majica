@@ -30,7 +30,7 @@ export default function Map() {
          
 
     //HAGO UNA CONSULTA PARA PINTAR LAS SALAS OCUPADAS
-    useEffect( async () =>
+    useEffect( () =>
     {
         pintarSalasOcupadas()
 

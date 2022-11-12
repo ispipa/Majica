@@ -1,47 +1,70 @@
 import React from 'react';
+import axios from 'axios';
 import Volver from '../assets/cerca.png';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FormularioPago from './tabla';
 import { BsFillBagCheckFill } from "react-icons/bs";
+import { identity } from 'lodash';
 
-const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerModal, setVolver, updateId, descripcion}) => {
+const Modal = ({ id, disponibilidad, verModal, volver, setVerModal, setVolver, updateId, descripcion, precio1, precio2}) => {
 
+     const usuario = 1;
 
-    //RECUPERO DATOS DEL LOCAL STORAGE---
-    const obtenerRegistros = () => {
-        if (localStorage.getItem("datos")) {
-            return JSON.parse(localStorage.getItem("datos"));
-        } else {
-            return [];
-        }
-    }
-
+    
     //ESTADOS---
     const [piso, setpiso] = useState("");
     const [check, setcheck] = useState("");
     const [precio, setPrecio] = useState("");
     const [errorr, setError] = useState(false);
     const [mostrarTabla, setMostratTabla] = useState(true);
-    const [registros, setRegistros] = useState(obtenerRegistros());
+    const [registros, setRegistros] = useState([]);
     const [contadorCompra, setContadorCompra] = useState(0);
 
+
+     useEffect(() =>
+     {
+         dataBase();
+
+     }, [])
+    
+    //CONSULTA A LA BASE DE DATOS
+    const dataBase = async () => {
+        const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
+        const usuarioData = response.data;
+        setRegistros(usuarioData)
+        setContadorCompra(usuarioData.length)
+    }
+
     //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
-    const setDatos = () => {
+    const setDatos = async () => {
+        
+        //si no han seleccionado un precio activo una alerta
         if (precio == ""){   
             setError(true);
         }
         else{
 
-            if (localStorage.getItem("datos").indexOf(id) > 1){
-                editar(id);
+            const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
+            const sala = response.data;
+            //si ya existe en la base de datos, lo edito.
+            if (sala.findIndex(element => element.sala_pagos == id) >= 0 ){
+                editar();
             }
+            //si no exite en la base de datos, lo agrego.
             else{
-                setRegistros([ { "id": id, "piso": piso, "precio": precio, "check": check }, ...registros]);
+                axios.post('http://localhost:8000/api/pago', {
+                    'precio':precio,
+                    'piso':"1",
+                    'sala':id,
+                    'usuario': usuario,
+                    'pagado': 'false'
+                });
+
                 setcheck("");
                 setPrecio("");
                 setError(false);
-                setContadorCompra(JSON.parse(localStorage.getItem("datos")).length + 1);  
+                dataBase();
             }
         }
     }
@@ -63,23 +86,19 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
     }
 
     //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
-    const eliminar = (e) =>
+    const eliminar = async (e) =>
     {
-        const items = JSON.parse(localStorage.getItem("datos"));
-        const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
-        items.splice(indice, 1);
-        setRegistros(items);
-        setContadorCompra(JSON.parse(localStorage.getItem("datos")).length - 1);
-
+        await axios.delete("http://localhost:8000/api/pago/"+e);
+        dataBase();
     }
 
     //EDITAR UN REGISTRO DEL LOCALSTORAGE
-    const editar = (e) =>
+    const editar = async (e) =>
     {
-        const items = JSON.parse(localStorage.getItem("datos"));
-        const indice = items.findIndex(element => element.id === e); //con el find optengo el indice del array
-        items[indice] = {"id": id, "piso": piso, "precio": precio, "check": check  };
-        setRegistros(items); 
+        await axios.put("http://localhost:8000/api/pago/"+e , {
+            'precio': precio
+        });
+        dataBase();
     }
 
 
@@ -92,12 +111,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
         setMostratTabla(true);
     }
 
-    //GUARDO EN EL LOCALSTORAGE---
-    useEffect(() =>
-    {
-        localStorage.setItem("datos", JSON.stringify(registros));
-
-    }, [registros])
+   
 
 
     return (
@@ -151,7 +165,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                             onClick={actualizarCheck}
                                             id="1"
                                             name='1'
-                                            value='60'
+                                            value={precio1}
                                             className='checkbox'
                                         />
                                         {" " + precio1} €
@@ -164,7 +178,7 @@ const Modal = ({ id, disponibilidad, precio1, precio2, verModal, volver, setVerM
                                             checked={check == "2" ? true : false}
                                             onClick={actualizarCheck}
                                             id="2"
-                                            value='150'
+                                            value={precio2}
                                             className='checkbox'
                                         />
                                         {" " + precio2} €

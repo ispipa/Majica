@@ -9,8 +9,10 @@ class Pagos extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'precios_pagos',
-        'sala',
+        'precio_pagos',
+        'piso_pagos',
+        'sala_pagos',
+        'pagado',
         'usuario'
     ];
 }

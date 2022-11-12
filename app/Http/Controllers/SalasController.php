@@ -14,7 +14,6 @@ class SalasController extends Controller
     public function index()
     {
         $salas = Salas::all();
-        // $salas = Salas::where('activo','true')->get();
         return $salas;
     }
 

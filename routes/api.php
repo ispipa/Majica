@@ -44,6 +44,7 @@ Route::controller(PagosController::Class)->group(function(){
 });
 
 Route::controller(UsuarioController::class)->group(function(){
+    route::get("/usuario", "index");
     route::post("/login", "login");
     route::post("/usuario", "store");
     route::get("/usuario/{id}", "show");
