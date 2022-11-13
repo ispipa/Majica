@@ -29,7 +29,7 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
     //CONSULTA A LA BASE DE DATOS
     const dataBase = async () => {
         const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
-        const usuarioData = response.data;
+        const usuarioData = response.data.reverse();
         setContadorCompra(usuarioData.length)
         setRegistros(usuarioData)
     }
