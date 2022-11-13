@@ -6,8 +6,8 @@ import FormularioPago from './tabla';
 import Volver from '../assets/cerca.png';
 import { BsFillBagCheckFill } from "react-icons/bs";
 
-const Modal = ({ id, piso, disponibilidad, verModal, volver, setVerModal, 
-                 setVolver, updateId, descripcion, precio1, precio2 }) => {
+const Modal = ({ id, piso, disponibilidad, verModal, volver, 
+                 setVerModal, setVolver, updateId, descripcion, precio1, precio2 }) => {
 
     const usuario = 1;
     
@@ -34,45 +34,73 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver, setVerModal,
         setRegistros(usuarioData)
     }
 
-    //ALMACENO LOS DATOS EN UNA VARIABLE (...REGISTROS)---
-    const setDatos = async () => {
-        
-        //si no han seleccionado un precio activo una alerta
-        if (precio == ""){   
-            setError(true);
-        }
-        else{
-
-            const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
-            const sala = response.data;
-            //si ya existe en la base de datos, lo edito.
-            if (sala.findIndex(element => element.sala_pagos == id) >= 0 ){
-                editar();
-            }
-            //si no exite en la base de datos, lo agrego.
-            else{
-                axios.post('http://localhost:8000/api/pago', {
-                    'usuario': usuario,
-                    'pagado': 'false',
-                    'precio':precio,
-                    'piso':piso,
-                    'sala':id
-                });
-
-                setError(false);
-                setPrecio("");
-                setcheck("");
-                dataBase();
-            }
-        }
-    }
-
-    //CAMBIO EL COLOR DEL CHECK Y OBTENGO SU VALUE
+    //OBTENGO EL VALOR DEL CHECKBOX Y EL PRECIO SELECCIONADO
     const actualizarCheck = (e) =>
     {
         setcheck(e.target.id)
         setPrecio(e.target.value)
     }
+
+
+
+
+
+
+    //AGREGAR
+    const agregar = async ()=>{   
+        const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
+        const sala = response.data;
+        //Si no ha seleccionado un precio, mando un alerta.
+        if (precio == "" )
+        {   
+            setError(true);
+        } 
+
+        // Si el registro aun no existe en la base de datos, lo agrego.
+        else if (sala.findIndex(element => element.sala_pagos == id) < 0)
+        {
+            axios.post('http://localhost:8000/api/pago', {
+                'usuario': usuario,
+                'pagado': 'false',
+                'precio':precio,
+                'piso':piso,
+                'sala':id
+            });  
+            // Reinicio los checkboxes
+            setError(false);
+            setPrecio("");
+            setcheck("");
+            dataBase();
+        } 
+        //Si el registro ya existe en la base de datos, le edito el precio
+        else
+        {
+            editar(sala);
+            dataBase();
+        }
+    }
+
+    //EDITAR
+    const editar = async (sala) =>
+    {
+        //optengo el id de la sala que se va a editar
+        const idSalaUpdate = sala.find(element => element.sala_pagos == id).id 
+        await axios.put("http://localhost:8000/api/pago/"+idSalaUpdate , {
+            'precio': precio,
+            'pagado': 'false'
+        });
+    }
+
+    //ELIMINAR
+    const eliminar = async (e) =>
+    {
+        await axios.delete("http://localhost:8000/api/pago/"+e);
+        dataBase();
+    }
+
+
+
+
 
     //BOTON DE VOLVER
     const volverBtn1 = () =>
@@ -82,23 +110,6 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver, setVerModal,
         document.querySelector(".botonesPisos").classList.remove("displayFlex");
         document.querySelector(".containerMapaGrande").classList.remove("paddingBottom");
     }
-
-    //ELIMINAR UN REGISTRO DEL LOCALSTORAGE
-    const eliminar = async (e) =>
-    {
-        await axios.delete("http://localhost:8000/api/pago/"+e);
-        dataBase();
-    }
-
-    //EDITAR UN REGISTRO DEL LOCALSTORAGE
-    const editar = async (e) =>
-    {
-        await axios.put("http://localhost:8000/api/pago/"+e , {
-            'precio': precio
-        });
-        dataBase();
-    }
-
 
     //MOSTRAR LA TABLA DE COMPRA
     const mostratTablaCompra = ()=>{
@@ -192,7 +203,7 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver, setVerModal,
                                             <input 
                                                 id="2"
                                                 type="radio"
-                                                value={precio2}
+                                                value="4"
                                                 className='checkbox'
                                                 onClick={actualizarCheck}
                                                 checked={check == "2" ? true : false}
@@ -204,7 +215,7 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver, setVerModal,
                                 <button 
                                     style={{ background: true ? "#ff2c5a" : "#440033" }} 
                                     className='botonAgregar' 
-                                    onClick={setDatos}>
+                                    onClick={agregar}>
                                     { true ? "AÑADIR A LA COMPRA" : "Actualizar"}
                                 </button>
                             </div>

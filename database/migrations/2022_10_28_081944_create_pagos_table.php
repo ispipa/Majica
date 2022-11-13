@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('precio_pagos');
+            $table->string('precio_pagos')->nullable();
             $table->foreignId('piso_pagos')->constrained('pisos');
             $table->foreignId('sala_pagos')->constrained('salas');
             $table->foreignId('usuario')->constrained('usuarios');
