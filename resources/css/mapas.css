@@ -160,7 +160,8 @@
 
 .none {
     opacity: 0;
-    transition: .5s;
+    display: none;
+    /* transition: .5s; */
 }
 
 .noneMapa {

@@ -12,8 +12,6 @@ import MapaPequeno_piso3_SVG from './mapaPequeno_piso3_SVG';
 
 export default function Map() {
 
-    // const [datos, setDatos] = useState([]);
-    // const [sala, setSala] = useState([]);
     const [idSala, setIdsala] = useState(null);
     const [piso, setPiso] = useState(null);
     const [precios, setPrecios] = useState([]);
@@ -26,7 +24,7 @@ export default function Map() {
     const [verMapaGrande1, setVerMapaGrande1] = useState(true);
     const [verMapaGrande2, setVerMapaGrande2] = useState(false);
     const [verMapaGrande3, setVerMapaGrande3] = useState(false);
-    const [disponibilidad, setIDisponibilidad] = useState(false);
+    const [disponibilidad, setIDisponibilidad] = useState("");
     const [descripcion, setIDescripcion] = useState(false);
          
 
@@ -42,6 +40,8 @@ export default function Map() {
     const setId =  (e) => {
         const id = parseInt(e.target.id);
         setBaseDeDatos(id);  
+        setModal()
+        
     }
 
  
@@ -51,7 +51,7 @@ export default function Map() {
         const responseData = response.data;
         setDatosSala(responseData)
         pintarSalasOcupadas()
-        setModal()
+        setS(responseData);
     }
     
 
@@ -62,7 +62,7 @@ export default function Map() {
 
         const pintar =  (min, max,)=>{
             for(let i = min; max > i; i++){
-                if(salas.find(indice => indice.id === i).activo ==="false"){
+                if(salas.find(indice => indice.id === i).activo === "Ocupado"){
                     document.querySelector(".sala"+i).classList.add("ocupado");
                 }
                 else{
@@ -79,27 +79,28 @@ export default function Map() {
 
     //SE OBTIENEN LOS DATOS DE LA SALA
     const setDatosSala = (sala)=>{
+        
         setIDisponibilidad(sala.activo);
         setIdsala(sala.nombre_sala);
         setPiso(sala.piso)
         setIDescripcion(sala.descripcion_sala);
         setPrecios({"precio1": sala.precio_sala, "precio2":sala.precio_sala})
+        console.log(precios);
     }
 
 
     //MOSTAR EL MODAL
     const setModal = ()=>{
+        setIdsala("");
         setVolver(true);//boton de volver
         setVerModal(true);
+        setIDescripcion("");
+        setPrecios([""])
         document.querySelector(".botonesPisos").classList.add("displayFlex");
         document.querySelector(".containerMapaGrande").classList.add("paddingBottom");
     }
 
-    //AL DAR CLICK EN UNA FILA DE LA TABLA SE ACTUALIZA EL ID DE LA SALA
-    const updateId = (id) =>{
-        setIdsala(id);
-        setBoleano(true)
-    }
+    
 
     //SE OCULTAN Y SE MUESTRAN LOS MAPAS GRANDES Y PEQUEÑOS
     const mostrarPiso1 = () => {
@@ -127,13 +128,7 @@ export default function Map() {
         setVerMapaGrande3(true);
     }
 
-    // useEffect(() =>
-    // {
-      
-    //     acciones();
 
-        
-    // }, [] );
 
     return (
         <section className='seccionMapas'>
@@ -156,7 +151,7 @@ export default function Map() {
             <Modal
                 id={idSala}
                 volver={volver}
-                updateId={updateId}
+                setId={setId}
                 verModal={verModal}
                 setVolver={setVolver}
                 setVerModal={setVerModal}

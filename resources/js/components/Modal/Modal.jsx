@@ -7,31 +7,35 @@ import Volver from '../assets/cerca.png';
 import { BsFillBagCheckFill } from "react-icons/bs";
 
 const Modal = ({ id, piso, disponibilidad, verModal, volver, 
-                 setVerModal, setVolver, updateId, descripcion, precio1, precio2 }) => {
+                 setVerModal, setVolver, setId, descripcion, precio1, precio2, s }) => {
 
     const usuario = 1;
     
     //ESTADOS---
+    const [p, setP] = useState("");
     const [check, setcheck] = useState("");
     const [precio, setPrecio] = useState("");
     const [errorr, setError] = useState(false);
     const [registros, setRegistros] = useState([]);
     const [mostrarTabla, setMostratTabla] = useState(true);
     const [contadorCompra, setContadorCompra] = useState(0);
-
+    
 
      useEffect(() =>
      {
          dataBase();
-
-     }, [])
+        
+     }, [id])
     
     //CONSULTA A LA BASE DE DATOS
     const dataBase = async () => {
+        setPrecio("");
+        setcheck("");
         const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
         const usuarioData = response.data.reverse();
         setContadorCompra(usuarioData.length)
         setRegistros(usuarioData)
+        
     }
 
     //OBTENGO EL VALOR DEL CHECKBOX Y EL PRECIO SELECCIONADO
@@ -43,11 +47,12 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
 
 
 
-
+    
 
 
     //AGREGAR
-    const agregar = async ()=>{   
+    const agregar = async ()=>{  
+        console.log(s)  
         const response = await axios.get("http://localhost:8000/api/pago?usuario="+usuario);
         const sala = response.data;
         //Si no ha seleccionado un precio, mando un alerta.
@@ -148,25 +153,30 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
                 <div className='containerModal'>
                     <div className='containerModalHijo'>
                         <div className='headerModal'>
-                            <h1
-                                className='numPiso'>
-                                {id ? "Sala " + id : null}
-                            </h1>
+                            <div className='numPiso'>
+                                <h1 >
+                                    Sala 
+                                </h1>
+                                <h1
+                                    style={{opacity: id != "" ? "1" : "0" }}>
+                                    {id}
+                                </h1>
+                            </div>
                             <h1
                                 className='disponibilidad'
-                                style={{ color: disponibilidad == "true" ? "#afffad" : "red" }}>
-                                {disponibilidad == "true" ? "Disponible" : "Ocupado"}
+                                style={{ color: disponibilidad == "Disponible" ? "#afffad" : "red" }}>
+                                { disponibilidad }
                             </h1>
                         </div>
                         <div className={ 
-                             disponibilidad == "true" ? "descripcionMapa none" : "descripcionMapa" } >
+                             disponibilidad == "Disponible" ? "descripcionMapa none" : "descripcionMapa" } >
                             <p 
                                 className='descripcionSala'>
                                 {descripcion}
                             </p>
                         </div>
                         <div className={ 
-                             disponibilidad == "true" ? "descripcionModal" : "descripcionModal none" } >
+                             disponibilidad == "Disponible" ? "descripcionModal" : "descripcionModal none" } >
                             <div className='preciosModal' >
                                 <p  
                                     className='seleccione'
@@ -191,8 +201,8 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
                                                 onClick={actualizarCheck}
                                                 checked={check == "1" ? true : false}
                                             />
-                                        <p> {" " + precio1} € </p>
-                                        <p className='precio1'> 1 Mes </p>
+                                        <p className={ precio1 == undefined ? "nonePrecio" : "precio1" } > { precio1 == undefined  ? "" : "" }{ disponibilidad == "Disponible"  ? precio1+" € " : "" }</p>
+                                        <p className={ precio1 == undefined ? "noneMes" : "precio1M" }  >{ disponibilidad == "Disponible"  ? " 1 Mes" : "" }   </p>
                                     </label>
                                 </div>
                                 <div className='precioBtn'>
@@ -207,18 +217,18 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
                                                 onClick={actualizarCheck}
                                                 checked={check == "2" ? true : false}
                                             />
-                                        <p> {" " + precio2} €</p>
-                                        <p className='precio2'> 3 Meses</p>
+                                        <p className={ precio2 == undefined ? "nonePrecio" : "precio2" } >{ precio2 == undefined  ? "" : "" }{ disponibilidad == "Disponible"  ? precio2+" € " : "" } </p>
+                                        <p className={ precio2 == undefined ? "noneMes" : "precio2M" }  >{ disponibilidad == "Disponible"  ? " 3 Meses" : "" } </p>
                                     </label>
                                 </div>
-                                <button 
-                                    style={{ background: true ? "#ff2c5a" : "#440033" }} 
-                                    className='botonAgregar' 
-                                    onClick={agregar}>
-                                    { true ? "AÑADIR A LA COMPRA" : "Actualizar"}
-                                </button>
                             </div>
                         </div>
+                        <button 
+                            style={{ background: true ? "#ff2c5a" : "#440033" }} 
+                            className='botonAgregar' 
+                            onClick={agregar}>
+                            { true ? "AÑADIR A LA COMPRA" : "Actualizar"}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -226,7 +236,7 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
                 <FormularioPago 
                     datos={registros}
                     eliminar={eliminar}
-                    updateId={updateId}
+                    setId={setId}
                     ocultarTablaPagar={ocultarTablaPagar}
                 />
             </div>

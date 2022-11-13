@@ -1,7 +1,7 @@
 import { TiDelete } from "react-icons/ti";
 import { GrClose } from "react-icons/gr";
 
-export default function FormularioPago({datos, eliminar, updateId, ocultarTablaPagar }){
+export default function FormularioPago({datos, eliminar, setId, ocultarTablaPagar }){
 
     //ALMACENO TODOS LOS PRECIOS EN UN ARRAY
     const  precios = [];
@@ -11,6 +11,14 @@ export default function FormularioPago({datos, eliminar, updateId, ocultarTablaP
     });
     //SUMO TODOS LOS PRECIOS DE ARRAY
     let total = precios.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    // const updateId = async (sala) =>{
+    //     // setModal()
+    //     const response = await axios.get("http://localhost:8000/api/sala/"+sala);
+    //     const responseData = response.data;
+    //     setPrecios({"precio1":  responseData.precio_sala, "precio2": responseData.precio_sala})
+    //     console.log(precios)
+    // }
 
     return(
         <div className='containerPadrePagar'>
@@ -35,19 +43,19 @@ export default function FormularioPago({datos, eliminar, updateId, ocultarTablaP
                             <td 
                                 className="nSala" 
                                 id={ar.sala_pagos} 
-                                onClick={()=>updateId(ar.sala_pagos)}>
+                                onClick={setId}>
                                 {ar.sala_pagos}
                             </td>
                             <td 
                                 className="nPiso" 
                                 id={ar.sala_pagos} 
-                                onClick={()=>updateId(ar.sala_pagos)}>
+                                onClick={setId}>
                                 {ar.piso_pagos}
                             </td> 
                             <td 
                                 className="precio" 
                                 id={ar.sala_pagos} 
-                                onClick={()=>updateId(ar.sala_pagos)}>
+                                onClick={setId}>
                                 {ar.precio_pagos}€
                             </td> 
                             <td 
