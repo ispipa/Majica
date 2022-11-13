@@ -55,7 +55,6 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
         {   
             setError(true);
         } 
-
         // Si el registro aun no existe en la base de datos, lo agrego.
         else if (sala.findIndex(element => element.sala_pagos == id) < 0)
         {
@@ -72,7 +71,7 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
             setcheck("");
             dataBase();
         } 
-        //Si el registro ya existe en la base de datos, le edito el precio
+        //Si el registro ya existe en la base de datos, edito el precio
         else
         {
             editar(sala);
@@ -92,9 +91,9 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
     }
 
     //ELIMINAR
-    const eliminar = async (e) =>
+    const eliminar = async (idSalaDelete) =>
     {
-        await axios.delete("http://localhost:8000/api/pago/"+e);
+        await axios.delete("http://localhost:8000/api/pago/"+idSalaDelete);
         dataBase();
     }
 
