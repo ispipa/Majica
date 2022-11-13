@@ -105,11 +105,10 @@
 
 .ocupado{
     fill: #6b6b6b !important;
+} .ocupado:hover{
+    fill:#5c5c5c !important;
 }
 
-.disponible{
-    fill: #ff0000 !important;
-}
 .j{
     margin: 60px;
 }
