@@ -202,7 +202,7 @@ const Modal = ({ id, piso, disponibilidad, verModal, volver,
                                             <input 
                                                 id="2"
                                                 type="radio"
-                                                value="4"
+                                                value={precio2}
                                                 className='checkbox'
                                                 onClick={actualizarCheck}
                                                 checked={check == "2" ? true : false}
