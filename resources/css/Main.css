@@ -147,6 +147,38 @@ form.sign-in-form {
   padding: 0px 12px;
   resize: none;
 }
+
+.input-field-dir{
+  max-width: 100%;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  padding: 0 0.4rem;
+  position: relative;
+  display: grid;
+    grid-column: span 2;
+}
+
+.input-field-dir > input {
+  background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 1em;
+}
+
+.input-field-dir > input:active{
+  border: none;
+}
+
+.input-field-dir i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
 textarea{
   background: none;
   outline: none;

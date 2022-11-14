@@ -163,9 +163,22 @@ export const Main = () => {
                                           required
                                       />
                                   </div>
+
                                   <div
                                       className="input-field"
                                       style={{ gridArea: "area4" }}
+                                  >
+                                      <i className="fas fa-user"></i>
+                                      <select name="tipo_de_artista" id="type_of_artist">
+                                          <option value="Artista" disabled selected>Artista</option>
+                                          <option value="dibujante">Dibujante</option>
+                                          <option value="fotografo">Fotografo</option>
+                                      </select>
+                                  </div>
+
+                                  <div
+                                      className="input-field-dir"
+                                      /* style={{ gridArea: "area5" }} */
                                   >
                                       <i className="fas fa-lock"></i>
                                       <input
@@ -174,19 +187,19 @@ export const Main = () => {
                                           placeholder="Dirección"
                                       />
                                   </div>
-                                  <div
+                                  {/* <div
                                       className="input-field"
                                       style={{ gridArea: "area5" }}
                                   >
                                       <i className="fas fa-user"></i>
                                       <select name="tipo_de_artista" id="type_of_artist">
                                           <option value="Artista" disabled selected>Artista</option>
-                                          <option value="dibujante">dibujante</option>
-                                          <option value="fotografo">fotografo</option>
+                                          <option value="dibujante">Dibujante</option>
+                                          <option value="fotografo">Fotografo</option>
                                       </select>
-                                  </div>
+                                  </div> */}
 
-                                  <div
+                                  {/* <div
                                       className="input-field"
                                       style={{ gridArea: "area6" }}
                                   >
@@ -204,7 +217,7 @@ export const Main = () => {
                                   >
                                       <i className="fas fa-user"></i>
                                       <textarea id="descripción" name="descripción" rows="4" cols="50" placeholder="Descripción" required></textarea>
-                                  </div>
+                                  </div> */}
                               </div>
 
                               <div className="btn-register">
