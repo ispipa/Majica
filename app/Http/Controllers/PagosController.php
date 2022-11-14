@@ -12,10 +12,10 @@ class PagosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pagos = Pagos::all();
-        return $pagos;
+        $aPagar = Pagos::where('usuario', $request->usuario)->get();
+        return $aPagar;
     }
 
     /**
@@ -27,9 +27,11 @@ class PagosController extends Controller
     public function store(Request $request)
     {
         $pago = new Pagos();
-        $pago->precios_pagos = $request->precios_pagos;
-        $pago->sala = $request->sala;
+        $pago->precio_pagos = $request->precio;
+        $pago->sala_pagos = $request->sala;
+        $pago->piso_pagos = $request->piso;
         $pago->usuario = $request->usuario;
+        $pago->pagado = $request->pagado;
         $pago->save();
     }
 
@@ -54,11 +56,12 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pago = Pagos::findOrfail($request->id);
-        $pago->precios_pagos = $request->precios_pagos;
-        $pago->sala = $request->sala;
-        $pago->usuario = $request->usuario;
+        
+        $pago = Pagos::findOrFail($id);
+        $pago->precio_pagos = $request->precio;
+        $pago->pagado = $request->pagado;
         $pago->save();
+        // return $pago;
     }
 
     /**
@@ -69,7 +72,7 @@ class PagosController extends Controller
      */
     public function destroy($id)
     {
-        $pago = Pagos::destroy($id);
+        $pago = Pagos::where("sala_pagos", $id)->delete();
         return $pago;
     }
 }

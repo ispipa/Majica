@@ -12,6 +12,10 @@ use \stdClass;
 
 class UsuarioController extends Controller
 {
+
+
+   
+
     /**
      * Display a listing of the resource.
      *
